@@ -18,4 +18,8 @@ class MahasiswaSemester extends Model
     {
         return $this->belongsTo(Semester::class, 'semester_id', 'id');
     }
+    public function semester_status()
+    {
+        return $this->belongsTo(SemesterStatus::class, 'status_semester_id', 'id');
+    }
 }
