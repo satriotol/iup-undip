@@ -27,4 +27,12 @@ class UserMahasiswa extends Model
     {
         return $this->belongsTo(Country::class, 'country_id', 'id');
     }
+    public function mahasiswa_semesters()
+    {
+        return $this->hasMany(MahasiswaSemester::class, 'user_mahasiswa_id', 'id');
+    }
+    public function semesters()
+    {
+        return $this->belongsToMany(Semester::class, 'mahasiswa_semester', 'user_mahasiswa_id', 'semester_id');
+    }
 }
