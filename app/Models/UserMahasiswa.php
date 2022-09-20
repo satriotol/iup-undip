@@ -19,4 +19,8 @@ class UserMahasiswa extends Model
     {
         return $this->belongsTo(Batch::class, 'batch_id', 'user_id');
     }
+    public function major()
+    {
+        return $this->belongsTo(Major::class, 'major_id', 'id');
+    }
 }
