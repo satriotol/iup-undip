@@ -15,4 +15,8 @@ class UserMahasiswa extends Model
     {
         return $this->hasOne(User::class, 'user_id', 'id');
     }
+    public function batch()
+    {
+        return $this->belongsTo(Batch::class, 'batch_id', 'user_id');
+    }
 }
