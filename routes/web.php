@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\MajorController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -17,8 +19,9 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth'])->name('dashboard');
+Route::group(['middleware' => ['auth']], function () {
+    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard.index');
+    Route::resource('major', MajorController::class);
+});
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';
