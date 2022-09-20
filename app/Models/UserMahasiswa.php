@@ -23,4 +23,8 @@ class UserMahasiswa extends Model
     {
         return $this->belongsTo(Major::class, 'major_id', 'id');
     }
+    public function country()
+    {
+        return $this->belongsTo(Country::class, 'country_id', 'id');
+    }
 }
