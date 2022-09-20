@@ -34,13 +34,16 @@
     <link id="theme" rel="stylesheet" type="text/css" media="all"
         href="{{ asset('assets/colors/color1.css') }}" />
 
+    @stack('style')
+
+
 </head>
 
 <body class="app sidebar-mini ltr">
 
     <!-- GLOBAL-LOADER -->
     <div id="global-loader">
-        <img src="../assets/images/loader.svg" class="loader-img" alt="Loader">
+        <img src="{{ asset('assets/images/loader.svg') }}" class="loader-img" alt="Loader">
     </div>
     <!-- /GLOBAL-LOADER -->
 
@@ -104,8 +107,21 @@
     <!-- Sticky js -->
     <script src="{{ asset('assets/js/sticky.js') }}"></script>
 
+    <script src="{{ asset('assets/plugins/notify/js/rainbow.js') }}"></script>
+    <script src="{{ asset('assets/plugins/notify/js/sample.js') }}"></script>
+    <script src="{{ asset('assets/plugins/notify/js/jquery.growl.js') }}"></script>
+    <script src="{{ asset('assets/plugins/notify/js/notifIt.js') }}"></script>
     <!-- CUSTOM JS -->
     <script src="{{ asset('assets/js/custom.js') }}"></script>
+    @stack('custom-scripts')
+    @if (session()->has('success'))
+        <script>
+            notif({
+                msg: "<b>Success:</b> Well done Details Submitted Successfully",
+                type: "success"
+            });
+        </script>
+    @endif
 
 </body>
 

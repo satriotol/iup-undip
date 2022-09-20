@@ -14,7 +14,8 @@ class MajorController extends Controller
      */
     public function index()
     {
-        return view('pages.major.index');
+        $majors = Major::all();
+        return view('pages.major.index', compact('majors'));
     }
 
     /**
@@ -24,7 +25,7 @@ class MajorController extends Controller
      */
     public function create()
     {
-        //
+        return view('pages.major.create');
     }
 
     /**
@@ -35,7 +36,13 @@ class MajorController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = $this->validate($request, [
+            'name' => 'required',
+        ]);
+
+        Major::create($data);
+        session()->flash('success');
+        return redirect(route('major.index'));
     }
 
     /**

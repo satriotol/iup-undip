@@ -29,7 +29,7 @@
                             class="side-menu__label">Dashboard</span></a>
                 </li>
                 <li class="slide">
-                    <a class="side-menu__item {{ active_class(['major.index']) }}" data-bs-toggle="slide"
+                    <a class="side-menu__item {{ active_class(['major.*']) }}" data-bs-toggle="slide"
                         href="{{ route('major.index') }}"><i class="side-menu__icon fe fe-home"></i><span
                             class="side-menu__label">Major</span></a>
                 </li>
