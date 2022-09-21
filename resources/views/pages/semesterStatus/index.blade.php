@@ -11,7 +11,8 @@
                 </div>
                 <div class="card-body">
                     <div class="text-end">
-                        <a href="{{ route('semesterStatus.create') }}" class="btn btn-sm btn-primary" type="button">Create</a>
+                        <a href="{{ route('semesterStatus.create') }}" class="btn btn-sm btn-primary"
+                            type="button">Create</a>
                     </div>
                     <div class="table-responsive">
                         <table

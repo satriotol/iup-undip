@@ -9,7 +9,7 @@ class MahasiswaSemester extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['user_mahasiswa_id', 'semester_id', 'status_semester_id'];
+    protected $fillable = ['user_mahasiswa_id', 'semester_id', 'semester_status_id'];
     public function user_mahasiswa()
     {
         return $this->belongsTo(UserMahasiswa::class, 'user_mahasiswa_id', 'id');
@@ -20,6 +20,6 @@ class MahasiswaSemester extends Model
     }
     public function semester_status()
     {
-        return $this->belongsTo(SemesterStatus::class, 'status_semester_id', 'id');
+        return $this->belongsTo(SemesterStatus::class, 'semester_status_id', 'id');
     }
 }

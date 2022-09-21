@@ -1,4 +1,11 @@
 @extends('layout.main')
+@push('style')
+    <style>
+        .text-helper {
+            font-size: 1rem;
+        }
+    </style>
+@endpush
 @section('content')
     <div class="page-header">
         <h1 class="page-title">Mahasiswa</h1>
@@ -40,6 +47,96 @@
                                         </td>
                                         <td name="bstable-actions">
                                             <div class="btn-list">
+                                                <button class="btn btn-sm btn-secondary bg-secondary-gradient"
+                                                    data-bs-toggle="modal"
+                                                    data-bs-target="#extralargemodal">Semester</button>
+                                                <div class="modal fade" id="extralargemodal" tabindex="-1" role="dialog">
+                                                    <div class="modal-dialog modal-xl" role="document">
+                                                        <div class="modal-content">
+                                                            <div class="modal-header">
+                                                                <h5 class="modal-title">Semester {{ $mahasiswa->name }}
+                                                                </h5>
+                                                                <button class="btn-close" data-bs-dismiss="modal"
+                                                                    aria-label="Close">
+                                                                    <span aria-hidden="true">×</span>
+                                                                </button>
+                                                            </div>
+                                                            <form
+                                                                action="{{ route('mahasiswa.assignSemester', $mahasiswa->user_mahasiswa->id) }}"
+                                                                method="POST">
+                                                                @csrf
+                                                                <div class="modal-body">
+                                                                    <div class="row">
+
+                                                                        <div class="form-group">
+                                                                            <label class="text-helper">Semester</label><br>
+                                                                            <select name="semester_id"
+                                                                                class="form-control select2-show-search form-select"
+                                                                                data-placeholder="Pilih Semester">
+                                                                                <option label="Pilih Semester"></option>
+                                                                                @foreach ($semesters as $semester)
+                                                                                    <option value="{{ $semester->id }}">
+                                                                                        {{ $semester->year }} |
+                                                                                        {{ $semester->semester }}
+                                                                                    </option>
+                                                                                @endforeach
+                                                                            </select>
+                                                                        </div>
+                                                                        <div class="form-group">
+                                                                            <label class="text-helper">Status
+                                                                                Semester</label><br>
+                                                                            <select name="semester_status_id"
+                                                                                class="form-control select2-show-search form-select"
+                                                                                data-placeholder="Pilih Status Semester">
+                                                                                <option label="Pilih Status Semester">
+                                                                                </option>
+                                                                                @foreach ($semesterStatuses as $semesterStatus)
+                                                                                    <option
+                                                                                        value="{{ $semesterStatus->id }}">
+                                                                                        {{ $semesterStatus->name }}
+                                                                                    </option>
+                                                                                @endforeach
+                                                                            </select>
+                                                                        </div>
+                                                                        <p>test</p>
+                                                                        <div class="table-responsive">
+                                                                            <table
+                                                                                class="table border text-nowrap text-md-nowrap table-hover mb-0">
+                                                                                <thead>
+                                                                                    <tr>
+                                                                                        <th>Semester</th>
+                                                                                        <th>Status</th>
+                                                                                    </tr>
+                                                                                </thead>
+                                                                                <tbody>
+                                                                                    @foreach ($mahasiswa->user_mahasiswa->mahasiswa_semesters as $mahasiswa_semester)
+                                                                                        <tr>
+                                                                                            <td class="text-helper">
+                                                                                                {{ $mahasiswa_semester->semester->year }}
+                                                                                                |
+                                                                                                {{ $mahasiswa_semester->semester->semester }}
+                                                                                            </td>
+                                                                                            <td class="text-helper">
+                                                                                                {{ $mahasiswa_semester->semester_status->name }}
+                                                                                            </td>
+                                                                                        </tr>
+                                                                                    @endforeach
+                                                                                </tbody>
+                                                                            </table>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="modal-footer">
+                                                                    <button class="btn btn-secondary"
+                                                                        data-bs-dismiss="modal">Close</button>
+                                                                    <button class="btn btn-primary" type="submit">Save
+                                                                        changes</button>
+                                                                </div>
+                                                            </form>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
                                                 <form action="{{ route('mahasiswa.destroy', $mahasiswa->id) }}"
                                                     method="POST">
                                                     <a class="btn btn-sm btn-primary"

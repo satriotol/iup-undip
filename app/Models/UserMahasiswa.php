@@ -13,7 +13,7 @@ class UserMahasiswa extends Model
 
     public function user()
     {
-        return $this->hasOne(User::class, 'user_id', 'id');
+        return $this->belongsTo(User::class, 'user_id', 'id');
     }
     public function batch()
     {
