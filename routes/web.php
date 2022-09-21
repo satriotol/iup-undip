@@ -10,6 +10,7 @@ use App\Http\Controllers\MajorController;
 use App\Http\Controllers\PermissionController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\SemesterController;
+use App\Http\Controllers\SemesterStatusController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -33,6 +34,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::resource('batch', BatchController::class);
     Route::resource('country', CountryController::class);
     Route::resource('semester', SemesterController::class);
+    Route::resource('semesterStatus', SemesterStatusController::class);
     Route::resource('permission', PermissionController::class);
     Route::resource('role', RoleController::class);
     Route::resource('admin', AdminController::class);

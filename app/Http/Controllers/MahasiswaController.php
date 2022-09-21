@@ -21,7 +21,7 @@ class MahasiswaController extends Controller
      */
     public function index()
     {
-        $mahasiswas = User::has('user_mahasiswa')->paginate();
+        $mahasiswas = User::has('user_mahasiswa')->paginate(5);
         return view('pages.mahasiswa.index', compact('mahasiswas'));
     }
 

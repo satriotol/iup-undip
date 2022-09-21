@@ -14,7 +14,8 @@ class SemesterStatusController extends Controller
      */
     public function index()
     {
-        //
+        $semesterStatuses = SemesterStatus::all();
+        return view('pages.semesterStatus.index', compact('semesterStatuses'));
     }
 
     /**
@@ -24,7 +25,7 @@ class SemesterStatusController extends Controller
      */
     public function create()
     {
-        //
+        return view('pages.semesterStatus.create');
     }
 
     /**
@@ -35,7 +36,14 @@ class SemesterStatusController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = $this->validate($request, [
+            'name' => 'required',
+            'color' => 'required',
+        ]);
+
+        SemesterStatus::create($data);
+        session()->flash('success');
+        return redirect(route('semesterStatus.index'));
     }
 
     /**
@@ -57,7 +65,7 @@ class SemesterStatusController extends Controller
      */
     public function edit(SemesterStatus $semesterStatus)
     {
-        //
+        return view('pages.semesterStatus.create', compact('semesterStatus'));
     }
 
     /**
@@ -69,7 +77,13 @@ class SemesterStatusController extends Controller
      */
     public function update(Request $request, SemesterStatus $semesterStatus)
     {
-        //
+        $data = $this->validate($request, [
+            'name' => 'required',
+            'color' => 'required',
+        ]);
+        $semesterStatus->update($data);
+        session()->flash('success');
+        return redirect(route('semesterStatus.index'));
     }
 
     /**
@@ -80,6 +94,8 @@ class SemesterStatusController extends Controller
      */
     public function destroy(SemesterStatus $semesterStatus)
     {
-        //
+        $semesterStatus->delete();
+        session()->flash('success');
+        return back();
     }
 }

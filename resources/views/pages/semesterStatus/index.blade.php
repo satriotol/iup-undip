@@ -1,49 +1,39 @@
 @extends('layout.main')
 @section('content')
     <div class="page-header">
-        <h1 class="page-title">Mahasiswa</h1>
+        <h1 class="page-title">Status Semester</h1>
     </div>
     <div class="row">
         <div class="col-xl-12">
             <div class="card">
                 <div class="card-header">
-                    <h3 class="card-title">Mahasiswa Table</h3>
+                    <h3 class="card-title">Status Semester Table</h3>
                 </div>
                 <div class="card-body">
                     <div class="text-end">
-                        <a href="{{ route('mahasiswa.create') }}" class="btn btn-sm btn-primary" type="button">Create</a>
+                        <a href="{{ route('semesterStatus.create') }}" class="btn btn-sm btn-primary" type="button">Create</a>
                     </div>
                     <div class="table-responsive">
-                        <table class="table border table-bordered text-nowrap text-md-nowrap table-hover mb-0">
+                        <table
+                            class="table border table-bordered text-nowrap text-md-nowrap table-hover mb-0"id="responsive-datatable">
                             <thead>
                                 <tr>
-                                    <th>NIM</th>
                                     <th>Nama</th>
-                                    <th>Jenis Kelamin</th>
-                                    <th>Email</th>
-                                    <th>HP</th>
-                                    <th>Fakultas / Batch</th>
-                                    <th>Asal</th>
+                                    <th>Warna</th>
                                     <th>Action</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($mahasiswas as $mahasiswa)
+                                @foreach ($semesterStatuses as $semesterStatus)
                                     <tr>
-                                        <td>{{ $mahasiswa->user_mahasiswa->nim }}</td>
-                                        <td>{{ $mahasiswa->name }}</td>
-                                        <td>{{ $mahasiswa->user_mahasiswa->gender }}</td>
-                                        <td>{{ $mahasiswa->email }}</td>
-                                        <td>{{ $mahasiswa->user_mahasiswa->phone }}</td>
-                                        <td>{{ $mahasiswa->user_mahasiswa->major->name }}/{{ $mahasiswa->user_mahasiswa->batch->year }}
-                                        <td>{{ $mahasiswa->user_mahasiswa->country->name }}
-                                        </td>
+                                        <td>{{ $semesterStatus->name }}</td>
+                                        <td>{{ $semesterStatus->color }}</td>
                                         <td name="bstable-actions">
                                             <div class="btn-list">
-                                                <form action="{{ route('mahasiswa.destroy', $mahasiswa->id) }}"
+                                                <form action="{{ route('semesterStatus.destroy', $semesterStatus->id) }}"
                                                     method="POST">
                                                     <a class="btn btn-sm btn-primary"
-                                                        href="{{ route('mahasiswa.edit', $mahasiswa->id) }}">
+                                                        href="{{ route('semesterStatus.edit', $semesterStatus->id) }}">
                                                         <span class="fe fe-edit"> </span>
                                                     </a>
                                                     @csrf
@@ -59,7 +49,6 @@
                                 @endforeach
                             </tbody>
                         </table>
-                        {{ $mahasiswas->links() }}
                     </div>
                 </div>
             </div>
@@ -67,4 +56,18 @@
     </div>
 @endsection
 @push('custom-scripts')
+    <script src="{{ asset('assets/plugins/datatable/js/jquery.dataTables.min.js') }}"></script>
+    <script src="{{ asset('assets/plugins/datatable/js/dataTables.bootstrap5.js') }}"></script>
+    <script>
+        $(function(e) {
+            "use strict";
+            $('#responsive-datatable').DataTable({
+                language: {
+                    searchPlaceholder: 'Search...',
+                    scrollX: "100%",
+                    sSearch: '',
+                }
+            });
+        });
+    </script>
 @endpush
