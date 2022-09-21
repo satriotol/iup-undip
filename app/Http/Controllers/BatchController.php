@@ -14,7 +14,8 @@ class BatchController extends Controller
      */
     public function index()
     {
-        //
+        $batchs = Batch::all();
+        return view('pages.batch.index', compact('batchs'));
     }
 
     /**
@@ -24,7 +25,7 @@ class BatchController extends Controller
      */
     public function create()
     {
-        //
+        return view('pages.batch.create');
     }
 
     /**
@@ -35,7 +36,13 @@ class BatchController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = $this->validate($request, [
+            'year' => 'required',
+        ]);
+
+        Batch::create($data);
+        session()->flash('success');
+        return redirect(route('batch.index'));
     }
 
     /**
@@ -57,7 +64,7 @@ class BatchController extends Controller
      */
     public function edit(Batch $batch)
     {
-        //
+        return view('pages.batch.create', compact('batch'));
     }
 
     /**
@@ -69,7 +76,13 @@ class BatchController extends Controller
      */
     public function update(Request $request, Batch $batch)
     {
-        //
+        $data = $this->validate($request, [
+            'year' => 'required',
+        ]);
+
+        $batch->update($data);
+        session()->flash('success');
+        return redirect(route('batch.index'));
     }
 
     /**
@@ -80,6 +93,8 @@ class BatchController extends Controller
      */
     public function destroy(Batch $batch)
     {
-        //
+        $batch->delete();
+        session()->flash('success');
+        return back();
     }
 }
