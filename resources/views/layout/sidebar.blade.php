@@ -43,6 +43,11 @@
                         href="{{ route('country.index') }}"><i class="side-menu__icon fe fe-home"></i><span
                             class="side-menu__label">Negara</span></a>
                 </li>
+                <li class="slide">
+                    <a class="side-menu__item {{ active_class(['semester.*']) }}" data-bs-toggle="slide"
+                        href="{{ route('semester.index') }}"><i class="side-menu__icon fe fe-home"></i><span
+                            class="side-menu__label">Semester</span></a>
+                </li>
                 <li class="sub-category">
                     <h3>UI Kit</h3>
                 </li>

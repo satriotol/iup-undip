@@ -5,6 +5,7 @@ use App\Http\Controllers\BatchController;
 use App\Http\Controllers\CountryController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\MajorController;
+use App\Http\Controllers\SemesterController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -26,6 +27,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::resource('major', MajorController::class);
     Route::resource('batch', BatchController::class);
     Route::resource('country', CountryController::class);
+    Route::resource('semester', SemesterController::class);
 });
 
 require __DIR__ . '/auth.php';

@@ -14,7 +14,8 @@ class SemesterController extends Controller
      */
     public function index()
     {
-        //
+        $semesters = Semester::all();
+        return view('pages.semester.index', compact('semesters'));
     }
 
     /**
@@ -24,7 +25,7 @@ class SemesterController extends Controller
      */
     public function create()
     {
-        //
+        return view('pages.semester.create');
     }
 
     /**
@@ -35,7 +36,14 @@ class SemesterController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = $this->validate($request, [
+            'year' => 'required|digits:4|integer|min:1900',
+            'semester' => 'required',
+        ]);
+
+        Semester::create($data);
+        session()->flash('success');
+        return redirect(route('semester.index'));
     }
 
     /**
@@ -57,7 +65,7 @@ class SemesterController extends Controller
      */
     public function edit(Semester $semester)
     {
-        //
+        return view('pages.semester.create', compact('semester'));
     }
 
     /**
@@ -69,7 +77,14 @@ class SemesterController extends Controller
      */
     public function update(Request $request, Semester $semester)
     {
-        //
+        $data = $this->validate($request, [
+            'year' => 'required|digits:4|integer|min:1900',
+            'semester' => 'required',
+        ]);
+
+        $semester->update($data);
+        session()->flash('success');
+        return redirect(route('semester.index'));
     }
 
     /**
@@ -80,6 +95,8 @@ class SemesterController extends Controller
      */
     public function destroy(Semester $semester)
     {
-        //
+        $semester->delete();
+        session()->flash('success');
+        return back();
     }
 }
