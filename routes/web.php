@@ -27,6 +27,7 @@ Route::get('/', function () {
 });
 Route::group(['middleware' => ['auth']], function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard.index');
+    Route::resource('mahasiswa', MajorController::class);
     Route::resource('major', MajorController::class);
     Route::resource('batch', BatchController::class);
     Route::resource('country', CountryController::class);
