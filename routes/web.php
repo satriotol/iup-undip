@@ -5,6 +5,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BatchController;
 use App\Http\Controllers\CountryController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\MahasiswaController;
 use App\Http\Controllers\MajorController;
 use App\Http\Controllers\PermissionController;
 use App\Http\Controllers\RoleController;
@@ -27,7 +28,7 @@ Route::get('/', function () {
 });
 Route::group(['middleware' => ['auth']], function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard.index');
-    Route::resource('mahasiswa', MajorController::class);
+    Route::resource('mahasiswa', MahasiswaController::class);
     Route::resource('major', MajorController::class);
     Route::resource('batch', BatchController::class);
     Route::resource('country', CountryController::class);

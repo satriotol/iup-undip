@@ -23,6 +23,9 @@ class User extends Authenticatable
         'email',
         'password',
     ];
+    const GENDER = [
+        'PRIA', 'WANITA'
+    ];
 
     /**
      * The attributes that should be hidden for serialization.

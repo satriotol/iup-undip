@@ -29,8 +29,8 @@
                             class="side-menu__label">Dashboard</span></a>
                 </li>
                 <li class="slide">
-                    <a class="side-menu__item {{ active_class(['major.*']) }}" data-bs-toggle="slide"
-                        href="{{ route('major.index') }}"><i class="side-menu__icon fe fe-users"></i><span
+                    <a class="side-menu__item {{ active_class(['mahasiswa.*']) }}" data-bs-toggle="slide"
+                        href="{{ route('mahasiswa.index') }}"><i class="side-menu__icon fe fe-users"></i><span
                             class="side-menu__label">Mahasiswa</span></a>
                 </li>
                 <li class="sub-category">
