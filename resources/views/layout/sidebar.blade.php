@@ -52,6 +52,11 @@
                     <h3>User</h3>
                 </li>
                 <li class="slide">
+                    <a class="side-menu__item {{ active_class(['role.*']) }}" data-bs-toggle="slide"
+                        href="{{ route('role.index') }}"><i class="side-menu__icon fe fe-home"></i><span
+                            class="side-menu__label">Role</span></a>
+                </li>
+                <li class="slide">
                     <a class="side-menu__item {{ active_class(['permission.*']) }}" data-bs-toggle="slide"
                         href="{{ route('permission.index') }}"><i class="side-menu__icon fe fe-home"></i><span
                             class="side-menu__label">Permission</span></a>

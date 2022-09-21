@@ -6,6 +6,7 @@ use App\Http\Controllers\CountryController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\MajorController;
 use App\Http\Controllers\PermissionController;
+use App\Http\Controllers\RoleController;
 use App\Http\Controllers\SemesterController;
 use Illuminate\Support\Facades\Route;
 
@@ -30,6 +31,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::resource('country', CountryController::class);
     Route::resource('semester', SemesterController::class);
     Route::resource('permission', PermissionController::class);
+    Route::resource('role', RoleController::class);
 });
 
 require __DIR__ . '/auth.php';
