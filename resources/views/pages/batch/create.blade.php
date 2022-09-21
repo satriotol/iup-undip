@@ -10,6 +10,7 @@
                     <h3 class="card-title">Form Batch</h3>
                 </div>
                 <div class="card-body">
+                    @include('partials.errors')
                     <form
                         action="@isset($batch) {{ route('batch.update', $batch->id) }} @endisset @empty($batch) {{ route('batch.store') }} @endempty"
                         method="POST" enctype="multipart/form-data">

@@ -10,6 +10,7 @@
                     <h3 class="card-title">Form Major</h3>
                 </div>
                 <div class="card-body">
+                    @include('partials.errors')
                     <form
                         action="@isset($major) {{ route('major.update', $major->id) }} @endisset @empty($major) {{ route('major.store') }} @endempty"
                         method="POST" enctype="multipart/form-data">

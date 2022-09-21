@@ -55,5 +55,16 @@
 @push('custom-scripts')
     <script src="{{ asset('assets/plugins/datatable/js/jquery.dataTables.min.js') }}"></script>
     <script src="{{ asset('assets/plugins/datatable/js/dataTables.bootstrap5.js') }}"></script>
-    <script src="{{ asset('assets/js/table-data.js') }}"></script>
+    <script>
+        $(function(e) {
+            "use strict";
+            $('#responsive-datatable').DataTable({
+                language: {
+                    searchPlaceholder: 'Search...',
+                    scrollX: "100%",
+                    sSearch: '',
+                }
+            });
+        });
+    </script>
 @endpush

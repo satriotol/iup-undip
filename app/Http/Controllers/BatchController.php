@@ -37,7 +37,7 @@ class BatchController extends Controller
     public function store(Request $request)
     {
         $data = $this->validate($request, [
-            'year' => 'required',
+            'year' => 'required|digits:4|integer|min:1900',
         ]);
 
         Batch::create($data);
@@ -77,7 +77,7 @@ class BatchController extends Controller
     public function update(Request $request, Batch $batch)
     {
         $data = $this->validate($request, [
-            'year' => 'required',
+            'year' => 'required|digits:4|integer|min:1900',
         ]);
 
         $batch->update($data);
