@@ -124,9 +124,14 @@
                                     <a class="dropdown-item" href="profile.html">
                                         <i class="dropdown-icon fe fe-user"></i> Profile
                                     </a>
-                                    <a class="dropdown-item" href="login.html">
-                                        <i class="dropdown-icon fe fe-alert-circle"></i> Sign out
-                                    </a>
+                                    <form method="POST" action="{{ route('logout') }}">
+                                        @csrf
+                                        <a class="dropdown-item" ref="route('logout')"
+                                            onclick="event.preventDefault();
+                                        this.closest('form').submit();">
+                                            <i class="dropdown-icon fe fe-alert-circle"></i> Sign out
+                                        </a>
+                                    </form>
                                 </div>
                             </div>
                         </div>

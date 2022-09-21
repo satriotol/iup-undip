@@ -64,7 +64,7 @@ class MajorController extends Controller
      */
     public function edit(Major $major)
     {
-        //
+        return view('pages.major.create', compact('major'));
     }
 
     /**
@@ -76,7 +76,13 @@ class MajorController extends Controller
      */
     public function update(Request $request, Major $major)
     {
-        //
+        $data = $this->validate($request, [
+            'name' => 'required',
+        ]);
+
+        $major->update($data);
+        session()->flash('success');
+        return redirect(route('major.index'));
     }
 
     /**
@@ -87,6 +93,8 @@ class MajorController extends Controller
      */
     public function destroy(Major $major)
     {
-        //
+        $major->delete();
+        session()->flash('success');
+        return back();
     }
 }

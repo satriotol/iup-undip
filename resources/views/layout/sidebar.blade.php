@@ -31,7 +31,7 @@
                 <li class="slide">
                     <a class="side-menu__item {{ active_class(['major.*']) }}" data-bs-toggle="slide"
                         href="{{ route('major.index') }}"><i class="side-menu__icon fe fe-home"></i><span
-                            class="side-menu__label">Major</span></a>
+                            class="side-menu__label">Fakultas</span></a>
                 </li>
                 <li class="sub-category">
                     <h3>UI Kit</h3>
