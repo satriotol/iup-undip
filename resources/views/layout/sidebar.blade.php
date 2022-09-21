@@ -49,7 +49,12 @@
                             class="side-menu__label">Semester</span></a>
                 </li>
                 <li class="sub-category">
-                    <h3>UI Kit</h3>
+                    <h3>User</h3>
+                </li>
+                <li class="slide">
+                    <a class="side-menu__item {{ active_class(['permission.*']) }}" data-bs-toggle="slide"
+                        href="{{ route('permission.index') }}"><i class="side-menu__icon fe fe-home"></i><span
+                            class="side-menu__label">Permission</span></a>
                 </li>
                 <li class="slide">
                     <a class="side-menu__item" data-bs-toggle="slide" href="javascript:void(0)"><i
