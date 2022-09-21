@@ -21,7 +21,7 @@
                         <div class="form-group">
                             <label>Nama</label>
                             <input type="text" class="form-control"
-                                value="{{ isset($major) ? $major->name : @old('major') }}" name="name" required>
+                                value="{{ isset($major) ? $major->name : @old('name') }}" name="name" required>
                         </div>
                         <div class="text-end">
                             <a class="btn btn-warning" href="{{ url()->previous() }}">Kembali</a>

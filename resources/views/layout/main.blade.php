@@ -122,6 +122,16 @@
             });
         </script>
     @endif
+    <script>
+        $(function() {
+            $('.form-group:has(input[required]) > label')
+                .after('<span class="text-red">*</span>')
+            $('.form-group:has(select[required]) > label')
+                .after('<span class="text-red">*</span>')
+            $('.form-group:has(textarea[required]) > label')
+                .after('<span class="text-red">*</span>')
+        })
+    </script>
 
 </body>
 
