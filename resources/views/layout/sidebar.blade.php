@@ -49,7 +49,12 @@
                             class="side-menu__label">Semester</span></a>
                 </li>
                 <li class="sub-category">
-                    <h3>User</h3>
+                    <h3>User Management</h3>
+                </li>
+                <li class="slide">
+                    <a class="side-menu__item {{ active_class(['admin.*']) }}" data-bs-toggle="slide"
+                        href="{{ route('admin.index') }}"><i class="side-menu__icon fe fe-home"></i><span
+                            class="side-menu__label">Admin</span></a>
                 </li>
                 <li class="slide">
                     <a class="side-menu__item {{ active_class(['role.*']) }}" data-bs-toggle="slide"

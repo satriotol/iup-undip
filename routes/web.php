@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BatchController;
 use App\Http\Controllers\CountryController;
@@ -32,6 +33,8 @@ Route::group(['middleware' => ['auth']], function () {
     Route::resource('semester', SemesterController::class);
     Route::resource('permission', PermissionController::class);
     Route::resource('role', RoleController::class);
+    Route::resource('admin', AdminController::class);
+    Route::post('admin/reset_password/{admin}', [AdminController::class, 'reset_password'])->name('admin.reset_password');
 });
 
 require __DIR__ . '/auth.php';

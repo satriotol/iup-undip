@@ -29,17 +29,22 @@
                                 <span class="custom-switch-indicator"></span>
                                 <span class="custom-switch-description">Select All</span>
                             </label><br>
-                            @foreach ($permissions as $permission)
-                                <label class="custom-switch form-switch me-5">
-                                    <input type="checkbox" name="permission[]"
-                                        @isset($role)
-                                        {{in_array($permission->id, $rolePermissions) ? 'checked' : ''}}
+                            <div class="row">
+                                @foreach ($permissions as $permission)
+                                    <div class="col-md-3">
+                                        <label class="custom-switch form-switch me-5">
+                                            <input type="checkbox" name="permission[]"
+                                                @isset($role)
+                                        {{ in_array($permission->id, $rolePermissions) ? 'checked' : '' }}
                                     @endisset
-                                        value="{{ $permission->id }}" class="custom-switch-input name">
-                                    <span class="custom-switch-indicator"></span>
-                                    <span class="custom-switch-description">{{ $permission->name }}</span>
-                                </label>
-                            @endforeach
+                                                value="{{ $permission->id }}" class="custom-switch-input name">
+                                            <span class="custom-switch-indicator"></span>
+                                            <span class="custom-switch-description">{{ $permission->name }}</span>
+                                        </label>
+                                    </div>
+                                @endforeach
+                            </div>
+
                         </div>
                         <div class="text-end">
                             <a class="btn btn-warning" href="{{ url()->previous() }}">Kembali</a>
