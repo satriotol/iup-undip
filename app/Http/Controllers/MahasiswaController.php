@@ -149,4 +149,10 @@ class MahasiswaController extends Controller
         session()->flash('success');
         return back();
     }
+    public function destroySemester(MahasiswaSemester $mahasiswaSemester)
+    {
+        $mahasiswaSemester->delete();
+        session()->flash('success');
+        return back();
+    }
 }

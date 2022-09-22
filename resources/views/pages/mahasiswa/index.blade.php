@@ -61,13 +61,13 @@
                                                                     <span aria-hidden="true">×</span>
                                                                 </button>
                                                             </div>
-                                                            <form
-                                                                action="{{ route('mahasiswa.assignSemester', $mahasiswa->user_mahasiswa->id) }}"
-                                                                method="POST">
-                                                                @csrf
-                                                                <div class="modal-body">
-                                                                    <div class="row">
+                                                            <div class="modal-body">
+                                                                <div class="row">
 
+                                                                    <form
+                                                                        action="{{ route('mahasiswa.assignSemester', $mahasiswa->user_mahasiswa->id) }}"
+                                                                        method="POST">
+                                                                        @csrf
                                                                         <div class="form-group">
                                                                             <label class="text-helper">Semester</label><br>
                                                                             <select name="semester_id"
@@ -98,41 +98,59 @@
                                                                                 @endforeach
                                                                             </select>
                                                                         </div>
-                                                                        <p>test</p>
-                                                                        <div class="table-responsive">
-                                                                            <table
-                                                                                class="table border text-nowrap text-md-nowrap table-hover mb-0">
-                                                                                <thead>
-                                                                                    <tr>
-                                                                                        <th>Semester</th>
-                                                                                        <th>Status</th>
-                                                                                    </tr>
-                                                                                </thead>
-                                                                                <tbody>
-                                                                                    @foreach ($mahasiswa->user_mahasiswa->mahasiswa_semesters as $mahasiswa_semester)
-                                                                                        <tr>
-                                                                                            <td class="text-helper">
-                                                                                                {{ $mahasiswa_semester->semester->year }}
-                                                                                                |
-                                                                                                {{ $mahasiswa_semester->semester->semester }}
-                                                                                            </td>
-                                                                                            <td class="text-helper">
-                                                                                                {{ $mahasiswa_semester->semester_status->name }}
-                                                                                            </td>
-                                                                                        </tr>
-                                                                                    @endforeach
-                                                                                </tbody>
-                                                                            </table>
+                                                                        <div class="text-end">
+                                                                            <button
+                                                                                class="btn btn-sm btn-success" type="submit">Submit</button>
                                                                         </div>
+                                                                    </form>
+
+                                                                    <div class="table-responsive mt-2">
+                                                                        <table
+                                                                            class="table border text-nowrap text-md-nowrap table-hover mb-0">
+                                                                            <thead>
+                                                                                <tr>
+                                                                                    <th>Semester</th>
+                                                                                    <th>Status</th>
+                                                                                    <th>Action</th>
+                                                                                </tr>
+                                                                            </thead>
+                                                                            <tbody>
+                                                                                @foreach ($mahasiswa->user_mahasiswa->mahasiswa_semesters as $mahasiswa_semester)
+                                                                                    <tr>
+                                                                                        <td class="text-helper">
+                                                                                            {{ $mahasiswa_semester->semester->year }}
+                                                                                            |
+                                                                                            {{ $mahasiswa_semester->semester->semester }}
+                                                                                        </td>
+                                                                                        <td class="text-helper">
+                                                                                            {{ $mahasiswa_semester->semester_status->name }}
+                                                                                        </td>
+                                                                                        <td>
+                                                                                            <form
+                                                                                                action="{{ route('mahasiswa.destroySemester', $mahasiswa_semester->id) }}"
+                                                                                                method="POST">
+                                                                                                @csrf
+                                                                                                @method('DELETE')
+                                                                                                <button type="submit"
+                                                                                                    class="btn btn-sm btn-danger"
+                                                                                                    onclick="return confirm('Are you sure?')">
+                                                                                                    <span
+                                                                                                        class="fe fe-trash-2">
+                                                                                                    </span>
+                                                                                                </button>
+                                                                                            </form>
+                                                                                        </td>
+                                                                                    </tr>
+                                                                                @endforeach
+                                                                            </tbody>
+                                                                        </table>
                                                                     </div>
                                                                 </div>
-                                                                <div class="modal-footer">
-                                                                    <button class="btn btn-secondary"
-                                                                        data-bs-dismiss="modal">Close</button>
-                                                                    <button class="btn btn-primary" type="submit">Save
-                                                                        changes</button>
-                                                                </div>
-                                                            </form>
+                                                            </div>
+                                                            <div class="modal-footer">
+                                                                <button class="btn btn-primary" type="submit">Save
+                                                                    changes</button>
+                                                            </div>
                                                         </div>
                                                     </div>
                                                 </div>
