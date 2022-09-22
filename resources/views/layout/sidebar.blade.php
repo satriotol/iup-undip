@@ -34,7 +34,7 @@
                             class="side-menu__label">Mahasiswa</span></a>
                 </li>
                 <li class="sub-category">
-                    <h3>Master Data</h3>
+                    <h3>Master Data Mahasiswa</h3>
                 </li>
                 <li class="slide">
                     <a class="side-menu__item {{ active_class(['major.*']) }}" data-bs-toggle="slide"
