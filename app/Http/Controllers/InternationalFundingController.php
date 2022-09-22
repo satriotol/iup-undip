@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\InternationalFunding;
+use App\Models\InternationalProgram;
 use Illuminate\Http\Request;
 
 class InternationalFundingController extends Controller
@@ -14,7 +15,7 @@ class InternationalFundingController extends Controller
      */
     public function index()
     {
-        //
+
     }
 
     /**
@@ -24,7 +25,6 @@ class InternationalFundingController extends Controller
      */
     public function create()
     {
-        //
     }
 
     /**
@@ -35,7 +35,7 @@ class InternationalFundingController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        
     }
 
     /**

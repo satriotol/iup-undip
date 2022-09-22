@@ -14,7 +14,6 @@ class InternationalCategoryController extends Controller
      */
     public function index()
     {
-        //
     }
 
     /**

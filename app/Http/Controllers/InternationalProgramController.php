@@ -14,7 +14,8 @@ class InternationalProgramController extends Controller
      */
     public function index()
     {
-        //
+        $internationalPrograms = InternationalProgram::all();
+        return view('pages.internationalProgram.index', compact('internationalPrograms'));
     }
 
     /**
@@ -24,7 +25,7 @@ class InternationalProgramController extends Controller
      */
     public function create()
     {
-        //
+        return view('pages.internationalProgram.create');
     }
 
     /**
@@ -35,7 +36,13 @@ class InternationalProgramController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = $this->validate($request, [
+            'name' => 'required',
+        ]);
+
+        InternationalProgram::create($data);
+        session()->flash('success');
+        return redirect(route('internationalProgram.index'));
     }
 
     /**
@@ -57,7 +64,7 @@ class InternationalProgramController extends Controller
      */
     public function edit(InternationalProgram $internationalProgram)
     {
-        //
+        return view('pages.internationalProgram.create', compact('internationalProgram'));
     }
 
     /**
@@ -69,7 +76,12 @@ class InternationalProgramController extends Controller
      */
     public function update(Request $request, InternationalProgram $internationalProgram)
     {
-        //
+        $data = $this->validate($request, [
+            'name' => 'required',
+        ]);
+        $internationalProgram->update($data);
+        session()->flash('success');
+        return redirect(route('internationalProgram.index'));
     }
 
     /**
@@ -80,6 +92,8 @@ class InternationalProgramController extends Controller
      */
     public function destroy(InternationalProgram $internationalProgram)
     {
-        //
+        $internationalProgram->delete();
+        session()->flash('success');
+        return redirect(route('internationalProgram.index'));
     }
 }

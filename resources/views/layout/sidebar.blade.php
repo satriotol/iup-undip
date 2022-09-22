@@ -68,8 +68,15 @@
                 </li>
                 <li class="slide">
                     <a class="side-menu__item {{ active_class(['internationalUniversity.*']) }}" data-bs-toggle="slide"
-                        href="{{ route('internationalUniversity.index') }}"><i class="side-menu__icon fe fe-flag"></i><span
+                        href="{{ route('internationalUniversity.index') }}"><i
+                            class="side-menu__icon fe fe-book-open"></i><span
                             class="side-menu__label">Universitas</span></a>
+                </li>
+                <li class="slide">
+                    <a class="side-menu__item {{ active_class(['internationalProgram.*']) }}" data-bs-toggle="slide"
+                        href="{{ route('internationalProgram.index') }}"><i
+                            class="side-menu__icon fe fe-book-open"></i><span
+                            class="side-menu__label">Program</span></a>
                 </li>
                 @can(['admin-index'])
                     <li class="sub-category">
