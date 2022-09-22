@@ -27,8 +27,9 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
-Route::group(['middleware' => ['auth']], function () {
+Route::get('/.env', function () {
+    return 'Hayoooo';
+});Route::group(['middleware' => ['auth']], function () {
     Route::get('/', [DashboardController::class, 'index'])->name('dashboard.index');
     Route::resource('mahasiswa', MahasiswaController::class);
     Route::post('mahasiswa/assignSemester/{userMahasiswa}', [MahasiswaController::class, 'assignSemester'])->name('mahasiswa.assignSemester');
