@@ -78,9 +78,9 @@
                             class="side-menu__icon fe fe-command"></i><span class="side-menu__label">Program</span></a>
                 </li>
                 <li class="slide">
-                    <a class="side-menu__item {{ active_class(['internationalProgram.*']) }}" data-bs-toggle="slide"
-                        href="{{ route('internationalProgram.index') }}"><i
-                            class="side-menu__icon fe fe-command"></i><span class="side-menu__label">Program</span></a>
+                    <a class="side-menu__item {{ active_class(['internationalCategory.*']) }}" data-bs-toggle="slide"
+                        href="{{ route('internationalCategory.index') }}"><i
+                            class="side-menu__icon fe fe-command"></i><span class="side-menu__label">Kategori</span></a>
                 </li>
                 @can(['admin-index'])
                     <li class="sub-category">

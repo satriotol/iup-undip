@@ -5,6 +5,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BatchController;
 use App\Http\Controllers\CountryController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\InternationalCategoryController;
 use App\Http\Controllers\InternationalFundingController;
 use App\Http\Controllers\InternationalProgramController;
 use App\Http\Controllers\InternationalUniversityController;
@@ -42,6 +43,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::resource('admin', AdminController::class);
     Route::resource('internationalUniversity', InternationalUniversityController::class);
     Route::resource('internationalProgram', InternationalProgramController::class);
+    Route::resource('internationalCategory', InternationalCategoryController::class);
     Route::post('admin/reset_password/{admin}', [AdminController::class, 'reset_password'])->name('admin.reset_password');
 });
 
