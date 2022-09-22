@@ -29,7 +29,7 @@ class UserMahasiswa extends Model
     }
     public function mahasiswa_semesters()
     {
-        return $this->hasMany(MahasiswaSemester::class, 'user_mahasiswa_id', 'id');
+        return $this->hasMany(MahasiswaSemester::class, 'user_mahasiswa_id', 'id')->orderBy('semester_id');
     }
     public function semesters()
     {

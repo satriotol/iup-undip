@@ -18,6 +18,7 @@
                             class="table border table-bordered text-nowrap text-md-nowrap table-hover mb-0"id="responsive-datatable">
                             <thead>
                                 <tr>
+                                    <th>ID</th>
                                     <th>Tahun</th>
                                     <th>Semester</th>
                                     <th>Action</th>
@@ -26,6 +27,7 @@
                             <tbody>
                                 @foreach ($semesters as $semester)
                                     <tr>
+                                        <td>{{ $semester->id }}</td>
                                         <td>{{ $semester->year }}</td>
                                         <td>{{ $semester->semester }}</td>
                                         <td name="bstable-actions">
