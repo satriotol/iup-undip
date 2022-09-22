@@ -30,11 +30,17 @@
                         </div>
                         <div class="form-group">
                             <label>Password</label>
-                            <input type="password" class="form-control" name="password" required>
+                            <input type="password" class="form-control" name="password"
+                                @empty($admin)
+                            required
+                            @endempty>
                         </div>
                         <div class="form-group">
                             <label>Password Confirmation</label>
-                            <input type="password" class="form-control" name="password_confirmation" required>
+                            <input type="password" class="form-control" name="password_confirmation"
+                                @empty($admin)
+                            required
+                            @endempty>
                         </div>
                         <div class="form-group">
                             <label>Role</label>

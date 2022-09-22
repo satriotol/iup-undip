@@ -51,7 +51,7 @@
                         href="{{ route('country.index') }}"><i class="side-menu__icon fe fe-flag"></i><span
                             class="side-menu__label">Negara</span></a>
                 </li>
-                <li class="slide {{expanded_class(['semester.*','semesterStatus.*'])}}">
+                <li class="slide {{ expanded_class(['semester.*', 'semesterStatus.*']) }}">
                     <a class="side-menu__item" data-bs-toggle="slide" href="javascript:void(0)"><i
                             class="side-menu__icon fe fe-shopping-bag"></i><span
                             class="side-menu__label">Semester</span><i class="angle fe fe-chevron-right"></i></a>
@@ -63,24 +63,32 @@
                                 class="slide-item {{ active_class(['semesterStatus.*']) }}">Status Semester</a></li>
                     </ul>
                 </li>
-                <li class="sub-category">
-                    <h3>User Management</h3>
-                </li>
-                <li class="slide">
-                    <a class="side-menu__item {{ active_class(['admin.*']) }}" data-bs-toggle="slide"
-                        href="{{ route('admin.index') }}"><i class="side-menu__icon fe fe-user"></i><span
-                            class="side-menu__label">Admin</span></a>
-                </li>
-                <li class="slide">
-                    <a class="side-menu__item {{ active_class(['role.*']) }}" data-bs-toggle="slide"
-                        href="{{ route('role.index') }}"><i class="side-menu__icon fe fe-user-check"></i><span
-                            class="side-menu__label">Role</span></a>
-                </li>
-                <li class="slide">
-                    <a class="side-menu__item {{ active_class(['permission.*']) }}" data-bs-toggle="slide"
-                        href="{{ route('permission.index') }}"><i class="side-menu__icon fe fe-user-check"></i><span
-                            class="side-menu__label">Permission</span></a>
-                </li>
+                @can(['admin-index'])
+                    <li class="sub-category">
+                        <h3>User Management</h3>
+                    </li>
+                @endcan
+                @can(['admin-index'])
+                    <li class="slide">
+                        <a class="side-menu__item {{ active_class(['admin.*']) }}" data-bs-toggle="slide"
+                            href="{{ route('admin.index') }}"><i class="side-menu__icon fe fe-user"></i><span
+                                class="side-menu__label">Admin</span></a>
+                    </li>
+                @endcan
+                @can(['role-index'])
+                    <li class="slide">
+                        <a class="side-menu__item {{ active_class(['role.*']) }}" data-bs-toggle="slide"
+                            href="{{ route('role.index') }}"><i class="side-menu__icon fe fe-user-check"></i><span
+                                class="side-menu__label">Role</span></a>
+                    </li>
+                @endcan
+                @can(['permission-index'])
+                    <li class="slide">
+                        <a class="side-menu__item {{ active_class(['permission.*']) }}" data-bs-toggle="slide"
+                            href="{{ route('permission.index') }}"><i class="side-menu__icon fe fe-user-check"></i><span
+                                class="side-menu__label">Permission</span></a>
+                    </li>
+                @endcan
             </ul>
             <div class="slide-right" id="slide-right"><svg xmlns="http://www.w3.org/2000/svg" fill="#7b8191"
                     width="24" height="24" viewBox="0 0 24 24">

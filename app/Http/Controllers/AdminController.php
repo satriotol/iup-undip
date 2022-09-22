@@ -15,13 +15,13 @@ class AdminController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    // public function __construct()
-    // {
-    //     $this->middleware('permission:admin-index|admin-create|admin-edit|admin-delete', ['only' => ['index', 'show']]);
-    //     $this->middleware('permission:admin-create', ['only' => ['create', 'store']]);
-    //     $this->middleware('permission:admin-edit', ['only' => ['edit', 'update']]);
-    //     $this->middleware('permission:admin-delete', ['only' => ['destroy']]);
-    // }
+    public function __construct()
+    {
+        $this->middleware('permission:admin-index|admin-create|admin-edit|admin-delete', ['only' => ['index', 'show']]);
+        $this->middleware('permission:admin-create', ['only' => ['create', 'store']]);
+        $this->middleware('permission:admin-edit', ['only' => ['edit', 'update']]);
+        $this->middleware('permission:admin-delete', ['only' => ['destroy']]);
+    }
     public function index()
     {
         $admins = User::whereDoesntHave('user_mahasiswa')->where('email', '!=', 'satriotol69@gmail.com')->get();
