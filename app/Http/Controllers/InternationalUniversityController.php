@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Country;
 use App\Models\InternationalUniversity;
 use Illuminate\Http\Request;
 
@@ -14,7 +15,8 @@ class InternationalUniversityController extends Controller
      */
     public function index()
     {
-        //
+        $internationalUniversities = InternationalUniversity::all();
+        return view('pages.internationalUniversity.index', compact('internationalUniversities'));
     }
 
     /**
@@ -24,7 +26,8 @@ class InternationalUniversityController extends Controller
      */
     public function create()
     {
-        //
+        $countries = Country::all();
+        return view('pages.internationalUniversity.create', compact('countries'));
     }
 
     /**
@@ -35,7 +38,14 @@ class InternationalUniversityController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = $this->validate($request, [
+            'name' => 'required',
+            'country_id' => 'required',
+        ]);
+
+        InternationalUniversity::create($data);
+        session()->flash('success');
+        return redirect(route('internationalUniversity.index'));
     }
 
     /**
@@ -57,7 +67,8 @@ class InternationalUniversityController extends Controller
      */
     public function edit(InternationalUniversity $internationalUniversity)
     {
-        //
+        $countries = Country::all();
+        return view('pages.internationalUniversity.create', compact('countries', 'internationalUniversity'));
     }
 
     /**
@@ -69,7 +80,14 @@ class InternationalUniversityController extends Controller
      */
     public function update(Request $request, InternationalUniversity $internationalUniversity)
     {
-        //
+        $data = $this->validate($request, [
+            'name' => 'required',
+            'country_id' => 'required',
+        ]);
+
+        $internationalUniversity->update($data);
+        session()->flash('success');
+        return redirect(route('internationalUniversity.index'));
     }
 
     /**
@@ -80,6 +98,8 @@ class InternationalUniversityController extends Controller
      */
     public function destroy(InternationalUniversity $internationalUniversity)
     {
-        //
+        $internationalUniversity->delete();
+        session()->flash('success');
+        return back();
     }
 }

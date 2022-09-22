@@ -5,6 +5,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BatchController;
 use App\Http\Controllers\CountryController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\InternationalUniversityController;
 use App\Http\Controllers\MahasiswaController;
 use App\Http\Controllers\MajorController;
 use App\Http\Controllers\PermissionController;
@@ -37,6 +38,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::resource('permission', PermissionController::class);
     Route::resource('role', RoleController::class);
     Route::resource('admin', AdminController::class);
+    Route::resource('internationalUniversity', InternationalUniversityController::class);
     Route::post('admin/reset_password/{admin}', [AdminController::class, 'reset_password'])->name('admin.reset_password');
 });
 

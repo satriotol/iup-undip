@@ -63,6 +63,14 @@
                                 class="slide-item {{ active_class(['semesterStatus.*']) }}">Status Semester</a></li>
                     </ul>
                 </li>
+                <li class="sub-category">
+                    <h3>Master Data Internasional</h3>
+                </li>
+                <li class="slide">
+                    <a class="side-menu__item {{ active_class(['internationalUniversity.*']) }}" data-bs-toggle="slide"
+                        href="{{ route('internationalUniversity.index') }}"><i class="side-menu__icon fe fe-flag"></i><span
+                            class="side-menu__label">Universitas</span></a>
+                </li>
                 @can(['admin-index'])
                     <li class="sub-category">
                         <h3>User Management</h3>
