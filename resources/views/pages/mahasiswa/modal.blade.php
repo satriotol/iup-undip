@@ -15,7 +15,7 @@
                         @csrf
                         <div class="form-group">
                             <label class="text-helper">Semester</label><br>
-                            <select name="semester_id" class="form-control select2-show-search form-select"
+                            <select name="semester_id" class="form-control select2-show-search form-select" required
                                 data-placeholder="Pilih Semester">
                                 <option label="Pilih Semester"></option>
                                 @foreach ($semesters as $semester)
@@ -29,7 +29,7 @@
                         <div class="form-group">
                             <label class="text-helper">Status
                                 Semester</label><br>
-                            <select name="semester_status_id" class="form-control select2-show-search form-select"
+                            <select name="semester_status_id" class="form-control select2-show-search form-select" required
                                 data-placeholder="Pilih Status Semester">
                                 <option label="Pilih Status Semester">
                                 </option>
@@ -84,10 +84,6 @@
                         </table>
                     </div>
                 </div>
-            </div>
-            <div class="modal-footer">
-                <button class="btn btn-primary" type="submit">Save
-                    changes</button>
             </div>
         </div>
     </div>

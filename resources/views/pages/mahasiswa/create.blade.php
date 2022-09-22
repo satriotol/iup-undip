@@ -37,7 +37,7 @@
                         <div class="form-row">
                             <div class="form-group col-md-6">
                                 <label>Jenis Kelamin</label>
-                                <select name="gender" class="form-control select2-show-search form-select"
+                                <select name="gender" class="form-control select2-show-search form-select" required
                                     data-placeholder="Pilih Jenis Kelamin">
                                     <option label="Pilih Jenis Kelamin"></option>
                                     @foreach ($genders as $gender)
@@ -59,7 +59,7 @@
                         <div class="form-row">
                             <div class="form-group col-md-4">
                                 <label>Batch</label>
-                                <select name="batch_id" class="form-control select2-show-search form-select"
+                                <select name="batch_id" class="form-control select2-show-search form-select" required
                                     data-placeholder="Pilih Batch">
                                     <option label="Pilih Batch"></option>
                                     @foreach ($batches as $batch)
@@ -73,7 +73,7 @@
                             </div>
                             <div class="form-group col-md-4">
                                 <label>Fakultas</label>
-                                <select name="major_id" class="form-control select2-show-search form-select"
+                                <select name="major_id" class="form-control select2-show-search form-select" required
                                     data-placeholder="Pilih Fakultas">
                                     <option label="Pilih Fakultas"></option>
                                     @foreach ($majors as $major)
@@ -87,7 +87,7 @@
                             </div>
                             <div class="form-group col-md-4">
                                 <label>Negara</label>
-                                <select name="country_id" class="form-control select2-show-search form-select"
+                                <select name="country_id" class="form-control select2-show-search form-select" required
                                     data-placeholder="Pilih Negara">
                                     <option label="Pilih Negara"></option>
                                     @foreach ($countries as $country)
