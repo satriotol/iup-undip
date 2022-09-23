@@ -15,7 +15,8 @@ class InternationalFundingController extends Controller
      */
     public function index()
     {
-
+        $internationalFundings = InternationalFunding::all();
+        return view('pages.internationalFunding.index', compact('internationalFundings'));
     }
 
     /**
@@ -25,6 +26,7 @@ class InternationalFundingController extends Controller
      */
     public function create()
     {
+        return view('pages.internationalFunding.create');
     }
 
     /**
@@ -35,7 +37,13 @@ class InternationalFundingController extends Controller
      */
     public function store(Request $request)
     {
-        
+        $data = $this->validate($request, [
+            'name' => 'required',
+        ]);
+
+        InternationalFunding::create($data);
+        session()->flash('success');
+        return redirect(route('internationalFunding.index'));
     }
 
     /**
@@ -57,7 +65,7 @@ class InternationalFundingController extends Controller
      */
     public function edit(InternationalFunding $internationalFunding)
     {
-        //
+        return view('pages.internationalFunding.create', compact('internationalFunding'));
     }
 
     /**
@@ -69,7 +77,13 @@ class InternationalFundingController extends Controller
      */
     public function update(Request $request, InternationalFunding $internationalFunding)
     {
-        //
+        $data = $this->validate($request, [
+            'name' => 'required',
+        ]);
+
+        $internationalFunding->update($data);
+        session()->flash('success');
+        return redirect(route('internationalFunding.index'));
     }
 
     /**
@@ -80,6 +94,8 @@ class InternationalFundingController extends Controller
      */
     public function destroy(InternationalFunding $internationalFunding)
     {
-        //
+        $internationalFunding->delete();
+        session()->flash('success');
+        return back();
     }
 }

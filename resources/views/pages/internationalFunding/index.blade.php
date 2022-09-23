@@ -1,17 +1,17 @@
 @extends('layout.main')
 @section('content')
     <div class="page-header">
-        <h1 class="page-title">Kategori</h1>
+        <h1 class="page-title">Pendanaan</h1>
     </div>
     <div class="row">
         <div class="col-xl-12">
             <div class="card">
                 <div class="card-header">
-                    <h3 class="card-title">Kategori Table</h3>
+                    <h3 class="card-title">Pendanaan Table</h3>
                 </div>
                 <div class="card-body">
                     <div class="text-end">
-                        <a href="{{ route('internationalCategory.create') }}" class="btn btn-sm btn-primary" type="button">Create</a>
+                        <a href="{{ route('internationalFunding.create') }}" class="btn btn-sm btn-primary" type="button">Create</a>
                     </div>
                     <div class="table-responsive">
                         <table
@@ -23,14 +23,14 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($internationalCategories as $internationalCategory)
+                                @foreach ($internationalFundings as $internationalFunding)
                                     <tr>
-                                        <td>{{ $internationalCategory->name }}</td>
+                                        <td>{{ $internationalFunding->name }}</td>
                                         <td name="bstable-actions">
                                             <div class="btn-list">
-                                                <form action="{{ route('internationalCategory.destroy', $internationalCategory->id) }}" method="POST">
+                                                <form action="{{ route('internationalFunding.destroy', $internationalFunding->id) }}" method="POST">
                                                     <a class="btn btn-sm btn-primary"
-                                                        href="{{ route('internationalCategory.edit', $internationalCategory->id) }}">
+                                                        href="{{ route('internationalFunding.edit', $internationalFunding->id) }}">
                                                         <span class="fe fe-edit"> </span>
                                                     </a>
                                                     @csrf

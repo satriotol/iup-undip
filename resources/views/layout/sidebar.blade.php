@@ -80,7 +80,19 @@
                 <li class="slide">
                     <a class="side-menu__item {{ active_class(['internationalCategory.*']) }}" data-bs-toggle="slide"
                         href="{{ route('internationalCategory.index') }}"><i
-                            class="side-menu__icon fe fe-command"></i><span class="side-menu__label">Kategori</span></a>
+                            class="side-menu__icon fe fe-aperture"></i><span class="side-menu__label">Kategori</span></a>
+                </li>
+                <li class="slide">
+                    <a class="side-menu__item {{ active_class(['internationalFunding.*']) }}" data-bs-toggle="slide"
+                        href="{{ route('internationalFunding.index') }}"><i
+                            class="side-menu__icon fe fe-dollar-sign"></i><span
+                            class="side-menu__label">Pendanaan</span></a>
+                </li>
+                <li class="slide">
+                    <a class="side-menu__item {{ active_class(['internationalStatus.*']) }}" data-bs-toggle="slide"
+                        href="{{ route('internationalStatus.index') }}"><i
+                            class="side-menu__icon fe fe-dollar-sign"></i><span
+                            class="side-menu__label">Status</span></a>
                 </li>
                 @can(['admin-index'])
                     <li class="sub-category">

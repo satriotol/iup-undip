@@ -27,9 +27,11 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+
 Route::get('/.env', function () {
     return 'Hayoooo';
-});Route::group(['middleware' => ['auth']], function () {
+});
+Route::group(['middleware' => ['auth']], function () {
     Route::get('/', [DashboardController::class, 'index'])->name('dashboard.index');
     Route::resource('mahasiswa', MahasiswaController::class);
     Route::post('mahasiswa/assignSemester/{userMahasiswa}', [MahasiswaController::class, 'assignSemester'])->name('mahasiswa.assignSemester');
@@ -45,6 +47,8 @@ Route::get('/.env', function () {
     Route::resource('internationalUniversity', InternationalUniversityController::class);
     Route::resource('internationalProgram', InternationalProgramController::class);
     Route::resource('internationalCategory', InternationalCategoryController::class);
+    Route::resource('internationalFunding', InternationalFundingController::class);
+    Route::resource('internationalStatus', InternationalFundingController::class);
     Route::post('admin/reset_password/{admin}', [AdminController::class, 'reset_password'])->name('admin.reset_password');
 });
 
