@@ -82,7 +82,7 @@ class InternationalStatusController extends Controller
             'color' => 'required',
         ]);
 
-        InternationalStatus::create($data);
+        $internationalStatus->update($data);
         session()->flash('success');
         return redirect(route('internationalStatus.index'));
     }
@@ -95,6 +95,8 @@ class InternationalStatusController extends Controller
      */
     public function destroy(InternationalStatus $internationalStatus)
     {
-        //
+        $internationalStatus->delete();
+        session()->flash('success');
+        return back();
     }
 }
