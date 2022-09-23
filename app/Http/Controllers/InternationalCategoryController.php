@@ -14,6 +14,8 @@ class InternationalCategoryController extends Controller
      */
     public function index()
     {
+        $internationalCategories = InternationalCategory::all();
+        return view('pages.internationalCategory.index', compact('internationalCategories'));
     }
 
     /**
@@ -23,7 +25,7 @@ class InternationalCategoryController extends Controller
      */
     public function create()
     {
-        //
+        return view('pages.internationalCategory.create');
     }
 
     /**
@@ -34,7 +36,13 @@ class InternationalCategoryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = $this->validate($request, [
+            'name' => 'required',
+        ]);
+
+        InternationalCategory::create($data);
+        session()->flash('success');
+        return redirect(route('internationalCategory.index'));
     }
 
     /**
@@ -56,7 +64,7 @@ class InternationalCategoryController extends Controller
      */
     public function edit(InternationalCategory $internationalCategory)
     {
-        //
+        return view('pages.internationalCategory.create', compact('internationalCategory'));
     }
 
     /**
@@ -68,7 +76,12 @@ class InternationalCategoryController extends Controller
      */
     public function update(Request $request, InternationalCategory $internationalCategory)
     {
-        //
+        $data = $this->validate($request, [
+            'name' => 'required',
+        ]);
+        $internationalCategory->update($data);
+        session()->flash('success');
+        return redirect(route('internationalCategory.index'));
     }
 
     /**
@@ -79,6 +92,8 @@ class InternationalCategoryController extends Controller
      */
     public function destroy(InternationalCategory $internationalCategory)
     {
-        //
+        $internationalCategory->delete();
+        session()->flash('success');
+        return back();
     }
 }
