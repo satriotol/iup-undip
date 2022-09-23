@@ -69,7 +69,12 @@ class MahasiswaSemesterController extends Controller
      */
     public function update(Request $request, MahasiswaSemester $mahasiswaSemester)
     {
-        //
+        $data = $this->validate($request, [
+            'semester_status_id' => 'required',
+        ]);
+        $mahasiswaSemester->update($data);
+        session()->flash('success');
+        return back();
     }
 
     /**

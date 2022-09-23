@@ -24,6 +24,7 @@
                         <table class="table border table-bordered text-nowrap text-md-nowrap table-hover mb-0">
                             <thead>
                                 <tr>
+                                    <th>Batch</th>
                                     <th>NIM</th>
                                     <th>Nama</th>
                                     <th>Jenis Kelamin</th>
@@ -38,6 +39,7 @@
                             <tbody>
                                 @foreach ($mahasiswas as $mahasiswa)
                                     <tr>
+                                        <td>{{ $mahasiswa->user_mahasiswa->batch->year }}</td>
                                         <td>{{ $mahasiswa->user_mahasiswa->nim }}</td>
                                         <td>{{ $mahasiswa->name }}</td>
                                         <td>{{ $mahasiswa->user_mahasiswa->gender }}</td>
