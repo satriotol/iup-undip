@@ -1,13 +1,13 @@
 @extends('layout.main')
 @section('content')
     <div class="page-header">
-        <h1 class="page-title">Fakultas</h1>
+        <h1 class="page-title">Major</h1>
     </div>
     <div class="row">
         <div class="col-xl-12">
             <div class="card">
                 <div class="card-header">
-                    <h3 class="card-title">Fakultas Table</h3>
+                    <h3 class="card-title">Major Table</h3>
                 </div>
                 <div class="card-body">
                     <div class="text-end">

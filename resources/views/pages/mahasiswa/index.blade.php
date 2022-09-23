@@ -30,7 +30,7 @@
                                     <th>Jenis Kelamin</th>
                                     <th>Email</th>
                                     <th>HP</th>
-                                    <th>Fakultas / Batch</th>
+                                    <th>Major / Batch</th>
                                     <th>Asal</th>
                                     <th>Semester</th>
                                     <th>Action</th>

@@ -72,10 +72,10 @@
                                 </select>
                             </div>
                             <div class="form-group col-md-4">
-                                <label>Fakultas</label>
+                                <label>Major</label>
                                 <select name="major_id" class="form-control select2-show-search form-select" required
-                                    data-placeholder="Pilih Fakultas">
-                                    <option label="Pilih Fakultas"></option>
+                                    data-placeholder="Pilih Major">
+                                    <option label="Pilih Major"></option>
                                     @foreach ($majors as $major)
                                         <option value="{{ $major->id }}"
                                             @isset($mahasiswa)

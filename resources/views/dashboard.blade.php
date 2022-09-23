@@ -10,6 +10,9 @@
                     <h3 class="card-title">Dashboard</h3>
                 </div>
                 <div class="card-body">
+                    <div class="text-end">
+                        <a href="{{route('dashboard.fileExport')}}" target="_blank" class="btn btn-sm btn-success">Export Excel</a>
+                    </div>
                     <div class="table-responsive">
                         <table class="table border text-nowrap text-md-nowrap table-hover mb-0">
                             <thead>
@@ -59,7 +62,7 @@
                                                                 </option>
                                                             @endforeach
                                                         </select>
-                                                        <button class="btn btn-sm btn-success"
+                                                        <button class="btn btn-sm btn-primary"
                                                             type="submit">Update</button>
                                                     </ul>
                                                 </form>
