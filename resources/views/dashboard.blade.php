@@ -21,6 +21,14 @@
                                     <th>Student ID</th>
                                     <th>Name</th>
                                     <th>Semester | Status</th>
+                                    <th>International Status</th>
+                                    <th>Category</th>
+                                    <th>University | Country</th>
+                                    <th>Program</th>
+                                    <th>Duration</th>
+                                    <th>Year</th>
+                                    <th>Start At - End At</th>
+                                    <th>Funding</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -39,7 +47,7 @@
                                                     method="POST">
                                                     @csrf
                                                     @method('PUT')
-                                                    <ul>
+                                                    <ul style="color: {{ $mahasiswa_semester->semester_status->color }}">
                                                         {{ $mahasiswa_semester->semester->year }} -
                                                         {{ $mahasiswa_semester->semester->semester }}
                                                         |
@@ -58,7 +66,32 @@
                                             @endforeach
                                         </td>
                                         <td>
-                                            
+                                            {{ $user->user_mahasiswa->international_mahasiswa->international_status->name }}
+                                        </td>
+                                        <td>
+                                            {{ $user->user_mahasiswa->international_mahasiswa->international_category->name }}
+                                        </td>
+                                        <td>
+                                            {{ $user->user_mahasiswa->international_mahasiswa->international_university->name }}
+                                            |
+                                            {{ $user->user_mahasiswa->international_mahasiswa->international_university->country->name }}
+
+                                        </td>
+                                        <td>
+                                            {{ $user->user_mahasiswa->international_mahasiswa->international_program->name }}
+                                        </td>
+                                        <td>
+                                            {{ $user->user_mahasiswa->international_mahasiswa->duration }}
+                                        </td>
+                                        <td>
+                                            {{ $user->user_mahasiswa->international_mahasiswa->year }}
+                                        </td>
+                                        <td>
+                                            {{ $user->user_mahasiswa->international_mahasiswa->start_at }} -
+                                            {{ $user->user_mahasiswa->international_mahasiswa->end_at }}
+                                        </td>
+                                        <td>
+                                            {{ $user->user_mahasiswa->international_mahasiswa->international_funding->name }}
                                         </td>
                                     </tr>
                                 @endforeach

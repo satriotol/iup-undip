@@ -4,6 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Models\Batch;
 use App\Models\Country;
+use App\Models\InternationalCategory;
+use App\Models\InternationalFunding;
+use App\Models\InternationalProgram;
+use App\Models\InternationalStatus;
+use App\Models\InternationalUniversity;
 use App\Models\MahasiswaSemester;
 use App\Models\Major;
 use App\Models\Semester;

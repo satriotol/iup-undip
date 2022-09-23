@@ -7,6 +7,7 @@ use App\Http\Controllers\CountryController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\InternationalCategoryController;
 use App\Http\Controllers\InternationalFundingController;
+use App\Http\Controllers\InternationalMahasiswaController;
 use App\Http\Controllers\InternationalProgramController;
 use App\Http\Controllers\InternationalStatusController;
 use App\Http\Controllers\InternationalUniversityController;
@@ -52,6 +53,10 @@ Route::group(['middleware' => ['auth']], function () {
     Route::resource('internationalFunding', InternationalFundingController::class);
     Route::resource('internationalStatus', InternationalStatusController::class);
     Route::resource('mahasiswaSemester', MahasiswaSemesterController::class);
+    Route::get('internationalMahasiswa/{user_mahasiswa_id}', [InternationalMahasiswaController::class, 'create'])->name('internationalMahasiswa.create');
+    Route::get('internationalMahasiswa/{user_mahasiswa_id}/{internationalMahasiswa}', [InternationalMahasiswaController::class, 'edit'])->name('internationalMahasiswa.edit');
+    Route::post('internationalMahasiswa/{user_mahasiswa_id}', [InternationalMahasiswaController::class, 'store'])->name('internationalMahasiswa.store');
+    Route::put('internationalMahasiswa/update/{user_mahasiswa_id}/{internationalMahasiswa}', [InternationalMahasiswaController::class, 'update'])->name('internationalMahasiswa.update');
     Route::post('admin/reset_password/{admin}', [AdminController::class, 'reset_password'])->name('admin.reset_password');
 });
 

@@ -2,7 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\InternationalCategory;
+use App\Models\InternationalFunding;
 use App\Models\InternationalMahasiswa;
+use App\Models\InternationalProgram;
+use App\Models\InternationalStatus;
+use App\Models\InternationalUniversity;
 use Illuminate\Http\Request;
 
 class InternationalMahasiswaController extends Controller
@@ -22,9 +27,14 @@ class InternationalMahasiswaController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create($user_mahasiswa_id)
     {
-        //
+        $internationalStatuses = InternationalStatus::all();
+        $internationalCategories = InternationalCategory::all();
+        $internationalUniversities = InternationalUniversity::all();
+        $internationalPrograms = InternationalProgram::all();
+        $internationalFundings = InternationalFunding::all();
+        return view('pages.internationalMahasiswa.create', compact('user_mahasiswa_id', 'internationalStatuses', 'internationalCategories', 'internationalUniversities', 'internationalPrograms', 'internationalFundings'));
     }
 
     /**
@@ -33,9 +43,23 @@ class InternationalMahasiswaController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, $user_mahasiswa_id)
     {
-        //
+        $data = $this->validate($request, [
+            'international_status_id' => 'required',
+            'international_category_id' => 'required',
+            'international_university_id' => 'required',
+            'international_program_id' => 'required',
+            'international_funding_id' => 'required',
+            'duration' => 'required',
+            'year' => 'required',
+            'start_at' => 'required',
+            'end_at' => 'required',
+        ]);
+        $data['user_mahasiswa_id'] = $user_mahasiswa_id;
+        InternationalMahasiswa::create($data);
+        session()->flash('success');
+        return redirect(route('mahasiswa.index'));
     }
 
     /**
@@ -55,9 +79,14 @@ class InternationalMahasiswaController extends Controller
      * @param  \App\Models\InternationalMahasiswa  $internationalMahasiswa
      * @return \Illuminate\Http\Response
      */
-    public function edit(InternationalMahasiswa $internationalMahasiswa)
+    public function edit($user_mahasiswa_id, InternationalMahasiswa $internationalMahasiswa)
     {
-        //
+        $internationalStatuses = InternationalStatus::all();
+        $internationalCategories = InternationalCategory::all();
+        $internationalUniversities = InternationalUniversity::all();
+        $internationalPrograms = InternationalProgram::all();
+        $internationalFundings = InternationalFunding::all();
+        return view('pages.internationalMahasiswa.create', compact('user_mahasiswa_id', 'internationalMahasiswa', 'internationalStatuses', 'internationalCategories', 'internationalUniversities', 'internationalPrograms', 'internationalFundings'));
     }
 
     /**
@@ -67,9 +96,23 @@ class InternationalMahasiswaController extends Controller
      * @param  \App\Models\InternationalMahasiswa  $internationalMahasiswa
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, InternationalMahasiswa $internationalMahasiswa)
+    public function update(Request $request, $user_mahasiswa_id, InternationalMahasiswa $internationalMahasiswa)
     {
-        //
+        $data = $this->validate($request, [
+            'international_status_id' => 'required',
+            'international_category_id' => 'required',
+            'international_university_id' => 'required',
+            'international_program_id' => 'required',
+            'international_funding_id' => 'required',
+            'duration' => 'required',
+            'year' => 'required',
+            'start_at' => 'required',
+            'end_at' => 'required',
+        ]);
+        $data['user_mahasiswa_id'] = $user_mahasiswa_id;
+        $internationalMahasiswa->update($data);
+        session()->flash('success');
+        return redirect(route('mahasiswa.index'));
     }
 
     /**

@@ -39,7 +39,9 @@
                             <tbody>
                                 @foreach ($mahasiswas as $mahasiswa)
                                     <tr>
-                                        <td>{{ $mahasiswa->user_mahasiswa->batch->year }}</td>
+
+                                        <td>
+                                            {{ $mahasiswa->user_mahasiswa->batch->year }}</td>
                                         <td>{{ $mahasiswa->user_mahasiswa->nim }}</td>
                                         <td>{{ $mahasiswa->name }}</td>
                                         <td>{{ $mahasiswa->user_mahasiswa->gender }}</td>
