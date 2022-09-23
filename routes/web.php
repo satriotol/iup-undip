@@ -8,6 +8,7 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\InternationalCategoryController;
 use App\Http\Controllers\InternationalFundingController;
 use App\Http\Controllers\InternationalProgramController;
+use App\Http\Controllers\InternationalStatusController;
 use App\Http\Controllers\InternationalUniversityController;
 use App\Http\Controllers\MahasiswaController;
 use App\Http\Controllers\MajorController;
@@ -48,7 +49,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::resource('internationalProgram', InternationalProgramController::class);
     Route::resource('internationalCategory', InternationalCategoryController::class);
     Route::resource('internationalFunding', InternationalFundingController::class);
-    Route::resource('internationalStatus', InternationalFundingController::class);
+    Route::resource('internationalStatus', InternationalStatusController::class);
     Route::post('admin/reset_password/{admin}', [AdminController::class, 'reset_password'])->name('admin.reset_password');
 });
 

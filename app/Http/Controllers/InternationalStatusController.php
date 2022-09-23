@@ -14,7 +14,8 @@ class InternationalStatusController extends Controller
      */
     public function index()
     {
-        //
+        $internationalStatuses = InternationalStatus::all();
+        return view('pages.internationalStatus.index', compact('internationalStatuses'));
     }
 
     /**
@@ -24,7 +25,7 @@ class InternationalStatusController extends Controller
      */
     public function create()
     {
-        //
+        return view('pages.internationalStatus.create');
     }
 
     /**
@@ -35,7 +36,14 @@ class InternationalStatusController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = $this->validate($request, [
+            'name' => 'required',
+            'color' => 'required',
+        ]);
+
+        InternationalStatus::create($data);
+        session()->flash('success');
+        return redirect(route('internationalStatus.index'));
     }
 
     /**
@@ -57,7 +65,7 @@ class InternationalStatusController extends Controller
      */
     public function edit(InternationalStatus $internationalStatus)
     {
-        //
+        return view('pages.internationalStatus.create', compact('internationalStatus'));
     }
 
     /**
@@ -69,7 +77,14 @@ class InternationalStatusController extends Controller
      */
     public function update(Request $request, InternationalStatus $internationalStatus)
     {
-        //
+        $data = $this->validate($request, [
+            'name' => 'required',
+            'color' => 'required',
+        ]);
+
+        InternationalStatus::create($data);
+        session()->flash('success');
+        return redirect(route('internationalStatus.index'));
     }
 
     /**
