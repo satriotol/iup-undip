@@ -1,17 +1,17 @@
 @extends('layout.main')
 @section('content')
     <div class="page-header">
-        <h1 class="page-title">Major</h1>
+        <h1 class="page-title">Fakultas</h1>
     </div>
     <div class="row">
         <div class="col-xl-12">
             <div class="card">
                 <div class="card-header">
-                    <h3 class="card-title">Major Table</h3>
+                    <h3 class="card-title">Fakultas Table</h3>
                 </div>
                 <div class="card-body">
                     <div class="text-end">
-                        <a href="{{ route('major.create') }}" class="btn btn-sm btn-primary" type="button">Create</a>
+                        <a href="{{ route('faculty.create') }}" class="btn btn-sm btn-primary" type="button">Create</a>
                     </div>
                     <div class="table-responsive">
                         <table
@@ -19,20 +19,18 @@
                             <thead>
                                 <tr>
                                     <th>Fakultas</th>
-                                    <th>Name</th>
                                     <th>Action</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($majors as $major)
+                                @foreach ($faculties as $faculty)
                                     <tr>
-                                        <td>{{ $major->faculty?->name }}</td>
-                                        <td>{{ $major->name }}</td>
+                                        <td>{{ $faculty->name }}</td>
                                         <td name="bstable-actions">
                                             <div class="btn-list">
-                                                <form action="{{ route('major.destroy', $major->id) }}" method="POST">
+                                                <form action="{{ route('faculty.destroy', $faculty->id) }}" method="POST">
                                                     <a class="btn btn-sm btn-primary"
-                                                        href="{{ route('major.edit', $major->id) }}">
+                                                        href="{{ route('faculty.edit', $faculty->id) }}">
                                                         <span class="fe fe-edit"> </span>
                                                     </a>
                                                     @csrf

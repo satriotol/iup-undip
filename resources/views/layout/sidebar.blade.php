@@ -42,6 +42,11 @@
                             class="side-menu__label">Major</span></a>
                 </li>
                 <li class="slide">
+                    <a class="side-menu__item {{ active_class(['faculty.*']) }}" data-bs-toggle="slide"
+                        href="{{ route('faculty.index') }}"><i class="side-menu__icon fe fe-award"></i><span
+                            class="side-menu__label">Fakultas</span></a>
+                </li>
+                <li class="slide">
                     <a class="side-menu__item {{ active_class(['batch.*']) }}" data-bs-toggle="slide"
                         href="{{ route('batch.index') }}"><i class="side-menu__icon fe fe-calendar"></i><span
                             class="side-menu__label">Batch</span></a>
