@@ -163,6 +163,6 @@ class MahasiswaController extends Controller
     {
         $mahasiswaSemester->delete();
         session()->flash('success');
-        return back();
+        return response()->json('Sukses');
     }
 }

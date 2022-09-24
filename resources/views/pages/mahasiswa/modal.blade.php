@@ -73,11 +73,7 @@
                                                 method="POST">
                                                 @csrf
                                                 @method('DELETE')
-                                                <button type="submit" class="btn btn-sm btn-danger"
-                                                    onclick="return confirm('Are you sure?')">
-                                                    <span class="fe fe-trash-2">
-                                                    </span>
-                                                </button>
+                                                <button class="btn btn-sm btn-danger" onclick="return confirm('Are you sure?')"><span class="fe fe-trash-2"></span></button>
                                             </form>
                                         </td>
                                     </tr>
@@ -109,9 +105,33 @@
                         var tr_str = "<tr>" +
                             "<td class='text-helper'>" + data[i].semester_name + "</td>" +
                             "<td class='text-helper'>" + data[i].semester_status_name + "</td>" +
+                            "<td><button class='btn btn-sm btn-danger btn-delete' data-id=" + data[i].id +
+                            " ><span class='fe fe-trash-2'></span></button></td>" +
                             "</tr>";
                         $("#userTableBody-{{ $mahasiswa->user_mahasiswa->id }}").append(tr_str);
                     }
+                    $(".btn-delete").click(function(e) {
+                        var id = $(this).data("id");
+                        var route = "/mahasiswa/assignSemester/destroy/" + id
+                        $.ajax({
+                            type: 'POST',
+                            url: route,
+                            success: function(data) {
+                                $.ajax({
+                                    type: 'GET',
+                                    url: "{{ route('mahasiswa.getData', $mahasiswa->user_mahasiswa->id) }}",
+                                    success: function(data) {
+                                        notif({
+                                            msg: "<b>Success:</b> Well done Details Submitted Successfully",
+                                            type: "success"
+                                        });
+                                        getData();
+
+                                    }
+                                });
+                            }
+                        });
+                    });
                 }
             });
         }
@@ -142,6 +162,7 @@
                                 type: "success"
                             });
                             getData();
+
                         }
                     });
                 }
