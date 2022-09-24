@@ -11,7 +11,8 @@
                 </div>
                 <div class="card-body">
                     <div class="text-end">
-                        <a href="{{route('dashboard.fileExport')}}" target="_blank" class="btn btn-sm btn-success">Export Excel</a>
+                        <a href="{{ route('dashboard.fileExport') }}" target="_blank" class="btn btn-sm btn-success">Export
+                            Excel</a>
                     </div>
                     <div class="table-responsive">
                         <table class="table border text-nowrap text-md-nowrap table-hover mb-0">
@@ -69,32 +70,32 @@
                                             @endforeach
                                         </td>
                                         <td>
-                                            {{ $user->user_mahasiswa->international_mahasiswa->international_status?->name }}
+                                            {{ $user->user_mahasiswa->international_mahasiswa->international_status?->name ?? '' }}
                                         </td>
                                         <td>
-                                            {{ $user->user_mahasiswa->international_mahasiswa->international_category?->name }}
+                                            {{ $user->user_mahasiswa->international_mahasiswa->international_category?->name ?? '' }}
                                         </td>
                                         <td>
-                                            {{ $user->user_mahasiswa->international_mahasiswa->international_university?->name }}
+                                            {{ $user->user_mahasiswa->international_mahasiswa->international_university?->name ?? '' }}
                                             |
-                                            {{ $user->user_mahasiswa->international_mahasiswa->international_university?->country->name }}
+                                            {{ $user->user_mahasiswa->international_mahasiswa->international_university?->country->name ?? '' }}
 
                                         </td>
                                         <td>
-                                            {{ $user->user_mahasiswa->international_mahasiswa->international_program?->name }}
+                                            {{ $user->user_mahasiswa->international_mahasiswa->international_program?->name ?? '' }}
                                         </td>
                                         <td>
-                                            {{ $user->user_mahasiswa->international_mahasiswa->duration }}
+                                            {{ $user->user_mahasiswa->international_mahasiswa->duration ?? '' }}
                                         </td>
                                         <td>
-                                            {{ $user->user_mahasiswa->international_mahasiswa->year }}
+                                            {{ $user->user_mahasiswa->international_mahasiswa->year ?? '' }}
                                         </td>
                                         <td>
-                                            {{ $user->user_mahasiswa->international_mahasiswa->start_at }} -
-                                            {{ $user->user_mahasiswa->international_mahasiswa->end_at }}
+                                            {{ $user->user_mahasiswa->international_mahasiswa->start_at ?? '' }} -
+                                            {{ $user->user_mahasiswa->international_mahasiswa->end_at ?? '' }}
                                         </td>
                                         <td>
-                                            {{ $user->user_mahasiswa->international_mahasiswa->international_funding?->name }}
+                                            {{ $user->user_mahasiswa->international_mahasiswa->international_funding?->name ?? '' }}
                                         </td>
                                     </tr>
                                 @endforeach
