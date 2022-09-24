@@ -1,3 +1,6 @@
+@push('style')
+    <meta name="csrf-token" content="{{ csrf_token() }}" />
+@endpush
 <div class="modal fade" id="extralargemodal-{{ $mahasiswa->user_mahasiswa->id }}" tabindex="-1" role="dialog">
     <div class="modal-dialog modal-xl" role="document">
         <div class="modal-content">
@@ -10,9 +13,7 @@
             </div>
             <div class="modal-body">
                 <div class="row">
-                    <form action="{{ route('mahasiswa.assignSemester', $mahasiswa->user_mahasiswa->id) }}"
-                        method="POST">
-                        @csrf
+                    <form>
                         <div class="form-group">
                             <label class="text-helper">Semester</label><br>
                             <select name="semester_id" class="form-control select2-show-search form-select" required
@@ -29,8 +30,8 @@
                         <div class="form-group">
                             <label class="text-helper">Status
                                 Semester</label><br>
-                            <select name="semester_status_id" class="form-control select2-show-search form-select" required
-                                data-placeholder="Pilih Status Semester">
+                            <select name="semester_status_id" class="form-control select2-show-search form-select"
+                                required data-placeholder="Pilih Status Semester">
                                 <option label="Pilih Status Semester">
                                 </option>
                                 @foreach ($semesterStatuses as $semesterStatus)
@@ -41,7 +42,7 @@
                             </select>
                         </div>
                         <div class="text-end">
-                            <button class="btn btn-sm btn-success" type="submit">Submit</button>
+                            <button class="btn btn-sm btn-success btn-submit">Submit</button>
                         </div>
                     </form>
 
@@ -88,3 +89,33 @@
         </div>
     </div>
 </div>
+@push('custom-scripts')
+    <script type="text/javascript">
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+
+        $(".btn-submit").click(function(e) {
+
+            e.preventDefault();
+
+            var semester_id = $("select[name=semester_id]").val();
+            var semester_status_id = $("select[name=semester_status_id]").val();
+
+            $.ajax({
+                type: 'POST',
+                url: "{{ route('mahasiswa.assignSemester', $mahasiswa->user_mahasiswa->id) }}",
+                data: {
+                    semester_id: semester_id,
+                    semester_status_id: semester_status_id,
+                },
+                success: function(data) {
+                    alert(data.success);
+                }
+            });
+
+        });
+    </script>
+@endpush
