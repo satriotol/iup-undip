@@ -69,19 +69,19 @@
                                             @endforeach
                                         </td>
                                         <td>
-                                            {{ $user->user_mahasiswa->international_mahasiswa->international_status->name }}
+                                            {{ $user->user_mahasiswa->international_mahasiswa->international_status?->name }}
                                         </td>
                                         <td>
-                                            {{ $user->user_mahasiswa->international_mahasiswa->international_category->name }}
+                                            {{ $user->user_mahasiswa->international_mahasiswa->international_category?->name }}
                                         </td>
                                         <td>
-                                            {{ $user->user_mahasiswa->international_mahasiswa->international_university->name }}
+                                            {{ $user->user_mahasiswa->international_mahasiswa->international_university?->name }}
                                             |
-                                            {{ $user->user_mahasiswa->international_mahasiswa->international_university->country->name }}
+                                            {{ $user->user_mahasiswa->international_mahasiswa->international_university?->country->name }}
 
                                         </td>
                                         <td>
-                                            {{ $user->user_mahasiswa->international_mahasiswa->international_program->name }}
+                                            {{ $user->user_mahasiswa->international_mahasiswa->international_program?->name }}
                                         </td>
                                         <td>
                                             {{ $user->user_mahasiswa->international_mahasiswa->duration }}
@@ -94,7 +94,7 @@
                                             {{ $user->user_mahasiswa->international_mahasiswa->end_at }}
                                         </td>
                                         <td>
-                                            {{ $user->user_mahasiswa->international_mahasiswa->international_funding->name }}
+                                            {{ $user->user_mahasiswa->international_mahasiswa->international_funding?->name }}
                                         </td>
                                     </tr>
                                 @endforeach
