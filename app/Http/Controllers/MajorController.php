@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Faculty;
 use App\Models\Major;
 use Illuminate\Http\Request;
 
@@ -25,7 +26,8 @@ class MajorController extends Controller
      */
     public function create()
     {
-        return view('pages.major.create');
+        $faculties = Faculty::all();
+        return view('pages.major.create', compact('faculties'));
     }
 
     /**
@@ -37,6 +39,7 @@ class MajorController extends Controller
     public function store(Request $request)
     {
         $data = $this->validate($request, [
+            'faculty_id' => 'required',
             'name' => 'required',
         ]);
 
@@ -64,7 +67,8 @@ class MajorController extends Controller
      */
     public function edit(Major $major)
     {
-        return view('pages.major.create', compact('major'));
+        $faculties = Faculty::all();
+        return view('pages.major.create', compact('major', 'faculties'));
     }
 
     /**
@@ -77,6 +81,7 @@ class MajorController extends Controller
     public function update(Request $request, Major $major)
     {
         $data = $this->validate($request, [
+            'faculty_id' => 'required',
             'name' => 'required',
         ]);
 

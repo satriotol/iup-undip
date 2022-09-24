@@ -19,6 +19,19 @@
                             @method('PUT')
                         @endisset
                         <div class="form-group">
+                            <label>Fakultas</label>
+                            <select name="faculty_id" id="" class="form-control" required>
+                                <option value="">Pilih Fakultas</option>
+                                @foreach ($faculties as $faculty)
+                                    <option
+                                        @isset($major)
+                                        {{ $major->faculty_id === $faculty->id ? 'selected' : '' }}
+                                    @endisset
+                                        value="{{ $faculty->id }}">{{ $faculty->name }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                        <div class="form-group">
                             <label>Nama</label>
                             <input type="text" class="form-control"
                                 value="{{ isset($major) ? $major->name : @old('name') }}" name="name" required>
