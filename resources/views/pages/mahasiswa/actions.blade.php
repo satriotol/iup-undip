@@ -5,7 +5,8 @@
             Reset Password
         </button>
     </form>
-    <button class="btn btn-sm btn-secondary btn-{{ $mahasiswa->user_mahasiswa->id }} bg-secondary-gradient m-0"
+    <button data-master="{{ $mahasiswa->user_mahasiswa->id }}"
+        class="btn btn-sm btn-secondary btn-{{ $mahasiswa->user_mahasiswa->id }} bg-secondary-gradient m-0"
         data-bs-toggle="modal"
         data-bs-target="#extralargemodal-{{ $mahasiswa->user_mahasiswa->id }}">Semester</button><br>
     @include('pages.mahasiswa.modal')
