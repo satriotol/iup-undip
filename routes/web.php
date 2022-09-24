@@ -39,6 +39,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/', [DashboardController::class, 'index'])->name('dashboard.index');
     Route::get('/export', [DashboardController::class, 'fileExport'])->name('dashboard.fileExport');
     Route::resource('mahasiswa', MahasiswaController::class);
+    Route::get('mahasiswa/getData/{userMahasiswa}', [MahasiswaController::class, 'getData'])->name('mahasiswa.getData');
     Route::post('mahasiswa/assignSemester/{userMahasiswa}', [MahasiswaController::class, 'assignSemester'])->name('mahasiswa.assignSemester');
     Route::delete('mahasiswa/assignSemester/destroy/{mahasiswaSemester}', [MahasiswaController::class, 'destroySemester'])->name('mahasiswa.destroySemester');
     Route::resource('major', MajorController::class);

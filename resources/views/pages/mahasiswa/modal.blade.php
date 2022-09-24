@@ -47,7 +47,8 @@
                     </form>
 
                     <div class="table-responsive mt-2">
-                        <table class="table border text-nowrap text-md-nowrap table-hover mb-0">
+                        <table class="table border text-nowrap text-md-nowrap table-hover mb-0"
+                            id="userTable-{{ $mahasiswa->user_mahasiswa->id }}">
                             <thead>
                                 <tr>
                                     <th>Semester</th>
@@ -55,8 +56,8 @@
                                     <th>Action</th>
                                 </tr>
                             </thead>
-                            <tbody>
-                                @foreach ($mahasiswa->user_mahasiswa->mahasiswa_semesters as $mahasiswa_semester)
+                            <tbody id="userTableBody-{{ $mahasiswa->user_mahasiswa->id }}">
+                                {{-- @foreach ($mahasiswa->user_mahasiswa->mahasiswa_semesters as $mahasiswa_semester)
                                     <tr>
                                         <td class="text-helper">
                                             {{ $mahasiswa_semester->semester->year }}
@@ -80,7 +81,7 @@
                                             </form>
                                         </td>
                                     </tr>
-                                @endforeach
+                                @endforeach --}}
                             </tbody>
                         </table>
                     </div>
@@ -96,7 +97,27 @@
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             }
         });
-
+        var getData = function() {
+            $.ajax({
+                type: 'GET',
+                url: "{{ route('mahasiswa.getData', $mahasiswa->user_mahasiswa->id) }}",
+                success: function(data) {
+                    var len = 0;
+                    $('#userTableBody-{{ $mahasiswa->user_mahasiswa->id }}').empty();
+                    len = data.length;
+                    for (var i = 0; i < len; i++) {
+                        var tr_str = "<tr>" +
+                            "<td class='text-helper'>" + data[i].semester_name + "</td>" +
+                            "<td class='text-helper'>" + data[i].semester_status_name + "</td>" +
+                            "</tr>";
+                        $("#userTableBody-{{ $mahasiswa->user_mahasiswa->id }}").append(tr_str);
+                    }
+                }
+            });
+        }
+        $(".btn-{{ $mahasiswa->user_mahasiswa->id }}").click(function(e) {
+            getData();
+        });
         $(".btn-submit").click(function(e) {
 
             e.preventDefault();
@@ -112,10 +133,19 @@
                     semester_status_id: semester_status_id,
                 },
                 success: function(data) {
-                    alert(data.success);
+                    $.ajax({
+                        type: 'GET',
+                        url: "{{ route('mahasiswa.getData', $mahasiswa->user_mahasiswa->id) }}",
+                        success: function(data) {
+                            notif({
+                                msg: "<b>Success:</b> Well done Details Submitted Successfully",
+                                type: "success"
+                            });
+                            getData();
+                        }
+                    });
                 }
             });
-
         });
     </script>
 @endpush

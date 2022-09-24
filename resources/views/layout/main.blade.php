@@ -113,7 +113,6 @@
     <script src="{{ asset('assets/plugins/notify/js/notifIt.js') }}"></script>
     <!-- CUSTOM JS -->
     <script src="{{ asset('assets/js/custom.js') }}"></script>
-    @stack('custom-scripts')
     @if (session()->has('success'))
         <script>
             notif({
@@ -132,6 +131,8 @@
                 .after('<span class="text-red">*</span>')
         })
     </script>
+    @stack('custom-scripts')
+
 
 </body>
 

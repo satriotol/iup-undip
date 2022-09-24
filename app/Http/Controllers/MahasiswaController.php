@@ -142,6 +142,11 @@ class MahasiswaController extends Controller
         session()->flash('success');
         return back();
     }
+    public function getData($userMahasiswa)
+    {
+        $mahasiswaSemesters = MahasiswaSemester::where('user_mahasiswa_id', $userMahasiswa)->orderBy('semester_id')->get();
+        return response()->json($mahasiswaSemesters);
+    }
     public function assignSemester(Request $request, $userMahasiswa)
     {
         $data = $this->validate($request, [
@@ -152,7 +157,7 @@ class MahasiswaController extends Controller
         $data['user_mahasiswa_id'] = $userMahasiswa;
         MahasiswaSemester::create($data);
         session()->flash('success');
-        return back();
+        return response()->json('Sukses');
     }
     public function destroySemester(MahasiswaSemester $mahasiswaSemester)
     {

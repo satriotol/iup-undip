@@ -41,14 +41,14 @@
                                     <tr>
 
                                         <td>
-                                            {{ $mahasiswa->user_mahasiswa->batch->year }}</td>
-                                        <td>{{ $mahasiswa->user_mahasiswa->nim }}</td>
-                                        <td>{{ $mahasiswa->name }}</td>
-                                        <td>{{ $mahasiswa->user_mahasiswa->gender }}</td>
-                                        <td>{{ $mahasiswa->email }}</td>
-                                        <td>{{ $mahasiswa->user_mahasiswa->phone }}</td>
-                                        <td>{{ $mahasiswa->user_mahasiswa->major->name }}/{{ $mahasiswa->user_mahasiswa->batch->year }}
-                                        <td>{{ $mahasiswa->user_mahasiswa->country->name }}
+                                            {{ $mahasiswa->user_mahasiswa->batch->year ?? '' }}</td>
+                                        <td>{{ $mahasiswa->user_mahasiswa->nim ?? ''}}</td>
+                                        <td>{{ $mahasiswa->name ?? ''}}</td>
+                                        <td>{{ $mahasiswa->user_mahasiswa->gender ?? ''}}</td>
+                                        <td>{{ $mahasiswa->email ?? ''}}</td>
+                                        <td>{{ $mahasiswa->user_mahasiswa->phone ?? ''}}</td>
+                                        <td>{{ $mahasiswa->user_mahasiswa->major->name ?? ''}}/{{ $mahasiswa->user_mahasiswa->batch->year ?? ''}}
+                                        <td>{{ $mahasiswa->user_mahasiswa->country->name ?? ''}}
                                         <td
                                             style="background-color: {{ $mahasiswa->user_mahasiswa->mahasiswa_semesters->first()->semester_status->color ?? '' }}">
                                             {{ $mahasiswa->user_mahasiswa->mahasiswa_semesters->first()->semester->year ?? '' }}
