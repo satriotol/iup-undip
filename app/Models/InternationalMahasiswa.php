@@ -13,26 +13,26 @@ class InternationalMahasiswa extends Model
 
     public function user_mahasiswa()
     {
-        return $this->belongsTo(UserMahasiswa::class, 'user_mahasiswa_id', 'id');
+        return $this->belongsTo(UserMahasiswa::class, 'user_mahasiswa_id', 'id') ?? '';
     }
     public function international_status()
     {
-        return $this->belongsTo(InternationalStatus::class, 'international_status_id', 'id');
+        return $this->belongsTo(InternationalStatus::class, 'international_status_id', 'id') ?? '';
     }
     public function international_category()
     {
-        return $this->belongsTo(InternationalCategory::class, 'international_category_id', 'id');
+        return $this->belongsTo(InternationalCategory::class, 'international_category_id', 'id') ?? '';
     }
     public function international_university()
     {
-        return $this->belongsTo(InternationalUniversity::class, 'international_university_id', 'id');
+        return $this->belongsTo(InternationalUniversity::class, 'international_university_id', 'id') ?? '';
     }
     public function international_program()
     {
-        return $this->belongsTo(InternationalProgram::class, 'international_program_id', 'id');
+        return $this->belongsTo(InternationalProgram::class, 'international_program_id', 'id') ?? '';
     }
     public function international_funding()
     {
-        return $this->belongsTo(InternationalFunding::class, 'international_funding_id', 'id');
+        return $this->belongsTo(InternationalFunding::class, 'international_funding_id', 'id') ?? '';
     }
 }
