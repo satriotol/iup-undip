@@ -17,6 +17,8 @@
         <a href="{{ route('internationalMahasiswa.create', $mahasiswa->user_mahasiswa->id) }}"
             class="btn btn-sm btn-success m-0">Internasional</a>
     @endif
+    <br>
+    <a href="" class="btn btn-sm btn-orange m-0">Note</a>
     <form action="{{ route('mahasiswa.destroy', $mahasiswa->id) }}" method="POST">
         <a class="btn btn-sm btn-primary" href="{{ route('mahasiswa.edit', $mahasiswa->id) }}">
             <span class="fe fe-edit"> </span>
