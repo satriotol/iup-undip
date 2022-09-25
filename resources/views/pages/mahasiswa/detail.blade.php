@@ -16,7 +16,7 @@
                                 <!-- Tabs -->
                                 <ul class="nav panel-tabs">
                                     <li><a href="#detail" class="active" data-bs-toggle="tab">Detail</a></li>
-                                    <li><a href="#tab26" data-bs-toggle="tab" class="">Semester</a></li>
+                                    <li><a href="#semester" id="btnSemester" data-bs-toggle="tab" class="">Semester</a></li>
                                     <li><a href="#tab27" data-bs-toggle="tab" class="">International Exposure</a>
                                     </li>
                                     <li><a href="#tab28" data-bs-toggle="tab" class="">Additional Notes</a></li>
@@ -33,16 +33,8 @@
                     <div class="tab-pane active" id="detail">
                         @include('pages.mahasiswa.tab.detailMahasiswa')
                     </div>
-                    <div class="tab-pane" id="tab26">
-                        <p> default model text, and a search for 'lorem ipsum' will uncover many web sites still
-                            in
-                            their infancy. Various versions have evolved over the years, sometimes by accident,
-                            sometimes on purpose (injected
-                            humour and the like</p>
-                        <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod
-                            tempor
-                            invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et
-                        </p>
+                    <div class="tab-pane" id="semester">
+                        @include('pages.mahasiswa.tab.semesterMahasiswa')
                     </div>
                     <div class="tab-pane" id="tab27">
                         <p>over the years, sometimes by accident, sometimes on purpose (injected humour and the
