@@ -16,6 +16,7 @@ use App\Models\SemesterStatus;
 use App\Models\User;
 use App\Models\UserMahasiswa;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use PhpParser\Node\Stmt\Return_;
 use Spatie\Permission\Models\Role;
@@ -67,12 +68,21 @@ class MahasiswaController extends Controller
             'phone' => 'required',
             'gender' => 'required',
             'password' => 'nullable',
+            'photo' => 'nullable',
+
         ]);
         $data['password'] = Hash::make($data['nim']);
         $user = User::create($data);
         $data['user_id'] = $user->id;
         $role = Role::where('name', 'MAHASISWA')->first()->id;
         $user->assignRole($role);
+        if ($request->hasFile('photo')) {
+            $file = $request->file('photo');
+            $name = $file->getClientOriginalName();
+            $file_name = date('mdYHis') . '-' . $name;
+            $file = $file->storeAs('file', $file_name, 'public_uploads');
+            $data['photo'] = $file;
+        };
         UserMahasiswa::create($data);
         session()->flash('success');
         return redirect(route('mahasiswa.index'));
@@ -147,7 +157,18 @@ class MahasiswaController extends Controller
             'nim' => 'required',
             'phone' => 'required',
             'gender' => 'required',
+            'photo' => 'nullable',
         ]);
+        if ($request->hasFile('photo')) {
+            $file = $request->file('photo');
+            $name = $file->getClientOriginalName();
+            $file_name = date('mdYHis') . '-' . $name;
+            $file = $file->storeAs('file', $file_name, 'public_uploads');
+            if ($mahasiswa->photo) {
+                $mahasiswa->deleteFile();
+            }
+            $data['photo'] = $file;
+        };
         $mahasiswa->update($data);
         $mahasiswa->user_mahasiswa->update($data);
         session()->flash('success');

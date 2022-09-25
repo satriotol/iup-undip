@@ -7,8 +7,8 @@
             <div class="card-body">
                 <div class="text-center chat-image mb-5">
                     <div class="avatar avatar-xxl chat-profile mb-3 brround">
-                        <a class="" href="profile.html"><img alt="avatar" src="../assets/images/users/7.jpg"
-                                class="brround"></a>
+                        <a class="" href="{{ asset('uploads/' . $mahasiswa->photo) }}"><img alt="avatar"
+                                src="{{ asset('uploads/' . $mahasiswa->photo) }}" class="brround"></a>
                     </div>
                     <div class="main-chat-msg-name">
                         <a href="profile.html">
@@ -141,6 +141,10 @@
                                 @endforeach
                             </select>
                         </div>
+                    </div>
+                    <div class="mb-3">
+                        <label>Foto</label>
+                        <input type="file" name="photo" accept="image/*" class="form-control">
                     </div>
                     <div class="text-end">
                         <button class="btn btn-primary" type="submit">Submit</button>
