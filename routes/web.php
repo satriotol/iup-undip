@@ -57,6 +57,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::resource('internationalStatus', InternationalStatusController::class);
     Route::resource('mahasiswaSemester', MahasiswaSemesterController::class);
     Route::resource('faculty', FacultyController::class);
+    Route::resource('faculty', FacultyController::class);
     Route::get('internationalMahasiswa/{user_mahasiswa_id}', [InternationalMahasiswaController::class, 'create'])->name('internationalMahasiswa.create');
     Route::get('internationalMahasiswa/{user_mahasiswa_id}/{internationalMahasiswa}', [InternationalMahasiswaController::class, 'edit'])->name('internationalMahasiswa.edit');
     Route::post('internationalMahasiswa/{user_mahasiswa_id}', [InternationalMahasiswaController::class, 'store'])->name('internationalMahasiswa.store');

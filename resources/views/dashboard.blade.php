@@ -16,16 +16,19 @@
                     </div>
                     <div class="table-responsive">
                         <table class="table border text-nowrap text-md-nowrap table-hover mb-0">
-                            <thead>
+                            <thead style="text-align: center">
                                 <tr>
-                                    <th>Code</th>
-                                    <th>Country</th>
-                                    <th>Major</th>
-                                    <th>Batch</th>
-                                    <th>Student ID</th>
-                                    <th>Name</th>
-                                    <th>Semester | Status</th>
-                                    <th>International Status</th>
+                                    <th rowspan="2">Code</th>
+                                    <th rowspan="2">Country</th>
+                                    <th rowspan="2">Major</th>
+                                    <th rowspan="2">Batch</th>
+                                    <th rowspan="2">Student ID</th>
+                                    <th rowspan="2">Name</th>
+                                    <th rowspan="2">Semester | Status</th>
+                                    <th colspan="8">International Exposure</th>
+                                </tr>
+                                <tr>
+                                    <th>Status</th>
                                     <th>Category</th>
                                     <th>University | Country</th>
                                     <th>Program</th>
