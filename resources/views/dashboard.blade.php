@@ -74,32 +74,77 @@
                                             @endforeach
                                         </td>
                                         <td>
-                                            {{ $user->user_mahasiswa->international_mahasiswa->international_status?->name ?? '' }}
+                                            @foreach ($user->user_mahasiswa->international_mahasiswa as $international_mahasiswa)
+                                                <ul>
+                                                    <li>{{ $international_mahasiswa->international_status?->name ?? '' }}
+                                                    </li>
+                                                </ul>
+                                            @endforeach
                                         </td>
                                         <td>
-                                            {{ $user->user_mahasiswa->international_mahasiswa->international_category?->name ?? '' }}
+                                            @foreach ($user->user_mahasiswa->international_mahasiswa as $international_mahasiswa)
+                                                <ul>
+                                                    <li>{{ $international_mahasiswa->international_category?->name ?? '' }}
+                                                    </li>
+                                                </ul>
+                                            @endforeach
                                         </td>
                                         <td>
-                                            {{ $user->user_mahasiswa->international_mahasiswa->international_university?->name ?? '' }}
-                                            |
-                                            {{ $user->user_mahasiswa->international_mahasiswa->international_university?->country->name ?? '' }}
-
+                                            @foreach ($user->user_mahasiswa->international_mahasiswa as $international_mahasiswa)
+                                                <ul>
+                                                    <li>
+                                                        {{ $international_mahasiswa->international_university?->name ?? '' }}
+                                                        |
+                                                        {{ $international_mahasiswa->international_university?->country->name ?? '' }}
+                                                    </li>
+                                                </ul>
+                                            @endforeach
                                         </td>
                                         <td>
-                                            {{ $user->user_mahasiswa->international_mahasiswa->international_program?->name ?? '' }}
+                                            @foreach ($user->user_mahasiswa->international_mahasiswa as $international_mahasiswa)
+                                                <ul>
+                                                    <li>
+                                                        {{ $international_mahasiswa->international_program?->name ?? '' }}
+                                                    </li>
+                                                </ul>
+                                            @endforeach
                                         </td>
                                         <td>
-                                            {{ $user->user_mahasiswa->international_mahasiswa->duration ?? '' }}
+                                            @foreach ($user->user_mahasiswa->international_mahasiswa as $international_mahasiswa)
+                                                <ul>
+                                                    <li>
+                                                        {{ $international_mahasiswa->duration ?? '' }}
+                                                    </li>
+                                                </ul>
+                                            @endforeach
                                         </td>
                                         <td>
-                                            {{ $user->user_mahasiswa->international_mahasiswa->year ?? '' }}
+                                            @foreach ($user->user_mahasiswa->international_mahasiswa as $international_mahasiswa)
+                                                <ul>
+                                                    <li>
+                                                        {{ $international_mahasiswa->year ?? '' }}
+                                                    </li>
+                                                </ul>
+                                            @endforeach
                                         </td>
                                         <td>
-                                            {{ $user->user_mahasiswa->international_mahasiswa->start_at ?? '' }} -
-                                            {{ $user->user_mahasiswa->international_mahasiswa->end_at ?? '' }}
+                                            @foreach ($user->user_mahasiswa->international_mahasiswa as $international_mahasiswa)
+                                                <ul>
+                                                    <li>
+                                                        {{ $international_mahasiswa->start_at ?? '' }} -
+                                                        {{ $international_mahasiswa->end_at ?? '' }}
+                                                    </li>
+                                                </ul>
+                                            @endforeach
                                         </td>
                                         <td>
-                                            {{ $user->user_mahasiswa->international_mahasiswa->international_funding?->name ?? '' }}
+                                            @foreach ($user->user_mahasiswa->international_mahasiswa as $international_mahasiswa)
+                                                <ul>
+                                                    <li>
+                                                        {{ $international_mahasiswa->international_funding?->name ?? '' }}
+                                                    </li>
+                                                </ul>
+                                            @endforeach
                                         </td>
                                     </tr>
                                 @endforeach

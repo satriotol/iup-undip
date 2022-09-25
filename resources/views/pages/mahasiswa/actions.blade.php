@@ -10,13 +10,6 @@
         data-bs-toggle="modal"
         data-bs-target="#extralargemodal-{{ $mahasiswa->user_mahasiswa->id }}">Semester</button><br>
     @include('pages.mahasiswa.modal')
-    @if ($mahasiswa->user_mahasiswa->international_mahasiswa)
-        <a href="{{ route('internationalMahasiswa.edit', [$mahasiswa->user_mahasiswa->id, $mahasiswa->user_mahasiswa->international_mahasiswa->id]) }}"
-            class="btn btn-sm btn-success m-0">Internasional</a>
-    @else
-        <a href="{{ route('internationalMahasiswa.create', $mahasiswa->user_mahasiswa->id) }}"
-            class="btn btn-sm btn-success m-0">Internasional</a>
-    @endif
     <br>
     <a href="{{ route('mahasiswa.show', $mahasiswa->id) }}" class="btn btn-sm btn-primary m-0">Detail</a>
     <form action="{{ route('mahasiswa.destroy', $mahasiswa->id) }}" method="POST">

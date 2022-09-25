@@ -37,6 +37,6 @@ class UserMahasiswa extends Model
     }
     public function international_mahasiswa()
     {
-        return $this->hasOne(InternationalMahasiswa::class, 'user_mahasiswa_id', 'id');
+        return $this->hasMany(InternationalMahasiswa::class, 'user_mahasiswa_id', 'id');
     }
 }
