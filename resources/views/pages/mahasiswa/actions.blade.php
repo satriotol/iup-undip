@@ -18,15 +18,12 @@
             class="btn btn-sm btn-success m-0">Internasional</a>
     @endif
     <br>
-    <a href="{{ route('mahasiswa.show', $mahasiswa->id) }}" class="btn btn-sm btn-orange m-0">Detail</a>
+    <a href="{{ route('mahasiswa.show', $mahasiswa->id) }}" class="btn btn-sm btn-primary m-0">Detail</a>
     <form action="{{ route('mahasiswa.destroy', $mahasiswa->id) }}" method="POST">
-        <a class="btn btn-sm btn-primary" href="{{ route('mahasiswa.edit', $mahasiswa->id) }}">
-            <span class="fe fe-edit"> </span>
-        </a>
         @csrf
         @method('DELETE')
         <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Are you sure?')">
-            <span class="fe fe-trash-2"> </span>
+            Hapus
         </button>
     </form>
 </div>
