@@ -17,9 +17,10 @@ class InternationalMahasiswaController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($user_mahasiswa_id)
     {
-        //
+        $internationalMahasiswas = InternationalMahasiswa::where('user_mahasiswa_id', $user_mahasiswa_id)->get();
+        return response()->json($internationalMahasiswas);
     }
 
     /**
@@ -123,6 +124,7 @@ class InternationalMahasiswaController extends Controller
      */
     public function destroy(InternationalMahasiswa $internationalMahasiswa)
     {
-        //
+        $internationalMahasiswa->delete();
+        return response()->json($internationalMahasiswa);
     }
 }

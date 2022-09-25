@@ -16,8 +16,10 @@
                                 <!-- Tabs -->
                                 <ul class="nav panel-tabs">
                                     <li><a href="#detail" class="active" data-bs-toggle="tab">Detail</a></li>
-                                    <li><a href="#semester" id="btnSemester" data-bs-toggle="tab" class="">Semester</a></li>
-                                    <li><a href="#tab27" data-bs-toggle="tab" class="">International Exposure</a>
+                                    <li><a href="#semester" id="btnSemester" data-bs-toggle="tab"
+                                            class="">Semester</a></li>
+                                    <li><a href="#international" id="btnInternational" data-bs-toggle="tab" class="">International
+                                            Exposure</a>
                                     </li>
                                     <li><a href="#tab28" data-bs-toggle="tab" class="">Additional Notes</a></li>
                                 </ul>
@@ -36,13 +38,8 @@
                     <div class="tab-pane" id="semester">
                         @include('pages.mahasiswa.tab.semesterMahasiswa')
                     </div>
-                    <div class="tab-pane" id="tab27">
-                        <p>over the years, sometimes by accident, sometimes on purpose (injected humour and the
-                            like</p>
-                        <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod
-                            tempor
-                            invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et
-                        </p>
+                    <div class="tab-pane" id="international">
+                        @include('pages.mahasiswa.tab.internationalMahasiswa')
                     </div>
                     <div class="tab-pane" id="tab28">
                         <p>page editors now use Lorem Ipsum as their default model text, and a search for 'lorem

@@ -5,7 +5,7 @@
     <div class="col-lg-4 col-md-4">
         <div class="card">
             <div class="card-header">
-                <h3 class="card-title">Form Detail</h3>
+                <h3 class="card-title">Form Semester</h3>
             </div>
             <div class="card-body">
                 <div class="form-group">
@@ -84,8 +84,10 @@
                     for (var i = 0; i < len; i++) {
                         var tr_str = "<tr>" +
                             "<td class='text-helper'>" + data[i].semester_name + "</td>" +
-                            "<td class='text-helper'>" + data[i].semester_status_name + "</td>" +
-                            "<td><button class='btn btn-sm btn-danger btn-delete' data-id=" + data[i].id +
+                            "<td class='text-helper'>" + data[i].semester_status_name +
+                            "</td>" +
+                            "<td><button class='btn btn-sm btn-danger btn-delete' data-id=" +
+                            data[i].id +
                             " ><span class='fe fe-trash-2'></span></button></td>" +
                             "</tr>";
                         $("#userTableBody").append(tr_str);

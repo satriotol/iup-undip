@@ -4,6 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Models\Batch;
 use App\Models\Country;
+use App\Models\InternationalCategory;
+use App\Models\InternationalFunding;
+use App\Models\InternationalProgram;
+use App\Models\InternationalStatus;
+use App\Models\InternationalUniversity;
 use App\Models\MahasiswaSemester;
 use App\Models\Major;
 use App\Models\Semester;
@@ -87,7 +92,26 @@ class MahasiswaController extends Controller
         $countries = Country::orderBy('name')->get();
         $semesters = Semester::all();
         $semesterStatuses = SemesterStatus::all();
-        return view('pages.mahasiswa.detail', compact('mahasiswa', 'genders', 'batches', 'majors', 'countries', 'semesters', 'semesterStatuses'));
+        //international
+        $internationalStatuses = InternationalStatus::all();
+        $internationalCategories = InternationalCategory::all();
+        $internationalUniversities = InternationalUniversity::all();
+        $internationalFundings = InternationalFunding::all();
+        $internationalPrograms = InternationalProgram::all();
+        return view('pages.mahasiswa.detail', compact(
+            'mahasiswa',
+            'genders',
+            'batches',
+            'majors',
+            'countries',
+            'semesters',
+            'semesterStatuses',
+            'internationalStatuses',
+            'internationalCategories',
+            'internationalUniversities',
+            'internationalFundings',
+            'internationalPrograms',
+        ));
     }
 
     /**

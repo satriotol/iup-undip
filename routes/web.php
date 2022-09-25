@@ -59,9 +59,11 @@ Route::group(['middleware' => ['auth']], function () {
     Route::resource('mahasiswaSemester', MahasiswaSemesterController::class);
     Route::resource('faculty', FacultyController::class);
     Route::resource('faculty', FacultyController::class);
-    Route::get('internationalMahasiswa/{user_mahasiswa_id}', [InternationalMahasiswaController::class, 'create'])->name('internationalMahasiswa.create');
-    Route::get('internationalMahasiswa/{user_mahasiswa_id}/{internationalMahasiswa}', [InternationalMahasiswaController::class, 'edit'])->name('internationalMahasiswa.edit');
+    Route::get('internationalMahasiswa/{user_mahasiswa_id}', [InternationalMahasiswaController::class, 'index'])->name('internationalMahasiswa.index');
+    Route::get('internationalMahasiswa/{user_mahasiswa_id}/create', [InternationalMahasiswaController::class, 'create'])->name('internationalMahasiswa.create');
+    Route::get('internationalMahasiswa/{user_mahasiswa_id}/{internationalMahasiswa}/edit', [InternationalMahasiswaController::class, 'edit'])->name('internationalMahasiswa.edit');
     Route::post('internationalMahasiswa/{user_mahasiswa_id}', [InternationalMahasiswaController::class, 'store'])->name('internationalMahasiswa.store');
+    Route::post('internationalMahasiswa/{internationalMahasiswa}/destroy', [InternationalMahasiswaController::class, 'destroy'])->name('internationalMahasiswa.destroy');
     Route::put('internationalMahasiswa/update/{user_mahasiswa_id}/{internationalMahasiswa}', [InternationalMahasiswaController::class, 'update'])->name('internationalMahasiswa.update');
     Route::post('admin/reset_password/{admin}', [AdminController::class, 'reset_password'])->name('admin.reset_password');
 });
