@@ -2,6 +2,9 @@
 @section('content')
     <div class="page-header">
         <h1 class="page-title">Detail {{ $mahasiswa->name }}</h1>
+        <div class="text-end">
+            <a href="{{ route('mahasiswa.index') }}" class="btn btn-warning">Kembali</a>
+        </div>
     </div>
     <div class="row">
         <div class="col-lg-12 col-md-12">
@@ -13,9 +16,10 @@
                                 <!-- Tabs -->
                                 <ul class="nav panel-tabs">
                                     <li><a href="#detail" class="active" data-bs-toggle="tab">Detail</a></li>
-                                    <li><a href="#tab26" data-bs-toggle="tab" class="">Tab 2</a></li>
-                                    <li><a href="#tab27" data-bs-toggle="tab" class="">Tab 3</a></li>
-                                    <li><a href="#tab28" data-bs-toggle="tab" class="">Tab 4</a></li>
+                                    <li><a href="#tab26" data-bs-toggle="tab" class="">Semester</a></li>
+                                    <li><a href="#tab27" data-bs-toggle="tab" class="">International Exposure</a>
+                                    </li>
+                                    <li><a href="#tab28" data-bs-toggle="tab" class="">Additional Notes</a></li>
                                 </ul>
                             </div>
                         </div>
