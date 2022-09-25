@@ -8,6 +8,7 @@ use App\Models\InternationalMahasiswa;
 use App\Models\InternationalProgram;
 use App\Models\InternationalStatus;
 use App\Models\InternationalUniversity;
+use App\Models\UserMahasiswa;
 use Illuminate\Http\Request;
 
 class InternationalMahasiswaController extends Controller
@@ -99,6 +100,7 @@ class InternationalMahasiswaController extends Controller
      */
     public function update(Request $request, $user_mahasiswa_id, InternationalMahasiswa $internationalMahasiswa)
     {
+        $mahasiswa = UserMahasiswa::where('id', $user_mahasiswa_id)->first();
         $data = $this->validate($request, [
             'international_status_id' => 'required',
             'international_category_id' => 'required',
@@ -113,7 +115,7 @@ class InternationalMahasiswaController extends Controller
         $data['user_mahasiswa_id'] = $user_mahasiswa_id;
         $internationalMahasiswa->update($data);
         session()->flash('success');
-        return redirect(route('mahasiswa.index'));
+        return redirect(route('mahasiswa.show', $mahasiswa->user_id));
     }
 
     /**

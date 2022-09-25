@@ -158,7 +158,10 @@
                             "<td class='text-helper'>" + data[i].start_at + ' s/d ' + data[i].end_at +
                             "</td>" +
                             "<td class='text-helper'>" + data[i].international_funding_name + "</td>" +
-                            "<td><button class='btn btn-sm btn-danger btn-delete' data-idinternational=" +
+                            "<td><a class='btn btn-sm btn-primary' href='/internationalMahasiswa/" +
+                            data[i].user_mahasiswa_id +
+                            "/" + data[i].id +
+                            "/edit'><span class='fe fe-edit'></span></a><button class='btn btn-sm btn-danger btn-delete' data-idinternational=" +
                             data[i].id +
                             " ><span class='fe fe-trash-2'></span></button></td>" +
                             "</tr>";
