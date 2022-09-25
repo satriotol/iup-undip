@@ -41,6 +41,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::resource('mahasiswa', MahasiswaController::class);
     Route::get('mahasiswa/getData/{userMahasiswa}', [MahasiswaController::class, 'getData'])->name('mahasiswa.getData');
     Route::post('mahasiswa/assignSemester/{userMahasiswa}', [MahasiswaController::class, 'assignSemester'])->name('mahasiswa.assignSemester');
+    Route::post('mahasiswa/updatePassword/{userMahasiswa}', [MahasiswaController::class, 'updatePassword'])->name('mahasiswa.updatePassword');
     Route::post('mahasiswa/assignSemester/destroy/{mahasiswaSemester}', [MahasiswaController::class, 'destroySemester'])->name('mahasiswa.destroySemester');
     Route::resource('major', MajorController::class);
     Route::resource('batch', BatchController::class);

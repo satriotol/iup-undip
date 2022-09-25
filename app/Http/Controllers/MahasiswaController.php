@@ -84,9 +84,13 @@ class MahasiswaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(User $mahasiswa)
     {
-        //
+        $genders = User::GENDER;
+        $batches = Batch::orderBy('year')->get();
+        $majors = Major::orderBy('name')->get();
+        $countries = Country::orderBy('name')->get();
+        return view('pages.mahasiswa.detail', compact('mahasiswa', 'genders', 'batches', 'majors', 'countries'));
     }
 
     /**
@@ -126,7 +130,16 @@ class MahasiswaController extends Controller
         $mahasiswa->update($data);
         $mahasiswa->user_mahasiswa->update($data);
         session()->flash('success');
-        return redirect(route('mahasiswa.index'));
+        return back();
+    }
+    public function updatePassword(Request $request, User $mahasiswa)
+    {
+        $data = $this->validate($request, [
+            'password' => 'required|confirmed',
+        ]);
+        $mahasiswa->update($data);
+        session()->flash('success');
+        return back();
     }
 
     /**
