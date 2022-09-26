@@ -39,4 +39,8 @@ class UserMahasiswa extends Model
     {
         return $this->hasMany(InternationalMahasiswa::class, 'user_mahasiswa_id', 'id');
     }
+    public function notes()
+    {
+        return $this->hasMany(Note::class, 'user_mahasiswa_id', 'id');
+    }
 }

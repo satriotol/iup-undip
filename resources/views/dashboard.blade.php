@@ -15,28 +15,43 @@
                             Excel</a>
                     </div>
                     <div class="table-responsive">
-                        <table class="table border text-nowrap text-md-nowrap table-hover mb-0">
+                        <table class="table border table-bordered text-nowrap text-md-nowrap table-hover mb-0">
                             <thead style="text-align: center">
                                 <tr>
-                                    <th rowspan="2" style="vertical-align : middle;text-align:center;">Code</th>
-                                    <th rowspan="2" style="vertical-align : middle;text-align:center;">Country</th>
-                                    <th rowspan="2" style="vertical-align : middle;text-align:center;">Major</th>
-                                    <th rowspan="2" style="vertical-align : middle;text-align:center;">Batch</th>
-                                    <th rowspan="2" style="vertical-align : middle;text-align:center;">Student ID</th>
-                                    <th rowspan="2" style="vertical-align : middle;text-align:center;">Name</th>
-                                    <th rowspan="2" style="vertical-align : middle;text-align:center;">Semester | Status
+                                    <th rowspan="3" style="vertical-align : middle;text-align:center;">Code</th>
+                                    <th rowspan="3" style="vertical-align : middle;text-align:center;">Country</th>
+                                    <th rowspan="3" style="vertical-align : middle;text-align:center;">Major</th>
+                                    <th rowspan="3" style="vertical-align : middle;text-align:center;">Batch</th>
+                                    <th rowspan="3" style="vertical-align : middle;text-align:center;">Student ID</th>
+                                    <th rowspan="3" style="vertical-align : middle;text-align:center;">Name</th>
+                                    <th rowspan="3" style="vertical-align : middle;text-align:center;">Semester | Status
                                     </th>
                                     <th colspan="8">International Exposure</th>
+                                    <th colspan="10">Additional Notes</th>
                                 </tr>
                                 <tr>
-                                    <th>Status</th>
-                                    <th>Category</th>
-                                    <th>University | Country</th>
-                                    <th>Program</th>
-                                    <th>Duration</th>
-                                    <th>Year</th>
-                                    <th>Start At - End At</th>
-                                    <th>Funding</th>
+                                    <th rowspan="2">Status</th>
+                                    <th rowspan="2">Category</th>
+                                    <th rowspan="2">University | Country</th>
+                                    <th rowspan="2">Program</th>
+                                    <th rowspan="2">Duration</th>
+                                    <th rowspan="2">Year</th>
+                                    <th rowspan="2">Start At - End At</th>
+                                    <th rowspan="2">Funding</th>
+                                    <th colspan="6">Most Recent IELTS/TOEFL iBT SCORE</th>
+                                    <th colspan="2">Participation</th>
+                                    <th rowspan="2">Achievement</th>
+                                    <th rowspan="2">Other Information</th>
+                                </tr>
+                                <tr>
+                                    <th>Test Date</th>
+                                    <th>Listening</th>
+                                    <th>Reading</th>
+                                    <th>Writing</th>
+                                    <th>Speaking</th>
+                                    <th>Overall Score</th>
+                                    <th>Event 1</th>
+                                    <th>Event 2</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -142,6 +157,96 @@
                                                 <ul>
                                                     <li>
                                                         {{ $international_mahasiswa->international_funding?->name ?? '' }}
+                                                    </li>
+                                                </ul>
+                                            @endforeach
+                                        </td>
+                                        <td>
+                                            @foreach ($user->user_mahasiswa->notes as $note)
+                                                <ul>
+                                                    <li>
+                                                        {{ $note->test_date ?? '' }}
+                                                    </li>
+                                                </ul>
+                                            @endforeach
+                                        </td>
+                                        <td>
+                                            @foreach ($user->user_mahasiswa->notes as $note)
+                                                <ul>
+                                                    <li>
+                                                        {{ $note->listening ?? '' }}
+                                                    </li>
+                                                </ul>
+                                            @endforeach
+                                        </td>
+                                        <td>
+                                            @foreach ($user->user_mahasiswa->notes as $note)
+                                                <ul>
+                                                    <li>
+                                                        {{ $note->reading ?? '' }}
+                                                    </li>
+                                                </ul>
+                                            @endforeach
+                                        </td>
+                                        <td>
+                                            @foreach ($user->user_mahasiswa->notes as $note)
+                                                <ul>
+                                                    <li>
+                                                        {{ $note->writing ?? '' }}
+                                                    </li>
+                                                </ul>
+                                            @endforeach
+                                        </td>
+                                        <td>
+                                            @foreach ($user->user_mahasiswa->notes as $note)
+                                                <ul>
+                                                    <li>
+                                                        {{ $note->speaking ?? '' }}
+                                                    </li>
+                                                </ul>
+                                            @endforeach
+                                        </td>
+                                        <td>
+                                            @foreach ($user->user_mahasiswa->notes as $note)
+                                                <ul>
+                                                    <li>
+                                                        {{ $note->overall_score ?? '' }}
+                                                    </li>
+                                                </ul>
+                                            @endforeach
+                                        </td>
+                                        <td>
+                                            @foreach ($user->user_mahasiswa->notes as $note)
+                                                <ul>
+                                                    <li>
+                                                        {{ $note->event_1 ?? '' }}
+                                                    </li>
+                                                </ul>
+                                            @endforeach
+                                        </td>
+                                        <td>
+                                            @foreach ($user->user_mahasiswa->notes as $note)
+                                                <ul>
+                                                    <li>
+                                                        {{ $note->event_2 ?? '' }}
+                                                    </li>
+                                                </ul>
+                                            @endforeach
+                                        </td>
+                                        <td>
+                                            @foreach ($user->user_mahasiswa->notes as $note)
+                                                <ul>
+                                                    <li>
+                                                        {{ $note->achievement ?? '' }}
+                                                    </li>
+                                                </ul>
+                                            @endforeach
+                                        </td>
+                                        <td>
+                                            @foreach ($user->user_mahasiswa->notes as $note)
+                                                <ul>
+                                                    <li>
+                                                        {{ $note->other_information ?? '' }}
                                                     </li>
                                                 </ul>
                                             @endforeach
