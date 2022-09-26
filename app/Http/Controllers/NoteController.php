@@ -12,9 +12,10 @@ class NoteController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($user_mahasiswa_id)
     {
-        //
+        $note = Note::where('user_mahasiswa_id', $user_mahasiswa_id)->get();
+        return response()->json($note);
     }
 
     /**
@@ -33,9 +34,22 @@ class NoteController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, $user_mahasiswa_id)
     {
-        //
+        $data = $this->validate($request, [
+            'test_date' => 'nullable',
+            'listening' => 'nullable',
+            'reading' => 'nullable',
+            'writing' => 'nullable',
+            'speaking' => 'nullable',
+            'overall_score' => 'nullable',
+            'event_1' => 'nullable',
+            'event_2' => 'nullable',
+            'achievement' => 'nullable',
+            'other_information' => 'nullable'
+        ]);
+        $data['user_mahasiswa_id'] = $user_mahasiswa_id;
+        Note::create($data);
     }
 
     /**
@@ -80,6 +94,6 @@ class NoteController extends Controller
      */
     public function destroy(Note $note)
     {
-        //
+        $note->delete();
     }
 }

@@ -22,7 +22,7 @@
                                             class="">International
                                             Exposure</a>
                                     </li>
-                                    <li><a href="#tab28" data-bs-toggle="tab" class="">Additional Notes</a></li>
+                                    <li><a href="#note" id="btnNote" data-bs-toggle="tab" class="">Additional Notes</a></li>
                                 </ul>
                             </div>
                         </div>
@@ -42,7 +42,7 @@
                     <div class="tab-pane" id="international">
                         @include('pages.mahasiswa.tab.internationalMahasiswa')
                     </div>
-                    <div class="tab-pane" id="tab28">
+                    <div class="tab-pane" id="note">
                         @include('pages.mahasiswa.tab.notesMahasiswa')
 
                     </div>
