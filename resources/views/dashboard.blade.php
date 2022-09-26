@@ -18,6 +18,7 @@
                         <table class="table border table-bordered text-nowrap text-md-nowrap table-hover mb-0">
                             <thead style="text-align: center">
                                 <tr>
+                                    <th rowspan="3" style="vertical-align : middle;text-align:center;">Action</th>
                                     <th rowspan="3" style="vertical-align : middle;text-align:center;">Code</th>
                                     <th rowspan="3" style="vertical-align : middle;text-align:center;">Country</th>
                                     <th rowspan="3" style="vertical-align : middle;text-align:center;">Major</th>
@@ -57,6 +58,9 @@
                             <tbody>
                                 @foreach ($users as $user)
                                     <tr>
+                                        <td><a href="{{ route('exportPdf', $user->id) }}" target="_blank"
+                                                class="badge bg-danger">Export
+                                                PDF</a></td>
                                         <td>{{ $user->user_mahasiswa->country->code }}</td>
                                         <td>{{ $user->user_mahasiswa->country->name }}</td>
                                         <td>{{ $user->user_mahasiswa->major->name }}</td>

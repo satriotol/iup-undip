@@ -74,6 +74,9 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('note/{user_mahasiswa_id}/{note}/edit', [NoteController::class, 'edit'])->name('note.edit');
     Route::post('note/{note}/destroy', [NoteController::class, 'destroy'])->name('note.destroy');
     Route::put('note/update/{user_mahasiswa_id}/{note}', [NoteController::class, 'update'])->name('note.update');
+
+    //export pdf
+    Route::get('exportPdf/{user}', [DashboardController::class, 'exportPdf'])->name('exportPdf');
 });
 
 require __DIR__ . '/auth.php';
