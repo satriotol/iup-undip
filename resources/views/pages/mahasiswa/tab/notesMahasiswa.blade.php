@@ -80,6 +80,7 @@
                                 <th>Event 2</th>
                                 <th>Achievement</th>
                                 <th>Informasi Lainnya</th>
+                                <th>Action</th>
                             </tr>
                         </thead>
                         <tbody id="userTableNoteBody">
@@ -118,7 +119,10 @@
                             "<td class='text-helper'>" + data[i].event_2 + "</td>" +
                             "<td class='text-helper'>" + data[i].achievement + "</td>" +
                             "<td class='text-helper'>" + data[i].other_information + "</td>" +
-                            "<td><button class='btn btn-sm btn-danger btn-delete' data-idnote=" +
+                            "<td><a class='btn btn-sm btn-primary' href='/note/" +
+                            data[i].user_mahasiswa_id +
+                            "/" + data[i].id +
+                            "/edit'><span class='fe fe-edit'></span></a><button class='btn btn-sm btn-danger btn-delete' data-idnote=" +
                             data[i].id +
                             " ><span class='fe fe-trash-2'></span></button></td>" +
                             "</tr>";

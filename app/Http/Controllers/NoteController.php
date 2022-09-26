@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Note;
+use App\Models\User;
+use App\Models\UserMahasiswa;
 use Illuminate\Http\Request;
 
 class NoteController extends Controller
@@ -69,9 +71,9 @@ class NoteController extends Controller
      * @param  \App\Models\Note  $note
      * @return \Illuminate\Http\Response
      */
-    public function edit(Note $note)
+    public function edit($user_mahasiswa_id, Note $note)
     {
-        //
+        return view('pages.note.create', compact('user_mahasiswa_id', 'note'));
     }
 
     /**
@@ -81,9 +83,24 @@ class NoteController extends Controller
      * @param  \App\Models\Note  $note
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Note $note)
+    public function update(Request $request, $user_mahasiswa_id, Note $note)
     {
-        //
+        $userId = UserMahasiswa::find($user_mahasiswa_id)->first();
+        $data = $this->validate($request, [
+            'test_date' => 'nullable',
+            'listening' => 'nullable',
+            'reading' => 'nullable',
+            'writing' => 'nullable',
+            'speaking' => 'nullable',
+            'overall_score' => 'nullable',
+            'event_1' => 'nullable',
+            'event_2' => 'nullable',
+            'achievement' => 'nullable',
+            'other_information' => 'nullable'
+        ]);
+        $note->update($data);
+        session()->flash('success');
+        return redirect(route('mahasiswa.show', $userId->user_id));
     }
 
     /**

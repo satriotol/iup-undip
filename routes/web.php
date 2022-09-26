@@ -67,9 +67,13 @@ Route::group(['middleware' => ['auth']], function () {
     Route::post('internationalMahasiswa/{internationalMahasiswa}/destroy', [InternationalMahasiswaController::class, 'destroy'])->name('internationalMahasiswa.destroy');
     Route::put('internationalMahasiswa/update/{user_mahasiswa_id}/{internationalMahasiswa}', [InternationalMahasiswaController::class, 'update'])->name('internationalMahasiswa.update');
     Route::post('admin/reset_password/{admin}', [AdminController::class, 'reset_password'])->name('admin.reset_password');
+
+    //note
     Route::get('note/{user_mahasiswa_id}', [NoteController::class, 'index'])->name('note.index');
     Route::post('note/store/{user_mahasiswa_id}', [NoteController::class, 'store'])->name('note.store');
+    Route::get('note/{user_mahasiswa_id}/{note}/edit', [NoteController::class, 'edit'])->name('note.edit');
     Route::post('note/{note}/destroy', [NoteController::class, 'destroy'])->name('note.destroy');
+    Route::put('note/update/{user_mahasiswa_id}/{note}', [NoteController::class, 'update'])->name('note.update');
 });
 
 require __DIR__ . '/auth.php';

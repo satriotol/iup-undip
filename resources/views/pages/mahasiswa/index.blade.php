@@ -24,6 +24,7 @@
                         <table class="table border table-bordered text-nowrap text-md-nowrap table-hover mb-0">
                             <thead>
                                 <tr>
+                                    <th>Photo</th>
                                     <th>Batch</th>
                                     <th>NIM</th>
                                     <th>Nama</th>
@@ -39,16 +40,15 @@
                             <tbody>
                                 @foreach ($mahasiswas as $mahasiswa)
                                     <tr>
-
-                                        <td>
-                                            {{ $mahasiswa->user_mahasiswa->batch->year ?? '' }}</td>
-                                        <td>{{ $mahasiswa->user_mahasiswa->nim ?? ''}}</td>
-                                        <td>{{ $mahasiswa->name ?? ''}}</td>
-                                        <td>{{ $mahasiswa->user_mahasiswa->gender ?? ''}}</td>
-                                        <td>{{ $mahasiswa->email ?? ''}}</td>
-                                        <td>{{ $mahasiswa->user_mahasiswa->phone ?? ''}}</td>
-                                        <td>{{ $mahasiswa->user_mahasiswa->major->name ?? ''}}/{{ $mahasiswa->user_mahasiswa->batch->year ?? ''}}
-                                        <td>{{ $mahasiswa->user_mahasiswa->country->name ?? ''}}
+                                        <td><img src="{{ asset('uploads/' . $mahasiswa->photo) }}" alt=""></td>
+                                        <td>{{ $mahasiswa->user_mahasiswa->batch->year ?? '' }}</td>
+                                        <td>{{ $mahasiswa->user_mahasiswa->nim ?? '' }}</td>
+                                        <td>{{ $mahasiswa->name ?? '' }}</td>
+                                        <td>{{ $mahasiswa->user_mahasiswa->gender ?? '' }}</td>
+                                        <td>{{ $mahasiswa->email ?? '' }}</td>
+                                        <td>{{ $mahasiswa->user_mahasiswa->phone ?? '' }}</td>
+                                        <td>{{ $mahasiswa->user_mahasiswa->major->name ?? '' }}/{{ $mahasiswa->user_mahasiswa->batch->year ?? '' }}
+                                        <td>{{ $mahasiswa->user_mahasiswa->country->name ?? '' }}
                                         <td
                                             style="background-color: {{ $mahasiswa->user_mahasiswa->mahasiswa_semesters->first()->semester_status->color ?? '' }}">
                                             {{ $mahasiswa->user_mahasiswa->mahasiswa_semesters->first()->semester->year ?? '' }}
