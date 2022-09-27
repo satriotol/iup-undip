@@ -135,7 +135,7 @@
                                 @foreach ($countries as $country)
                                     <option value="{{ $country->id }}"
                                         @isset($mahasiswa)
-                                        {{ $country->id === $mahasiswa->user_mahasiswa->country_id ? 'selected' : '' }}
+                                        {{ $country->id == $mahasiswa->user_mahasiswa->country_id ? 'selected' : '' }}
                                         @endisset>
                                         {{ $country->name }}</option>
                                 @endforeach
