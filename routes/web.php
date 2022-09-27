@@ -40,6 +40,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/', [DashboardController::class, 'index'])->name('dashboard.index');
     Route::get('/export', [DashboardController::class, 'fileExport'])->name('dashboard.fileExport');
     Route::resource('mahasiswa', MahasiswaController::class);
+    Route::post('dashboard/storeUser', [DashboardController::class, 'storeUser'])->name('dashboard.storeUser');
     Route::get('mahasiswa/getData/{userMahasiswa}', [MahasiswaController::class, 'getData'])->name('mahasiswa.getData');
     Route::post('mahasiswa/assignSemester/{userMahasiswa}', [MahasiswaController::class, 'assignSemester'])->name('mahasiswa.assignSemester');
     Route::post('mahasiswa/updatePassword/{userMahasiswa}', [MahasiswaController::class, 'updatePassword'])->name('mahasiswa.updatePassword');

@@ -17,6 +17,7 @@ use App\Models\User;
 use App\Models\UserMahasiswa;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use PhpParser\Node\Stmt\Return_;
 use Spatie\Permission\Models\Role;
@@ -171,6 +172,9 @@ class MahasiswaController extends Controller
         };
         $mahasiswa->update($data);
         $mahasiswa->user_mahasiswa->update($data);
+        DB::table('model_has_roles')->where('model_id', $mahasiswa->id)->delete();
+        $role = Role::where('name', 'MAHASISWA')->first()->id;
+        $mahasiswa->assignRole($role);
         session()->flash('success');
         return back();
     }
