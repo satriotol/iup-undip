@@ -85,7 +85,7 @@
                                 @foreach ($genders as $gender)
                                     <option value="{{ $gender }}"
                                         @isset($mahasiswa)
-                                        {{ $gender === $mahasiswa->user_mahasiswa->gender ? 'selected' : '' }}
+                                        {{ $gender == $mahasiswa->user_mahasiswa->gender ? 'selected' : '' }}
                                     @endisset>
                                         {{ $gender }}</option>
                                 @endforeach
@@ -107,7 +107,7 @@
                                 @foreach ($batches as $batch)
                                     <option value="{{ $batch->id }}"
                                         @isset($mahasiswa)
-                                        {{ $batch->id === $mahasiswa->user_mahasiswa->batch_id ? 'selected' : '' }}
+                                        {{ $batch->id == $mahasiswa->user_mahasiswa->batch_id ? 'selected' : '' }}
                                     @endisset>
                                         {{ $batch->year }}</option>
                                 @endforeach
@@ -121,7 +121,7 @@
                                 @foreach ($majors as $major)
                                     <option value="{{ $major->id }}"
                                         @isset($mahasiswa)
-                                            {{ $major->id === $mahasiswa->user_mahasiswa->major_id ? 'selected' : '' }}
+                                            {{ $major->id == $mahasiswa->user_mahasiswa->major_id ? 'selected' : '' }}
                                             @endisset>
                                         {{ $major->name }}</option>
                                 @endforeach
