@@ -67,6 +67,18 @@ class UsersTableSeeder extends Seeder
                 'updated_at' => '2022-09-27 13:59:59',
                 'photo' => NULL,
             ),
+            4 => 
+            array (
+                'id' => 12,
+                'name' => 'Satrio Mahasiswa',
+                'email' => 'satriomahasiswa@gmail.com',
+                'email_verified_at' => NULL,
+                'password' => '$2y$10$Ol1WL0NZoFoCjhQ4f/H9T.J5kKMpIaGRpBVHfMfOmwfRPdbMGczzO',
+                'remember_token' => NULL,
+                'created_at' => '2022-09-27 14:49:25',
+                'updated_at' => '2022-09-27 14:49:25',
+                'photo' => NULL,
+            ),
         ));
         
         

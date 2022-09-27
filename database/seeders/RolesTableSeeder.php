@@ -35,6 +35,14 @@ class RolesTableSeeder extends Seeder
                 'created_at' => '2022-09-21 14:32:09',
                 'updated_at' => '2022-09-21 14:32:09',
             ),
+            2 => 
+            array (
+                'id' => 4,
+                'name' => 'MAHASISWA_REGISTER',
+                'guard_name' => 'web',
+                'created_at' => '2022-09-27 14:51:19',
+                'updated_at' => '2022-09-27 14:51:19',
+            ),
         ));
         
         

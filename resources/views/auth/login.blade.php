@@ -83,6 +83,10 @@
                                                 <button type="submit"
                                                     class="login100-form-btn btn-primary">Masuk</button>
                                             </div>
+                                            <div class="text-center pt-3">
+                                                <p class="text-dark mb-0">Tidak Punya Akun ?<a href="{{route('register')}}"
+                                                        class="text-primary ms-1">Daftar</a></p>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
