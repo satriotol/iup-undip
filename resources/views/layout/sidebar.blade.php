@@ -33,72 +33,77 @@
                         href="{{ route('mahasiswa.index') }}"><i class="side-menu__icon fe fe-users"></i><span
                             class="side-menu__label">Mahasiswa</span></a>
                 </li>
-                <li class="sub-category">
-                    <h3>Master Data Mahasiswa</h3>
-                </li>
-                <li class="slide">
-                    <a class="side-menu__item {{ active_class(['major.*']) }}" data-bs-toggle="slide"
-                        href="{{ route('major.index') }}"><i class="side-menu__icon fe fe-award"></i><span
-                            class="side-menu__label">Major</span></a>
-                </li>
-                <li class="slide">
-                    <a class="side-menu__item {{ active_class(['faculty.*']) }}" data-bs-toggle="slide"
-                        href="{{ route('faculty.index') }}"><i class="side-menu__icon fe fe-award"></i><span
-                            class="side-menu__label">Fakultas</span></a>
-                </li>
-                <li class="slide">
-                    <a class="side-menu__item {{ active_class(['batch.*']) }}" data-bs-toggle="slide"
-                        href="{{ route('batch.index') }}"><i class="side-menu__icon fe fe-calendar"></i><span
-                            class="side-menu__label">Batch</span></a>
-                </li>
-                <li class="slide">
-                    <a class="side-menu__item {{ active_class(['country.*']) }}" data-bs-toggle="slide"
-                        href="{{ route('country.index') }}"><i class="side-menu__icon fe fe-flag"></i><span
-                            class="side-menu__label">Negara</span></a>
-                </li>
-                <li class="slide {{ expanded_class(['semester.*', 'semesterStatus.*']) }}">
-                    <a class="side-menu__item" data-bs-toggle="slide" href="javascript:void(0)"><i
-                            class="side-menu__icon fe fe-shopping-bag"></i><span
-                            class="side-menu__label">Semester</span><i class="angle fe fe-chevron-right"></i></a>
-                    <ul class="slide-menu">
-                        <li class="side-menu-label1"><a href="javascript:void(0)">Semester</a></li>
-                        <li><a href="{{ route('semester.index') }}"
-                                class="slide-item {{ active_class(['semester.*']) }}">Master Data Semester</a></li>
-                        <li><a href="{{ route('semesterStatus.index') }}"
-                                class="slide-item {{ active_class(['semesterStatus.*']) }}">Status Semester</a></li>
-                    </ul>
-                </li>
-                <li class="sub-category">
-                    <h3>Master Data Internasional</h3>
-                </li>
-                <li class="slide">
-                    <a class="side-menu__item {{ active_class(['internationalUniversity.*']) }}" data-bs-toggle="slide"
-                        href="{{ route('internationalUniversity.index') }}"><i
-                            class="side-menu__icon fe fe-book-open"></i><span
-                            class="side-menu__label">Universitas</span></a>
-                </li>
-                <li class="slide">
-                    <a class="side-menu__item {{ active_class(['internationalProgram.*']) }}" data-bs-toggle="slide"
-                        href="{{ route('internationalProgram.index') }}"><i
-                            class="side-menu__icon fe fe-command"></i><span class="side-menu__label">Program</span></a>
-                </li>
-                <li class="slide">
-                    <a class="side-menu__item {{ active_class(['internationalCategory.*']) }}" data-bs-toggle="slide"
-                        href="{{ route('internationalCategory.index') }}"><i
-                            class="side-menu__icon fe fe-aperture"></i><span class="side-menu__label">Kategori</span></a>
-                </li>
-                <li class="slide">
-                    <a class="side-menu__item {{ active_class(['internationalFunding.*']) }}" data-bs-toggle="slide"
-                        href="{{ route('internationalFunding.index') }}"><i
-                            class="side-menu__icon fe fe-dollar-sign"></i><span
-                            class="side-menu__label">Pendanaan</span></a>
-                </li>
-                <li class="slide">
-                    <a class="side-menu__item {{ active_class(['internationalStatus.*']) }}" data-bs-toggle="slide"
-                        href="{{ route('internationalStatus.index') }}"><i
-                            class="side-menu__icon fe fe-dollar-sign"></i><span
-                            class="side-menu__label">Status</span></a>
-                </li>
+                @can('data-mahasiswa')
+                    <li class="sub-category">
+                        <h3>Master Data Mahasiswa</h3>
+                    </li>
+                    <li class="slide">
+                        <a class="side-menu__item {{ active_class(['major.*']) }}" data-bs-toggle="slide"
+                            href="{{ route('major.index') }}"><i class="side-menu__icon fe fe-award"></i><span
+                                class="side-menu__label">Major</span></a>
+                    </li>
+                    <li class="slide">
+                        <a class="side-menu__item {{ active_class(['faculty.*']) }}" data-bs-toggle="slide"
+                            href="{{ route('faculty.index') }}"><i class="side-menu__icon fe fe-award"></i><span
+                                class="side-menu__label">Fakultas</span></a>
+                    </li>
+                    <li class="slide">
+                        <a class="side-menu__item {{ active_class(['batch.*']) }}" data-bs-toggle="slide"
+                            href="{{ route('batch.index') }}"><i class="side-menu__icon fe fe-calendar"></i><span
+                                class="side-menu__label">Batch</span></a>
+                    </li>
+                    <li class="slide">
+                        <a class="side-menu__item {{ active_class(['country.*']) }}" data-bs-toggle="slide"
+                            href="{{ route('country.index') }}"><i class="side-menu__icon fe fe-flag"></i><span
+                                class="side-menu__label">Negara</span></a>
+                    </li>
+                    <li class="slide {{ expanded_class(['semester.*', 'semesterStatus.*']) }}">
+                        <a class="side-menu__item" data-bs-toggle="slide" href="javascript:void(0)"><i
+                                class="side-menu__icon fe fe-shopping-bag"></i><span
+                                class="side-menu__label">Semester</span><i class="angle fe fe-chevron-right"></i></a>
+                        <ul class="slide-menu">
+                            <li class="side-menu-label1"><a href="javascript:void(0)">Semester</a></li>
+                            <li><a href="{{ route('semester.index') }}"
+                                    class="slide-item {{ active_class(['semester.*']) }}">Master Data Semester</a></li>
+                            <li><a href="{{ route('semesterStatus.index') }}"
+                                    class="slide-item {{ active_class(['semesterStatus.*']) }}">Status Semester</a></li>
+                        </ul>
+                    </li>
+                @endcan
+                @can('data-international')
+                    <li class="sub-category">
+                        <h3>Master Data Internasional</h3>
+                    </li>
+                    <li class="slide">
+                        <a class="side-menu__item {{ active_class(['internationalUniversity.*']) }}" data-bs-toggle="slide"
+                            href="{{ route('internationalUniversity.index') }}"><i
+                                class="side-menu__icon fe fe-book-open"></i><span
+                                class="side-menu__label">Universitas</span></a>
+                    </li>
+                    <li class="slide">
+                        <a class="side-menu__item {{ active_class(['internationalProgram.*']) }}" data-bs-toggle="slide"
+                            href="{{ route('internationalProgram.index') }}"><i
+                                class="side-menu__icon fe fe-command"></i><span class="side-menu__label">Program</span></a>
+                    </li>
+                    <li class="slide">
+                        <a class="side-menu__item {{ active_class(['internationalCategory.*']) }}" data-bs-toggle="slide"
+                            href="{{ route('internationalCategory.index') }}"><i
+                                class="side-menu__icon fe fe-aperture"></i><span
+                                class="side-menu__label">Kategori</span></a>
+                    </li>
+                    <li class="slide">
+                        <a class="side-menu__item {{ active_class(['internationalFunding.*']) }}" data-bs-toggle="slide"
+                            href="{{ route('internationalFunding.index') }}"><i
+                                class="side-menu__icon fe fe-dollar-sign"></i><span
+                                class="side-menu__label">Pendanaan</span></a>
+                    </li>
+                    <li class="slide">
+                        <a class="side-menu__item {{ active_class(['internationalStatus.*']) }}" data-bs-toggle="slide"
+                            href="{{ route('internationalStatus.index') }}"><i
+                                class="side-menu__icon fe fe-dollar-sign"></i><span
+                                class="side-menu__label">Status</span></a>
+                    </li>
+                @endcan
                 @can(['admin-index'])
                     <li class="sub-category">
                         <h3>User Management</h3>

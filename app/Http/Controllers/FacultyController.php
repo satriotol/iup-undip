@@ -12,6 +12,10 @@ class FacultyController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function __construct()
+    {
+        $this->middleware('permission:data-mahasiswa');
+    }
     public function index()
     {
         $faculties = Faculty::all();

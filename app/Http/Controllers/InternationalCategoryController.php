@@ -12,6 +12,10 @@ class InternationalCategoryController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function __construct()
+    {
+        $this->middleware('permission:data-international');
+    }
     public function index()
     {
         $internationalCategories = InternationalCategory::all();

@@ -12,6 +12,10 @@ class BatchController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function __construct()
+    {
+        $this->middleware('permission:data-mahasiswa');
+    }
     public function index()
     {
         $batchs = Batch::all();

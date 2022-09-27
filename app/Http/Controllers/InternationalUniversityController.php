@@ -13,8 +13,13 @@ class InternationalUniversityController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function __construct()
+    {
+        $this->middleware('permission:data-international');
+    }
     public function index()
     {
+        
         $internationalUniversities = InternationalUniversity::all();
         return view('pages.internationalUniversity.index', compact('internationalUniversities'));
     }
