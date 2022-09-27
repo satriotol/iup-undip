@@ -115,6 +115,22 @@ class PermissionsTableSeeder extends Seeder
                 'created_at' => '2022-09-22 01:14:47',
                 'updated_at' => '2022-09-22 01:14:47',
             ),
+            12 => 
+            array (
+                'id' => 14,
+                'name' => 'data-international',
+                'guard_name' => 'web',
+                'created_at' => '2022-09-27 13:15:22',
+                'updated_at' => '2022-09-27 13:15:22',
+            ),
+            13 => 
+            array (
+                'id' => 15,
+                'name' => 'data-mahasiswa',
+                'guard_name' => 'web',
+                'created_at' => '2022-09-27 13:15:22',
+                'updated_at' => '2022-09-27 13:15:22',
+            ),
         ));
         
         
