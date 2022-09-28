@@ -8,7 +8,7 @@
                 <div class="text-center chat-image mb-5">
                     <div class="avatar avatar-xxl chat-profile mb-3 brround">
                         <a class="" href="{{ asset('uploads/' . $mahasiswa->photo) }}"><img alt="avatar"
-                                src="{{ asset('uploads/' . $mahasiswa->photo) }}" class="brround"></a>
+                                src="{{ asset('uploads/' . $mahasiswa->photo) }}" style="height: 100%" class="brround"></a>
                     </div>
                     <div class="main-chat-msg-name">
                         <a href="profile.html">
