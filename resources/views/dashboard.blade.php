@@ -82,7 +82,7 @@
                                                             <select name="semester_status_id">
                                                                 @foreach ($semesterStatuses as $semesterStatus)
                                                                     <option value="{{ $semesterStatus->id }}"
-                                                                        {{ $semesterStatus->id === $mahasiswa_semester->semester_status_id ? 'selected' : '' }}>
+                                                                        {{ $semesterStatus->id == $mahasiswa_semester->semester_status_id ? 'selected' : '' }}>
                                                                         {{ $semesterStatus->name }}
                                                                     </option>
                                                                 @endforeach
