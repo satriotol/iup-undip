@@ -18,11 +18,14 @@
                                     <li><a href="#detail" class="active" data-bs-toggle="tab">Detail</a></li>
                                     <li><a href="#semester" id="btnSemester" data-bs-toggle="tab"
                                             class="">Semester</a></li>
+                                    <li><a href="#batchsemester" id="btnSemesterBatch" data-bs-toggle="tab"
+                                            class="">Semester Batch</a></li>
                                     <li><a href="#international" id="btnInternational" data-bs-toggle="tab"
                                             class="">International
                                             Exposure</a>
                                     </li>
-                                    <li><a href="#note" id="btnNote" data-bs-toggle="tab" class="">Additional Notes</a></li>
+                                    <li><a href="#note" id="btnNote" data-bs-toggle="tab" class="">Additional
+                                            Notes</a></li>
                                 </ul>
                             </div>
                         </div>
@@ -39,6 +42,9 @@
                     <div class="tab-pane" id="semester">
                         @include('pages.mahasiswa.tab.semesterMahasiswa')
                     </div>
+                    <div class="tab-pane" id="batchsemester">
+                        @include('pages.mahasiswa.tab.batchSemester')
+                    </div>
                     <div class="tab-pane" id="international">
                         @include('pages.mahasiswa.tab.internationalMahasiswa')
                     </div>
@@ -51,3 +57,35 @@
         </div>
     </div>
 @endsection
+@push('custom-scripts')
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.27.2/axios.min.js"
+        integrity="sha512-odNmoc1XJy5x1TMVMdC7EMs3IVdItLPlCeL5vSUPN2llYKMJ2eByTTAIiiuqLg+GdNr9hF6z81p27DArRFKT7A=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script>
+        const {
+            createApp
+        } = Vue
+
+        createApp({
+            data() {
+                return {
+                    message: 'Hello Vue!',
+                    batchSemesters: [],
+                }
+            },
+            mounted() {
+                this.getBatchSemester();
+            },
+            methods: {
+                getBatchSemester() {
+                    axios
+                        .get('/getBatchSemester/{{ $mahasiswa->id }}')
+                        .then(response => {
+                            this.batchSemesters = response.data.data;
+                        })
+                }
+            },
+        }).mount('#app')
+    </script>
+@endpush

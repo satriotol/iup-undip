@@ -126,11 +126,7 @@
                                     </a>
                                     <form method="POST" action="{{ route('logout') }}">
                                         @csrf
-                                        <a class="dropdown-item" ref="route('logout')"
-                                            onclick="event.preventDefault();
-                                        this.closest('form').submit();">
-                                            <i class="dropdown-icon fe fe-alert-circle"></i> Sign out
-                                        </a>
+                                        <button type="submit" class="badge bg-danger w-100">Logout</button>
                                     </form>
                                 </div>
                             </div>

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\BatchSemesterCollection;
 use App\Models\Batch;
 use App\Models\Country;
 use App\Models\InternationalCategory;
@@ -224,4 +225,9 @@ class MahasiswaController extends Controller
         session()->flash('success');
         return response()->json('Sukses');
     }
+    public function getBatchSemester(User $user)
+    {
+        return new BatchSemesterCollection($user->user_mahasiswa->batch->batch_semesters);
+    }
 }
+ 

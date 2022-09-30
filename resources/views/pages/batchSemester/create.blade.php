@@ -12,7 +12,7 @@
                 <div class="card-body">
                     @include('partials.errors')
                     <form
-                        action="@isset($batchSemester) {{ route('batchSemester.update', [$batchSemester->id, $batch->id]) }} @endisset @empty($batchSemester) {{ route('batchSemester.store', $batchSemester->id) }} @endempty"
+                        action="@isset($batchSemester) {{ route('batchSemester.update', [$batchSemester->id, $batch->id]) }} @endisset @empty($batchSemester) {{ route('batchSemester.store', $batch->id) }} @endempty"
                         method="POST" enctype="multipart/form-data">
                         @csrf
                         @isset($batchSemester)

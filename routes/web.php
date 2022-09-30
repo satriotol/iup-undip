@@ -38,6 +38,7 @@ Route::get('/.env', function () {
     return 'Hayoooo';
 });
 Route::group(['middleware' => ['auth']], function () {
+    Route::get('/getBatchSemester/{user}', [MahasiswaController::class, 'getBatchSemester']);
     Route::get('/', [DashboardController::class, 'index'])->name('dashboard.index');
     Route::get('/export', [DashboardController::class, 'fileExport'])->name('dashboard.fileExport');
     Route::resource('mahasiswa', MahasiswaController::class);
@@ -54,7 +55,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('batchSemester/edit/{batchSemester}/{batch}', [BatchSemesterController::class, 'edit'])->name('batchSemester.edit');
     Route::put('batchSemester/update/{batchSemester}/{batch}', [BatchSemesterController::class, 'update'])->name('batchSemester.update');
     Route::resource('batchSemester', BatchSemesterController::class)->except([
-        'create', 'store', 'edit','update'
+        'create', 'store', 'edit', 'update'
     ]);
     //end batch
     Route::resource('country', CountryController::class);
