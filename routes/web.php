@@ -4,6 +4,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BatchController;
 use App\Http\Controllers\BatchSemesterController;
+use App\Http\Controllers\BatchSemesterUserMahasiswaController;
 use App\Http\Controllers\CountryController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\FacultyController;
@@ -39,6 +40,7 @@ Route::get('/.env', function () {
 });
 Route::group(['middleware' => ['auth']], function () {
     Route::get('/getBatchSemester/{user}', [MahasiswaController::class, 'getBatchSemester']);
+    Route::post('/postBatchSemesterUserMahasiswa/{user_mahasiswa_id}', [BatchSemesterUserMahasiswaController::class, 'store']);
     Route::get('/', [DashboardController::class, 'index'])->name('dashboard.index');
     Route::get('/export', [DashboardController::class, 'fileExport'])->name('dashboard.fileExport');
     Route::resource('mahasiswa', MahasiswaController::class);

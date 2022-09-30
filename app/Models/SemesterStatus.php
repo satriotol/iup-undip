@@ -14,4 +14,8 @@ class SemesterStatus extends Model
     {
         return $this->hasMany(MahasiswaSemester::class, 'status_semester_id', 'id');
     }
+    public function batch_semester_user_mahasiswas()
+    {
+        return $this->hasMany(BatchSemesterUserMahasiswa::class, 'semester_status_id', 'id');
+    }
 }

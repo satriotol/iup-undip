@@ -15,11 +15,15 @@ class BatchSemester extends Model
     {
         parent::boot();
         static::addGlobalScope('order', function (Builder $builder) {
-            $builder->orderBy('year', 'asc')->orderBy('semester', 'asc');
+            $builder->orderBy('year', 'desc')->orderBy('semester', 'desc');
         });
     }
     public function batch()
     {
         return $this->belongsTo(Batch::class, 'batch_id', 'id');
+    }
+    public function batch_semester_user_mahasiswas()
+    {
+        return $this->hasMany(BatchSemesterUserMahasiswa::class, 'batch_semester_id', 'id');
     }
 }

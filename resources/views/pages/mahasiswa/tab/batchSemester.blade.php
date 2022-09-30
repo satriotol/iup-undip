@@ -17,16 +17,63 @@
                             </tr>
                         </thead>
                         <tbody id="userTableBody">
-                            <tr v-for="batchSemester in batchSemesters">
-                                <td>@{{ batchSemester.year }} | @{{ batchSemester.semester }}</td>
-                                <td></td>
+                            <tr v-for="(batchSemester,index) in batchSemesters">
+                                <td>
+                                    @{{ batchSemester.year }} | @{{ batchSemester.semester }}
+                                </td>
+                                <td>
+                                    <select v-model.number="batchSemester.semester_status_id" class="form-control"
+                                        id="">
+                                        @foreach ($semesterStatuses as $semesterStatus)
+                                            <option value="{{ $semesterStatus->id }}">{{ $semesterStatus->name }}
+                                            </option>
+                                        @endforeach
+                                    </select>
+                                </td>
                             </tr>
                         </tbody>
                     </table>
+                    <button class="btn btn-success" @click="postBatchSemesterUserMahasiswa">Submit</button>
                 </div>
             </div>
         </div>
     </div>
 </div>
 @push('custom-scripts')
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.27.2/axios.min.js"
+        integrity="sha512-odNmoc1XJy5x1TMVMdC7EMs3IVdItLPlCeL5vSUPN2llYKMJ2eByTTAIiiuqLg+GdNr9hF6z81p27DArRFKT7A=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script>
+        const {
+            createApp
+        } = Vue
+
+        createApp({
+            data() {
+                return {
+                    batchSemesters: [],
+                }
+            },
+            mounted() {
+                this.getBatchSemester();
+            },
+            methods: {
+                getBatchSemester() {
+                    axios
+                        .get('/getBatchSemester/{{ $mahasiswa->id }}')
+                        .then(response => {
+                            this.batchSemesters = response.data.data;
+                        })
+                },
+                postBatchSemesterUserMahasiswa() {
+                    axios.post('/postBatchSemesterUserMahasiswa/{{ $mahasiswa->user_mahasiswa->id }}', this
+                            .batchSemesters)
+                        .then((response) => {
+                            console.log(response)
+                        });
+                },
+            },
+        }).mount('#app')
+    </script>
 @endpush

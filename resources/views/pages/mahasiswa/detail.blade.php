@@ -58,34 +58,5 @@
     </div>
 @endsection
 @push('custom-scripts')
-    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.27.2/axios.min.js"
-        integrity="sha512-odNmoc1XJy5x1TMVMdC7EMs3IVdItLPlCeL5vSUPN2llYKMJ2eByTTAIiiuqLg+GdNr9hF6z81p27DArRFKT7A=="
-        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <script>
-        const {
-            createApp
-        } = Vue
 
-        createApp({
-            data() {
-                return {
-                    message: 'Hello Vue!',
-                    batchSemesters: [],
-                }
-            },
-            mounted() {
-                this.getBatchSemester();
-            },
-            methods: {
-                getBatchSemester() {
-                    axios
-                        .get('/getBatchSemester/{{ $mahasiswa->id }}')
-                        .then(response => {
-                            this.batchSemesters = response.data.data;
-                        })
-                }
-            },
-        }).mount('#app')
-    </script>
 @endpush
