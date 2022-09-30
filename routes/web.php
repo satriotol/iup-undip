@@ -3,6 +3,7 @@
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BatchController;
+use App\Http\Controllers\BatchSemesterController;
 use App\Http\Controllers\CountryController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\FacultyController;
@@ -46,7 +47,16 @@ Route::group(['middleware' => ['auth']], function () {
     Route::post('mahasiswa/updatePassword/{userMahasiswa}', [MahasiswaController::class, 'updatePassword'])->name('mahasiswa.updatePassword');
     Route::post('mahasiswa/assignSemester/destroy/{mahasiswaSemester}', [MahasiswaController::class, 'destroySemester'])->name('mahasiswa.destroySemester');
     Route::resource('major', MajorController::class);
+    // batch
     Route::resource('batch', BatchController::class);
+    Route::get('batchSemester/create/{batch}', [BatchSemesterController::class, 'create'])->name('batchSemester.create');
+    Route::post('batchSemester/store/{batch}', [BatchSemesterController::class, 'store'])->name('batchSemester.store');
+    Route::get('batchSemester/edit/{batchSemester}/{batch}', [BatchSemesterController::class, 'edit'])->name('batchSemester.edit');
+    Route::put('batchSemester/update/{batchSemester}/{batch}', [BatchSemesterController::class, 'update'])->name('batchSemester.update');
+    Route::resource('batchSemester', BatchSemesterController::class)->except([
+        'create', 'store', 'edit','update'
+    ]);
+    //end batch
     Route::resource('country', CountryController::class);
     Route::resource('semester', SemesterController::class);
     Route::resource('semesterStatus', SemesterStatusController::class);

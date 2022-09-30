@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Batch;
 use App\Models\BatchSemester;
 use Illuminate\Http\Request;
 
@@ -22,9 +23,9 @@ class BatchSemesterController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Batch $batch)
     {
-        //
+        return view('pages.batchSemester.create', compact('batch'));
     }
 
     /**
@@ -33,9 +34,21 @@ class BatchSemesterController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, $batch)
     {
-        //
+        $data = $this->validate($request, [
+            'batch.*.year' => 'required',
+            'batch.*.semester' => 'required',
+        ]);
+        foreach ($request->batch as $key) {
+            BatchSemester::create([
+                'batch_id' => $batch,
+                'year' => $key['year'],
+                'semester' => $key['semester']
+            ]);
+        }
+        session()->flash('success');
+        return redirect(route('batch.show', $batch));
     }
 
     /**
@@ -55,9 +68,9 @@ class BatchSemesterController extends Controller
      * @param  \App\Models\BatchSemester  $batchSemester
      * @return \Illuminate\Http\Response
      */
-    public function edit(BatchSemester $batchSemester)
+    public function edit(BatchSemester $batchSemester, Batch $batch)
     {
-        //
+        return view('pages.batchSemester.create', compact('batchSemester', 'batch'));
     }
 
     /**
@@ -67,9 +80,15 @@ class BatchSemesterController extends Controller
      * @param  \App\Models\BatchSemester  $batchSemester
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, BatchSemester $batchSemester)
+    public function update(Request $request, BatchSemester $batchSemester, $batch)
     {
-        //
+        $data = $this->validate($request, [
+            'year' => 'required',
+            'semester' => 'required',
+        ]);
+        $batchSemester->update($data);
+        session()->flash('success');
+        return redirect(route('batch.show', $batch));
     }
 
     /**
@@ -80,6 +99,8 @@ class BatchSemesterController extends Controller
      */
     public function destroy(BatchSemester $batchSemester)
     {
-        //
+        $batchSemester->delete();
+        session()->flash('success');
+        return back();
     }
 }
