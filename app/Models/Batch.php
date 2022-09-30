@@ -15,4 +15,8 @@ class Batch extends Model
     {
         return $this->hasMany(UserMahasiswa::class, 'batch_id', 'id');
     }
+    public function batch_semesters()
+    {
+        return $this->hasMany(BatchSemester::class, 'batch_id', 'id');
+    }
 }

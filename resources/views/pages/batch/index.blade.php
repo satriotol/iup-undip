@@ -19,6 +19,7 @@
                             <thead>
                                 <tr>
                                     <th>Tahun</th>
+                                    <th>Semester</th>
                                     <th>Action</th>
                                 </tr>
                             </thead>
@@ -26,11 +27,18 @@
                                 @foreach ($batchs as $batch)
                                     <tr>
                                         <td>{{ $batch->year }}</td>
+                                        <td>
+                                            @foreach ($batch->batch_semesters as $batch_semester)
+                                                <li>
+                                                    {{ $batch_semester->year }} | {{ $batch_semester->semester }}
+                                                </li>
+                                            @endforeach
+                                        </td>
                                         <td name="bstable-actions">
                                             <div class="btn-list">
                                                 <form action="{{ route('batch.destroy', $batch->id) }}" method="POST">
                                                     <a class="btn btn-sm btn-primary"
-                                                        href="{{ route('batch.edit', $batch->id) }}">
+                                                        href="{{ route('batch.show', $batch->id) }}">
                                                         <span class="fe fe-edit"> </span>
                                                     </a>
                                                     @csrf

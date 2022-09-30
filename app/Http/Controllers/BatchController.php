@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Batch;
+use App\Models\BatchSemester;
 use Illuminate\Http\Request;
 
 class BatchController extends Controller
@@ -42,9 +43,17 @@ class BatchController extends Controller
     {
         $data = $this->validate($request, [
             'year' => 'required|digits:4|integer|min:1900',
+            'batch.*.year' => 'required',
+            'batch.*.semester' => 'required',
         ]);
-
-        Batch::create($data);
+        $batch = Batch::create($data);
+        foreach ($request->batch as $key) {
+            BatchSemester::create([
+                'batch_id' => $batch->id,
+                'year' => $key['year'],
+                'semester' => $key['semester']
+            ]);
+        }
         session()->flash('success');
         return redirect(route('batch.index'));
     }
@@ -57,7 +66,7 @@ class BatchController extends Controller
      */
     public function show(Batch $batch)
     {
-        //
+        return view('pages.batch.show',compact('batch'));
     }
 
     /**
@@ -86,7 +95,7 @@ class BatchController extends Controller
 
         $batch->update($data);
         session()->flash('success');
-        return redirect(route('batch.index'));
+        return back();
     }
 
     /**
