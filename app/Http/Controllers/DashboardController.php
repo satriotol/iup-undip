@@ -18,14 +18,17 @@ use Spatie\Permission\Models\Role;
 
 class DashboardController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
         $semesterStatuses = SemesterStatus::all();
-        $users = User::has('user_mahasiswa')->get();
+        $users = User::has('user_mahasiswa')->whereHas('user_mahasiswa', function ($q) use ($request) {
+            $q->where('batch_id', $request->batch);
+        })->get();
         $genders = User::GENDER;
         $batches = Batch::all();
         $majors = Major::all();
         $countries = Country::all();
+        $request->flash();
         return view('dashboard', compact('users', 'semesterStatuses', 'genders', 'batches', 'majors', 'countries'));
     }
     public function fileExport()

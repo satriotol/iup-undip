@@ -70,7 +70,10 @@
                     axios.post('/postBatchSemesterUserMahasiswa/{{ $mahasiswa->user_mahasiswa->id }}', this
                             .batchSemesters)
                         .then((response) => {
-                            console.log(response)
+                            notif({
+                                msg: "<b>Success:</b> Well done Details Submitted Successfully",
+                                type: "success"
+                            });
                         });
                 },
             },

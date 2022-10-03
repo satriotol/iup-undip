@@ -16,8 +16,6 @@
                                 <!-- Tabs -->
                                 <ul class="nav panel-tabs">
                                     <li><a href="#detail" class="active" data-bs-toggle="tab">Detail</a></li>
-                                    <li><a href="#semester" id="btnSemester" data-bs-toggle="tab"
-                                            class="">Semester</a></li>
                                     <li><a href="#batchsemester" id="btnSemesterBatch" data-bs-toggle="tab"
                                             class="">Semester Batch</a></li>
                                     <li><a href="#international" id="btnInternational" data-bs-toggle="tab"
@@ -39,9 +37,6 @@
                     <div class="tab-pane active" id="detail">
                         @include('pages.mahasiswa.tab.detailMahasiswa')
                     </div>
-                    <div class="tab-pane" id="semester">
-                        @include('pages.mahasiswa.tab.semesterMahasiswa')
-                    </div>
                     <div class="tab-pane" id="batchsemester">
                         @include('pages.mahasiswa.tab.batchSemester')
                     </div>
@@ -58,5 +53,4 @@
     </div>
 @endsection
 @push('custom-scripts')
-
 @endpush

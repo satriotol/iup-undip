@@ -15,7 +15,7 @@ class BatchSemester extends Model
     {
         parent::boot();
         static::addGlobalScope('order', function (Builder $builder) {
-            $builder->orderBy('year', 'desc')->orderBy('semester', 'desc');
+            $builder->orderBy('year', 'asc')->orderBy('semester', 'asc');
         });
     }
     public function batch()
