@@ -43,4 +43,8 @@ class UserMahasiswa extends Model
     {
         return $this->hasMany(Note::class, 'user_mahasiswa_id', 'id');
     }
+    public function batch_semester_user_mahasiswas()
+    {
+        return $this->hasMany(BatchSemesterUserMahasiswa::class, 'user_mahasiswa_id', 'id');
+    }
 }
