@@ -232,4 +232,3 @@ class MahasiswaController extends Controller
         return BatchSemesterResource::collection($user->user_mahasiswa->batch->batch_semesters);
     }
 }
- 

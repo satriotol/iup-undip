@@ -16,8 +16,8 @@ class BatchSemesterUserMahasiswaResource extends JsonResource
     {
         return [
             'id' => $this->id,
-            'semester_status_color' => $this->semester_status->color,
-            'semester_status_name' => $this->semester_status->name,
+            'semester_status_color' => $this->semester_status->color ?? '',
+            'semester_status_name' => $this->semester_status->name ?? '',
         ];
     }
 }
