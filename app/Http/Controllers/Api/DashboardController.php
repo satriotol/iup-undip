@@ -15,7 +15,7 @@ class DashboardController extends Controller
     public function index(Request $request)
     {
         $users = User::has('user_mahasiswa')->whereHas('user_mahasiswa', function ($q) use ($request) {
-            $q->where('batch_id', 3);
+            $q->where('batch_id', $request->batch);
         })->get();
         return ResponseFormatter::success([
             'batch_semesters' => new TableSemesterResource($users[0]),
