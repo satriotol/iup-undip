@@ -7,7 +7,8 @@
             <th rowspan="3" style="vertical-align : middle;text-align:center;">Batch</th>
             <th rowspan="3" style="vertical-align : middle;text-align:center;">Student ID</th>
             <th rowspan="3" style="vertical-align : middle;text-align:center;">Name</th>
-            <th rowspan="3" style="vertical-align : middle;text-align:center;">Semester | Status
+            <th rowspan="2" colspan="{{ $userMahasiswas[0]->batch->batch_semesters->count() }}"
+                style="vertical-align : middle;text-align:center;">Semester | Status
             </th>
             <th colspan="8">International Exposure</th>
             <th colspan="10">Additional Notes</th>
@@ -27,6 +28,9 @@
             <th rowspan="2">Other Information</th>
         </tr>
         <tr>
+            @foreach ($userMahasiswas[0]->batch->batch_semesters as $batch_semester)
+                <th>{{ $batch_semester->year }} | {{ $batch_semester->semester }}</th>
+            @endforeach
             <th>Test Date</th>
             <th>Listening</th>
             <th>Reading</th>
@@ -46,12 +50,11 @@
                 <td>{{ $userMahasiswa->batch->year }}</td>
                 <td>{{ $userMahasiswa->nim }}</td>
                 <td>{{ $userMahasiswa->user->name }}</td>
-                <td>
-                    @foreach ($userMahasiswa->mahasiswa_semesters as $mahasiswa_semester)
-                        <ul>{{ $mahasiswa_semester->semester->year }} - {{ $mahasiswa_semester->semester->semester }} |
-                            {{ $mahasiswa_semester->semester_status->name }}</ul>
-                    @endforeach
-                </td>
+                @foreach ($userMahasiswa->batch_semester_user_mahasiswas as $batch_semester_user_mahasiswa)
+                    <td style="background-color: {{ $batch_semester_user_mahasiswa->semester_status->color }}">
+                        {{ $batch_semester_user_mahasiswa->semester_status->name }}
+                    </td>
+                @endforeach
                 <td>
                     @foreach ($userMahasiswa->international_mahasiswa as $international_mahasiswa)
                         <ul>

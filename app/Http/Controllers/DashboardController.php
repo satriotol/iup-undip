@@ -31,9 +31,9 @@ class DashboardController extends Controller
         $request->flash();
         return view('dashboard', compact('users', 'semesterStatuses', 'genders', 'batches', 'majors', 'countries'));
     }
-    public function fileExport()
+    public function fileExport(Request $request)
     {
-        return Excel::download(new MahasiswaExport, 'users-collection.xlsx');
+        return Excel::download(new MahasiswaExport($request->batch), 'users-collection.xlsx');
     }
     public function exportPdf(User $user)
     {

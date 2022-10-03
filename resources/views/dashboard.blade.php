@@ -26,7 +26,7 @@
                         </form>
                         @if (@old('batch') != null)
                             <div class="text-end mt-2">
-                                <a href="{{ route('dashboard.fileExport') }}" target="_blank"
+                                <a href="{{ route('dashboard.fileExport') }}/?batch={{ @old('batch') }}" target="_blank"
                                     class="btn btn-sm btn-success">Export
                                     Excel</a>
                             </div>

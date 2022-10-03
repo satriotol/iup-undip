@@ -23,10 +23,15 @@ class MahasiswaExport implements FromView, ShouldAutoSize, WithDefaultStyles
             ]
         ];
     }
+    public function __construct(int $batch)
+    {
+        $this->batch = $batch;
+    }
+
     public function view(): View
     {
         return view('exports.mahasiswa', [
-            'userMahasiswas' => UserMahasiswa::all()
+            'userMahasiswas' => UserMahasiswa::where('batch_id', $this->batch)->get()
         ]);
     }
 }
