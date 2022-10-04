@@ -173,6 +173,9 @@ class MahasiswaController extends Controller
             }
             $data['photo'] = $file;
         };
+        if ($mahasiswa->user_mahasiswa->batch_id != $data['batch_id']) {
+            $mahasiswa->user_mahasiswa->batch_semester_user_mahasiswas()->delete();
+        }
         $mahasiswa->update($data);
         $mahasiswa->user_mahasiswa->update($data);
         DB::table('model_has_roles')->where('model_id', $mahasiswa->id)->delete();
