@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Batch;
 use App\Models\BatchSemester;
+use App\Models\BatchSemesterUserMahasiswa;
+use App\Models\UserMahasiswa;
 use Illuminate\Http\Request;
 
 class BatchSemesterController extends Controller
@@ -46,6 +48,18 @@ class BatchSemesterController extends Controller
                 'year' => $key['year'],
                 'semester' => $key['semester']
             ]);
+        }
+        $batchSemesters = BatchSemester::where('batch_id', $batch)->get();
+        $userMahasiswas = UserMahasiswa::where('batch_id', $batch)->get();
+        foreach ($batchSemesters as $batchSemester) {
+            foreach ($userMahasiswas as $userMahasiswa) {
+                BatchSemesterUserMahasiswa::updateOrCreate(
+                    [
+                        'user_mahasiswa_id' => $userMahasiswa->id,
+                        'batch_semester_id' => $batchSemester->id,
+                    ],
+                );
+            }
         }
         session()->flash('success');
         return redirect(route('batch.show', $batch));
