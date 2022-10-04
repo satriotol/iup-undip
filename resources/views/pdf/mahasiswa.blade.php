@@ -83,9 +83,9 @@
                 <tbody>
                     @foreach ($user->user_mahasiswa->batch_semester_user_mahasiswas as $batch_semester_user_mahasiswa)
                         <tr>
-                            <td>{{ $batch_semester_user_mahasiswa->batch_semester->year }} -
-                                {{ $batch_semester_user_mahasiswa->batch_semester->semester }}</td>
-                            <td>{{ $batch_semester_user_mahasiswa->semester_status->name }}</td>
+                            <td>{{ $batch_semester_user_mahasiswa->batch_semester->year ?? '' }} -
+                                {{ $batch_semester_user_mahasiswa->batch_semester->semester ?? '' }}</td>
+                            <td>{{ $batch_semester_user_mahasiswa->semester_status->name ?? '' }}</td>
                         </tr>
                     @endforeach
                 </tbody>
