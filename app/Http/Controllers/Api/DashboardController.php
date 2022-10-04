@@ -19,9 +19,11 @@ class DashboardController extends Controller
         $users = User::has('user_mahasiswa')->whereHas('user_mahasiswa', function ($q) use ($request) {
             $q->where('batch_id', $request->batch);
         })->get();
+        $semesterStatuses = SemesterStatus::all();
         return ResponseFormatter::success([
             'batch_semesters' => new TableSemesterResource($users[0]),
             'users' => UserResource::collection($users),
+            'semesterStatuses' => $semesterStatuses,
         ]);
     }
     public function getExcel(Request $request)

@@ -96,7 +96,14 @@
                                                     'background-color': batch_semester_user_mahasiswa
                                                         .semester_status_color
                                                 }">
-                                                @{{ batch_semester_user_mahasiswa.semester_status_name }}
+                                                <select name=""
+                                                    @change="updateStatus([batch_semester_user_mahasiswa.id,batch_semester_user_mahasiswa.semester_status_id])"
+                                                    v-model='batch_semester_user_mahasiswa.semester_status_id' id="">
+                                                    <option value="">Status</option>
+                                                    <option v-for="(semesterStatus, index) in semesterStatuses"
+                                                        :value="semesterStatus.id">
+                                                        @{{ semesterStatus.name }}</option>
+                                                </select>
                                             </td>
                                             <td>
                                                 <ul v-for="(international_mahasiswa, index) in user.international_mahasiswas">
@@ -372,8 +379,21 @@
                         .then((res) => {
                             this.batch_semesters = res.data.data.batch_semesters;
                             this.users = res.data.data.users;
+                            this.semesterStatuses = res.data.data.semesterStatuses;
                         }).finally(() => {
                             this.loading = false;
+                        });
+                },
+                getDataDinamis() {
+                    axios.get('/api/dashboard', {
+                            params: {
+                                batch: this.batch
+                            }
+                        })
+                        .then((res) => {
+                            this.batch_semesters = res.data.data.batch_semesters;
+                            this.users = res.data.data.users;
+                            this.semesterStatuses = res.data.data.semesterStatuses;
                         });
                 },
                 getExcel() {
@@ -387,7 +407,20 @@
                             const content = response.headers['content-type'];
                             download(response.data, 'data-mahasiswa-' + this.batch, content)
                         });
-                }
+                },
+                updateStatus(batchSemesterUserMahasiswa) {
+                    const url = '/postBatchSemesterUserMahasiswa/status/' + batchSemesterUserMahasiswa[0];
+                    axios.post(url, {
+                            semester_status_id: batchSemesterUserMahasiswa[1],
+                        })
+                        .then((response) => {
+                            notif({
+                                msg: "<b>Success:</b> Well done Details Submitted Successfully",
+                                type: "success"
+                            });
+                            this.getDataDinamis();
+                        });
+                },
             },
         }).mount('#app')
     </script>

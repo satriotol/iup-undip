@@ -47,6 +47,13 @@ class BatchSemesterUserMahasiswaController extends Controller
             );
         }
     }
+    public function updateStatus(Request $request, $batch_semester_user_mahasiswa)
+    {
+        $data = BatchSemesterUserMahasiswa::where('id', $batch_semester_user_mahasiswa)->first();
+        $data->update([
+            'semester_status_id' => $request->semester_status_id
+        ]);
+    }
 
     /**
      * Display the specified resource.

@@ -41,6 +41,7 @@ Route::get('/.env', function () {
 Route::group(['middleware' => ['auth']], function () {
     Route::get('/getBatchSemester/{user}', [MahasiswaController::class, 'getBatchSemester']);
     Route::post('/postBatchSemesterUserMahasiswa/{user_mahasiswa_id}', [BatchSemesterUserMahasiswaController::class, 'store']);
+    Route::post('/postBatchSemesterUserMahasiswa/status/{batch_semester_user_mahasiswa}', [BatchSemesterUserMahasiswaController::class, 'updateStatus']);
     Route::get('/', [DashboardController::class, 'index'])->name('dashboard.index');
     Route::get('/export', [DashboardController::class, 'fileExport'])->name('dashboard.fileExport');
     Route::resource('mahasiswa', MahasiswaController::class);
