@@ -144,6 +144,76 @@
                                                 </li>
                                             </ul>
                                         </td>
+                                        <td>
+                                            <ul v-for="(note, index) in user.notes">
+                                                <li>
+                                                    @{{ note.test_date }}
+                                                </li>
+                                            </ul>
+                                        </td>
+                                        <td>
+                                            <ul v-for="(note, index) in user.notes">
+                                                <li>
+                                                    @{{ note.listening }}
+                                                </li>
+                                            </ul>
+                                        </td>
+                                        <td>
+                                            <ul v-for="(note, index) in user.notes">
+                                                <li>
+                                                    @{{ note.reading }}
+                                                </li>
+                                            </ul>
+                                        </td>
+                                        <td>
+                                            <ul v-for="(note, index) in user.notes">
+                                                <li>
+                                                    @{{ note.writing }}
+                                                </li>
+                                            </ul>
+                                        </td>
+                                        <td>
+                                            <ul v-for="(note, index) in user.notes">
+                                                <li>
+                                                    @{{ note.speaking }}
+                                                </li>
+                                            </ul>
+                                        </td>
+                                        <td>
+                                            <ul v-for="(note, index) in user.notes">
+                                                <li>
+                                                    @{{ note.overall_score }}
+                                                </li>
+                                            </ul>
+                                        </td>
+                                        <td>
+                                            <ul v-for="(note, index) in user.notes">
+                                                <li>
+                                                    @{{ note.event_1 }}
+                                                </li>
+                                            </ul>
+                                        </td>
+                                        <td>
+                                            <ul v-for="(note, index) in user.notes">
+                                                <li>
+                                                    @{{ note.event_2 }}
+                                                </li>
+                                            </ul>
+                                        </td>
+                                        <td>
+                                            <ul v-for="(note, index) in user.notes">
+                                                <li>
+                                                    @{{ note.achievement }}
+                                                </li>
+                                            </ul>
+                                        </td>
+                                        <td>
+                                            <ul v-for="(note, index) in user.notes">
+                                                <li>
+                                                    @{{ note.other_information }}
+                                                </li>
+                                            </ul>
+                                        </td>
                                     </tr>
                                 </tbody>
                             </table>

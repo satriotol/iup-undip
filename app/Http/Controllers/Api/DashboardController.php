@@ -21,7 +21,7 @@ class DashboardController extends Controller
         })->get();
         return ResponseFormatter::success([
             'batch_semesters' => new TableSemesterResource($users[0]),
-            'users' => UserResource::collection($users)
+            'users' => UserResource::collection($users),
         ]);
     }
     public function getExcel(Request $request)

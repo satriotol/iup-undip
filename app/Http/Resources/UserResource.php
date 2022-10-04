@@ -24,6 +24,7 @@ class UserResource extends JsonResource
             'name' => $this->name,
             'batch_semester_user_mahasiswas' => BatchSemesterUserMahasiswaResource::collection($this->user_mahasiswa->batch_semester_user_mahasiswas),
             'international_mahasiswas' => $this->user_mahasiswa->international_mahasiswa,
+            'notes' => $this->user_mahasiswa->notes
         ];
     }
 }
