@@ -370,9 +370,10 @@
                             }
                         })
                         .then((res) => {
-                            this.loading = false;
                             this.batch_semesters = res.data.data.batch_semesters;
                             this.users = res.data.data.users;
+                        }).finally(() => {
+                            this.loading = false;
                         });
                 },
                 getExcel() {

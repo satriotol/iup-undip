@@ -33,7 +33,6 @@
                                     <th>HP</th>
                                     <th>Major / Batch</th>
                                     <th>Asal</th>
-                                    <th>Semester</th>
                                     <th>Action</th>
                                 </tr>
                             </thead>
@@ -48,15 +47,7 @@
                                         <td>{{ $mahasiswa->email ?? '' }}</td>
                                         <td>{{ $mahasiswa->user_mahasiswa->phone ?? '' }}</td>
                                         <td>{{ $mahasiswa->user_mahasiswa->major->name ?? '' }}/{{ $mahasiswa->user_mahasiswa->batch->year ?? '' }}
-                                        <td>{{ $mahasiswa->user_mahasiswa->country->name ?? '' }}
-                                        <td
-                                            style="background-color: {{ $mahasiswa->user_mahasiswa->mahasiswa_semesters->first()->semester_status->color ?? '' }}">
-                                            {{ $mahasiswa->user_mahasiswa->mahasiswa_semesters->first()->semester->year ?? '' }}
-                                            -
-                                            {{ $mahasiswa->user_mahasiswa->mahasiswa_semesters->first()->semester->semester ?? '' }}
-                                            /
-                                            {{ $mahasiswa->user_mahasiswa->mahasiswa_semesters->first()->semester_status->name ?? '' }}
-                                        </td>
+                                        <td>{{ $mahasiswa->user_mahasiswa->country->name ?? '' }}</td>
                                         <td name="bstable-actions">
                                             @include('pages.mahasiswa.actions')
                                         </td>
