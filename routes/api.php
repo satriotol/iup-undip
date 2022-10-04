@@ -17,3 +17,4 @@ use Illuminate\Support\Facades\Route;
 
 
 Route::get('dashboard', [DashboardController::class, 'index']);
+Route::get('dashboard/getExcel', [DashboardController::class, 'getExcel']);

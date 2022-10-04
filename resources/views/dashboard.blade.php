@@ -25,9 +25,8 @@
                         </div>
                         {{-- </form> --}}
                         <div class="text-end mt-2">
-                            <a href="{{ route('dashboard.fileExport') }}/?batch={{ @old('batch') }}" target="_blank"
-                                class="btn btn-sm btn-success">Export
-                                Excel</a>
+                            <button @click='getExcel' target="_blank" class="btn btn-sm btn-success">Export
+                                Excel</button>
                         </div>
                         <div class="table-responsive">
                             <table class="table border table-bordered text-nowrap text-md-nowrap table-hover mb-0">
@@ -76,7 +75,9 @@
                                 </thead>
                                 <tbody>
                                     <tr v-for="(user, index) in users">
-                                        <td></td>
+                                        <td><a :href="'/exportPdf/' + user.id" target="_blank" class="badge bg-danger">Export
+                                                PDF</a>
+                                        </td>
                                         <td>@{{ user.code }}</td>
                                         <td>@{{ user.country }}</td>
                                         <td>@{{ user.major }}</td>
@@ -260,6 +261,9 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.27.2/axios.min.js"
         integrity="sha512-odNmoc1XJy5x1TMVMdC7EMs3IVdItLPlCeL5vSUPN2llYKMJ2eByTTAIiiuqLg+GdNr9hF6z81p27DArRFKT7A=="
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/downloadjs/1.4.8/download.min.js"
+        integrity="sha512-WiGQZv8WpmQVRUFXZywo7pHIO0G/o3RyiAJZj8YXNN4AV7ReR1RYWVmZJ6y3H06blPcjJmG/sBpOVZjTSFFlzQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script>
         const {
             createApp
@@ -284,6 +288,18 @@
                         .then((res) => {
                             this.batch_semesters = res.data.data.batch_semesters;
                             this.users = res.data.data.users;
+                        });
+                },
+                getExcel() {
+                    axios.get('/api/dashboard/getExcel', {
+                            params: {
+                                batch: this.batch,
+                            },
+                            responseType: 'blob',
+                        })
+                        .then((response) => {
+                            const content = response.headers['content-type'];
+                            download(response.data, 'data-mahasiswa-' + this.batch, content)
                         });
                 }
             },
