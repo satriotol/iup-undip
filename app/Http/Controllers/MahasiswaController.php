@@ -174,12 +174,21 @@ class MahasiswaController extends Controller
             }
             $data['photo'] = $file;
         };
-        if ($mahasiswa->user_mahasiswa->batch_id != $data['batch_id']) {
-            $mahasiswa->user_mahasiswa->batch_semester_user_mahasiswas()->delete();
-        }
+        $old_batch = $mahasiswa->user_mahasiswa->batch_id;
         $mahasiswa->update($data);
         $mahasiswa->user_mahasiswa->update($data);
-
+        if ($old_batch != $data['batch_id']) {
+            $mahasiswa->user_mahasiswa->batch_semester_user_mahasiswas()->delete();
+            $batchSemesters = BatchSemester::where('batch_id', $mahasiswa->user_mahasiswa->batch_id)->get();
+            foreach ($batchSemesters as $batchSemester) {
+                BatchSemesterUserMahasiswa::updateOrCreate(
+                    [
+                        'user_mahasiswa_id' => $mahasiswa->user_mahasiswa->id,
+                        'batch_semester_id' => $batchSemester->id,
+                    ],
+                );
+            }
+        }
         DB::table('model_has_roles')->where('model_id', $mahasiswa->id)->delete();
         $role = Role::where('name', 'MAHASISWA')->first()->id;
         $mahasiswa->assignRole($role);

@@ -14,6 +14,6 @@ class TableSemesterResource extends JsonResource
      */
     public function toArray($request)
     {
-        return $this->user_mahasiswa->batch->batch_semesters;
+        return $this->user_mahasiswa->batch->batch_semesters ?? '';
     }
 }

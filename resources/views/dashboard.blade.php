@@ -380,7 +380,11 @@
                             this.batch_semesters = res.data.data.batch_semesters;
                             this.users = res.data.data.users;
                             this.semesterStatuses = res.data.data.semesterStatuses;
-                        }).finally(() => {
+                        }).catch(() => {
+                            this.users = [];
+                            this.batch_semesters = [];
+                        })
+                        .finally(() => {
                             this.loading = false;
                         });
                 },
