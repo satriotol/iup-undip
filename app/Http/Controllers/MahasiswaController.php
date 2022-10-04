@@ -6,6 +6,7 @@ use App\Http\Resources\BatchSemesterCollection;
 use App\Http\Resources\BatchSemesterResource;
 use App\Models\Batch;
 use App\Models\BatchSemester;
+use App\Models\BatchSemesterUserMahasiswa;
 use App\Models\Country;
 use App\Models\InternationalCategory;
 use App\Models\InternationalFunding;
@@ -178,6 +179,7 @@ class MahasiswaController extends Controller
         }
         $mahasiswa->update($data);
         $mahasiswa->user_mahasiswa->update($data);
+
         DB::table('model_has_roles')->where('model_id', $mahasiswa->id)->delete();
         $role = Role::where('name', 'MAHASISWA')->first()->id;
         $mahasiswa->assignRole($role);
