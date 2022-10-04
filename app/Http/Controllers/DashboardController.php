@@ -4,7 +4,13 @@ namespace App\Http\Controllers;
 
 use App\Exports\MahasiswaExport;
 use App\Models\Batch;
+use App\Models\BatchSemester;
+use App\Models\BatchSemesterUserMahasiswa;
 use App\Models\Country;
+use App\Models\InternationalCategory;
+use App\Models\InternationalFunding;
+use App\Models\InternationalProgram;
+use App\Models\InternationalStatus;
 use App\Models\Major;
 use App\Models\SemesterStatus;
 use App\Models\User;
@@ -29,7 +35,26 @@ class DashboardController extends Controller
         $majors = Major::all();
         $countries = Country::all();
         $request->flash();
-        return view('dashboard', compact('users', 'semesterStatuses', 'genders', 'batches', 'majors', 'countries'));
+        $mahasiswa = Auth::user();
+        $internationalStatuses = InternationalStatus::all();
+        $internationalCategories = InternationalCategory::all();
+        $internationalUniversities = InternationalCategory::all();
+        $internationalFundings = InternationalFunding::all();
+        $internationalPrograms = InternationalProgram::all();
+        return view('dashboard', compact(
+            'users',
+            'semesterStatuses',
+            'genders',
+            'batches',
+            'majors',
+            'countries',
+            'mahasiswa',
+            'internationalStatuses',
+            'internationalCategories',
+            'internationalUniversities',
+            'internationalFundings',
+            'internationalPrograms',
+        ));
     }
     public function fileExport(Request $request)
     {
@@ -67,6 +92,13 @@ class DashboardController extends Controller
                 'photo' => $data['photo']
             ]
         );
+        $batchSemesters = BatchSemester::where('batch_id', $user_mahasiswa->batch_id)->get();
+        foreach ($batchSemesters as $batchSemester) {
+            BatchSemesterUserMahasiswa::create([
+                'user_mahasiswa_id' => $user_mahasiswa->id,
+                'batch_semester_id' => $batchSemester->id,
+            ]);
+        }
         DB::table('model_has_roles')->where('model_id', $user->id)->delete();
         $role = Role::where('name', 'MAHASISWA_WAITING')->first()->id;
         $user->assignRole($role);

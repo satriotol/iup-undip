@@ -33,6 +33,7 @@
                                     <th>HP</th>
                                     <th>Major / Batch</th>
                                     <th>Asal</th>
+                                    <th>Role</th>
                                     <th>Action</th>
                                 </tr>
                             </thead>
@@ -48,6 +49,7 @@
                                         <td>{{ $mahasiswa->user_mahasiswa->phone ?? '' }}</td>
                                         <td>{{ $mahasiswa->user_mahasiswa->major->name ?? '' }}/{{ $mahasiswa->user_mahasiswa->batch->year ?? '' }}
                                         <td>{{ $mahasiswa->user_mahasiswa->country->name ?? '' }}</td>
+                                        <td>{{ $mahasiswa->roles[0]->name ?? '' }}</td>
                                         <td name="bstable-actions">
                                             @include('pages.mahasiswa.actions')
                                         </td>

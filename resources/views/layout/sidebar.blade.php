@@ -28,12 +28,12 @@
                         href="{{ route('dashboard.index') }}"><i class="side-menu__icon fe fe-home"></i><span
                             class="side-menu__label">Dashboard</span></a>
                 </li>
-                <li class="slide">
-                    <a class="side-menu__item {{ active_class(['mahasiswa.*']) }}" data-bs-toggle="slide"
-                        href="{{ route('mahasiswa.index') }}"><i class="side-menu__icon fe fe-users"></i><span
-                            class="side-menu__label">Mahasiswa</span></a>
-                </li>
                 @can('data-mahasiswa')
+                    <li class="slide">
+                        <a class="side-menu__item {{ active_class(['mahasiswa.*']) }}" data-bs-toggle="slide"
+                            href="{{ route('mahasiswa.index') }}"><i class="side-menu__icon fe fe-users"></i><span
+                                class="side-menu__label">Mahasiswa</span></a>
+                    </li>
                     <li class="sub-category">
                         <h3>Master Data Mahasiswa</h3>
                     </li>

@@ -8,7 +8,8 @@
                 <div class="text-center chat-image mb-5">
                     <div class="avatar avatar-xxl chat-profile mb-3 brround">
                         <a class="" href="{{ asset('uploads/' . $mahasiswa->photo) }}"><img alt="avatar"
-                                src="{{ asset('uploads/' . $mahasiswa->photo) }}" style="height: 100%" class="brround"></a>
+                                src="{{ asset('uploads/' . $mahasiswa->photo) }}" style="height: 100%"
+                                class="brround"></a>
                     </div>
                     <div class="main-chat-msg-name">
                         <a href="profile.html">
@@ -147,7 +148,15 @@
                         <input type="file" name="photo" accept="image/*" class="form-control">
                     </div>
                     <div class="text-end">
-                        <button class="btn btn-primary" type="submit">Submit</button>
+                        <button class="btn btn-primary" type="submit" onclick="">
+                            @isset($mahasiswa)
+                                @if ($mahasiswa->roles[0]->name == 'MAHASISWA_WAITING')
+                                    Verifikasi
+                                @else
+                                    Submit
+                                @endif
+                            @endisset
+                        </button>
                     </div>
                 </form>
             </div>

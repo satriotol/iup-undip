@@ -83,7 +83,9 @@
                                         <tr v-for="(user, index) in users">
                                             <td><a :href="'/exportPdf/' + user.id" target="_blank"
                                                     class="badge bg-danger">Export
-                                                    PDF</a>
+                                                    PDF</a><br>
+                                                <a :href="'/mahasiswa/' + user.id" target="_blank"
+                                                    class="badge bg-primary">Detail</a>
                                             </td>
                                             <td>@{{ user.code }}</td>
                                             <td>@{{ user.country }}</td>
@@ -249,18 +251,12 @@
                     </div>
                     <div class="card-body">
                         @include('partials.errors')
-                        <form
-                            action="@isset($mahasiswa) {{ route('mahasiswa.update', $mahasiswa->id) }} @endisset @empty($mahasiswa) {{ route('dashboard.storeUser') }} @endempty"
-                            method="POST" enctype="multipart/form-data">
+                        <form action="{{ route('dashboard.storeUser') }}" method="POST" enctype="multipart/form-data">
                             @csrf
-                            @isset($mahasiswa)
-                                @method('PUT')
-                            @endisset
                             <div class="form-group">
                                 <label>NIM</label>
-                                <input type="text" class="form-control"
-                                    value="{{ isset($mahasiswa) ? $mahasiswa->user_mahasiswa->nim : @old('nim') }}"
-                                    name="nim" required>
+                                <input type="text" class="form-control" value="{{ @old('nim') }}" name="nim"
+                                    required>
                             </div>
                             <div class="form-row">
                                 <div class="form-group col-md-6">
@@ -269,19 +265,15 @@
                                         data-placeholder="Pilih Jenis Kelamin">
                                         <option label="Pilih Jenis Kelamin"></option>
                                         @foreach ($genders as $gender)
-                                            <option value="{{ $gender }}"
-                                                @isset($mahasiswa)
-                                            {{ $gender === $mahasiswa->user_mahasiswa->gender ? 'selected' : '' }}
-                                        @endisset>
+                                            <option value="{{ $gender }}">
                                                 {{ $gender }}</option>
                                         @endforeach
                                     </select>
                                 </div>
                                 <div class="form-group col-md-6">
                                     <label>Nomor HP</label>
-                                    <input type="text" class="form-control"
-                                        value="{{ isset($mahasiswa) ? $mahasiswa->user_mahasiswa->phone : @old('phone') }}"
-                                        name="phone" required>
+                                    <input type="text" class="form-control" value="{{ @old('phone') }}" name="phone"
+                                        required>
                                 </div>
                             </div>
                             <div class="form-row">
@@ -291,10 +283,7 @@
                                         data-placeholder="Pilih Batch">
                                         <option label="Pilih Batch"></option>
                                         @foreach ($batches as $batch)
-                                            <option value="{{ $batch->id }}"
-                                                @isset($mahasiswa)
-                                            {{ $batch->id === $mahasiswa->user_mahasiswa->batch_id ? 'selected' : '' }}
-                                        @endisset>
+                                            <option value="{{ $batch->id }}">
                                                 {{ $batch->year }}</option>
                                         @endforeach
                                     </select>
@@ -305,10 +294,7 @@
                                         data-placeholder="Pilih Major">
                                         <option label="Pilih Major"></option>
                                         @foreach ($majors as $major)
-                                            <option value="{{ $major->id }}"
-                                                @isset($mahasiswa)
-                                                {{ $major->id === $mahasiswa->user_mahasiswa->major_id ? 'selected' : '' }}
-                                                @endisset>
+                                            <option value="{{ $major->id }}">
                                                 {{ $major->name }}</option>
                                         @endforeach
                                     </select>
@@ -319,10 +305,7 @@
                                         data-placeholder="Pilih Negara">
                                         <option label="Pilih Negara"></option>
                                         @foreach ($countries as $country)
-                                            <option value="{{ $country->id }}"
-                                                @isset($mahasiswa)
-                                            {{ $country->id === $mahasiswa->user_mahasiswa->country_id ? 'selected' : '' }}
-                                            @endisset>
+                                            <option value="{{ $country->id }}">
                                                 {{ $country->name }}</option>
                                         @endforeach
                                     </select>
@@ -330,7 +313,7 @@
                             </div>
                             <div class="mb-3">
                                 <label>Foto</label>
-                                <input type="file" name="photo" accept="image/*" class="form-control">
+                                <input type="file" name="photo" accept="image/*" class="form-control" required>
                             </div>
                             <div class="text-end">
                                 <button class="btn btn-primary" type="submit">Submit</button>
@@ -342,6 +325,9 @@
         @endrole
         @role('MAHASISWA_WAITING')
             <h5>Akun Anda Sedang Kami Cek Silahkan Tunggu Dulu</h5>
+        @endrole
+        @role('MAHASISWA')
+            @include('dashboardMahasiswa')
         @endrole
     </div>
 @endsection
@@ -380,9 +366,13 @@
                             this.batch_semesters = res.data.data.batch_semesters;
                             this.users = res.data.data.users;
                             this.semesterStatuses = res.data.data.semesterStatuses;
-                        }).catch(() => {
+                        }).catch((error) => {
                             this.users = [];
                             this.batch_semesters = [];
+                            notif({
+                                msg: error.message,
+                                type: "error"
+                            });
                         })
                         .finally(() => {
                             this.loading = false;

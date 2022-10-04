@@ -33,7 +33,9 @@
                             </tr>
                         </tbody>
                     </table>
-                    <button class="btn btn-success" @click="postBatchSemesterUserMahasiswa">Submit</button>
+                    <div class="text-end">
+                        <button class="btn btn-success" @click="postBatchSemesterUserMahasiswa">Submit</button>
+                    </div>
                 </div>
             </div>
         </div>
