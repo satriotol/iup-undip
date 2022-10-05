@@ -15,10 +15,12 @@ use App\Models\Major;
 use App\Models\SemesterStatus;
 use App\Models\User;
 use App\Models\UserMahasiswa;
+use App\Notifications\MahasiswaRegisterNotification;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Notification;
 use Maatwebsite\Excel\Facades\Excel;
 use Spatie\Permission\Models\Role;
 
@@ -84,24 +86,35 @@ class DashboardController extends Controller
             $file = $file->storeAs('file', $file_name, 'public_uploads');
             $data['photo'] = $file;
         };
-        $user = User::where('id', Auth::user()->id)->first();
-        $data['user_id'] = $user->id;
-        $user_mahasiswa = UserMahasiswa::create($data);
-        $user_mahasiswa->user->update(
-            [
-                'photo' => $data['photo']
-            ]
-        );
-        $batchSemesters = BatchSemester::where('batch_id', $user_mahasiswa->batch_id)->get();
-        foreach ($batchSemesters as $batchSemester) {
-            BatchSemesterUserMahasiswa::create([
-                'user_mahasiswa_id' => $user_mahasiswa->id,
-                'batch_semester_id' => $batchSemester->id,
-            ]);
+        DB::beginTransaction();
+        try {
+            $user = User::where('id', Auth::user()->id)->first();
+            $data['user_id'] = $user->id;
+            $user_mahasiswa = UserMahasiswa::create($data);
+            $user_mahasiswa->user->update(
+                [
+                    'photo' => $data['photo']
+                ]
+            );
+            $batchSemesters = BatchSemester::where('batch_id', $user_mahasiswa->batch_id)->get();
+            foreach ($batchSemesters as $batchSemester) {
+                BatchSemesterUserMahasiswa::create([
+                    'user_mahasiswa_id' => $user_mahasiswa->id,
+                    'batch_semester_id' => $batchSemester->id,
+                ]);
+            }
+            DB::table('model_has_roles')->where('model_id', $user->id)->delete();
+            $role = Role::where('name', 'MAHASISWA_WAITING')->first()->id;
+            $user->assignRole($role);
+            $admins = User::whereDoesntHave('user_mahasiswa')->get();
+            Notification::send($admins, new MahasiswaRegisterNotification($user));
+            DB::commit();
+        } catch (\Exception $e) {
+            dd($e);
+            return $e;
+            DB::rollback();
         }
-        DB::table('model_has_roles')->where('model_id', $user->id)->delete();
-        $role = Role::where('name', 'MAHASISWA_WAITING')->first()->id;
-        $user->assignRole($role);
+
         session()->flash('success');
         return back();
     }
