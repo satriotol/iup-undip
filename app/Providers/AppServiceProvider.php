@@ -27,7 +27,10 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         view()->composer('*', function ($view) {
-            $view->with('notifications', Auth::user()->unreadNotifications->take(5));
+            if (Auth::user()) {
+                $notifications = Auth::user()->unreadNotifications->take(5);
+                $view->with(compact('notifications'));
+            }
         });
         Schema::defaultStringLength(125);
         Paginator::useBootstrapFive();
