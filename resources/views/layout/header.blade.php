@@ -3,7 +3,7 @@
         <div class="d-flex">
             <a aria-label="Hide Sidebar" class="app-sidebar__toggle" data-bs-toggle="sidebar" href="javascript:void(0)"></a>
             <!-- sidebar-toggle-->
-            <a class="logo-horizontal " href="index.html">
+            <a class="logo-horizontal " href="{{ route('dashboard.index') }}">
                 <img src="{{ asset('assets/images/brand/logo.png') }}" class="header-brand-img desktop-logo"
                     alt="logo">
                 <img src="{{ asset('assets/images/brand/logo-3.png') }}" class="header-brand-img light-logo1"
@@ -75,9 +75,9 @@
 
                                     </div>
                                     <div class="dropdown-divider m-0"></div>
-                                    <a href="notify-list.html" class="dropdown-item text-center p-3 text-muted">View
+                                    {{-- <a href="notify-list.html" class="dropdown-item text-center p-3 text-muted">View
                                         all
-                                        Notification</a>
+                                        Notification</a> --}}
                                 </div>
                             </div>
                             <!-- NOTIFICATIONS -->
@@ -96,9 +96,9 @@
                                         </div>
                                     </div>
                                     <div class="dropdown-divider m-0"></div>
-                                    <a class="dropdown-item" href="profile.html">
+                                    {{-- <a class="dropdown-item" href="profile.html">
                                         <i class="dropdown-icon fe fe-user"></i> Profile
-                                    </a>
+                                    </a> --}}
                                     <form method="POST" action="{{ route('logout') }}">
                                         @csrf
                                         <button type="submit" class="badge bg-danger w-100">Logout</button>
