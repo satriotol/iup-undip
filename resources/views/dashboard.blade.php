@@ -181,10 +181,11 @@
                             this.semesterStatuses = res.data.data.semesterStatuses;
                             this.mahasiswaCount = res.data.data.mahasiswaCount;
                         }).catch((error) => {
+                            console.log(error.message);
                             this.users = [];
                             this.batch_semesters = [];
                             notif({
-                                msg: error.message,
+                                msg: error.response.data.meta.message,
                                 type: "error"
                             });
                         })

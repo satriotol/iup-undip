@@ -19,6 +19,10 @@ class DashboardController extends Controller
         $users = User::orderBy('name', 'asc')->whereHas('user_mahasiswa', function ($q) use ($request) {
             $q->where('batch_id', $request->batch);
         })->get();
+        // dd($users->count());
+        if ($users->count() == 0) {
+            return ResponseFormatter::error('', 'Data Tidak Ditemukan');
+        }
         $semesterStatuses = SemesterStatus::all();
         return ResponseFormatter::success([
             'batch_semesters' => new TableSemesterResource($users[0]),

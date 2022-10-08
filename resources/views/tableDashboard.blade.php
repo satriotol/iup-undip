@@ -14,8 +14,8 @@
                 <th rowspan="3" style="vertical-align : middle;text-align:center;">Student ID
                 </th>
                 <th rowspan="3" style="vertical-align : middle;text-align:center;">Name</th>
-                <th rowspan="2" :colspan="batch_semesters.length"
-                    style="vertical-align : middle;text-align:center;">Semester | Status
+                <th rowspan="2" :colspan="batch_semesters.length" style="vertical-align : middle;text-align:center;">
+                    Semester | Status
                 </th>
                 <th colspan="8">International Exposure</th>
                 <th colspan="10">Additional Notes</th>
@@ -49,7 +49,14 @@
         </thead>
         <tbody>
             <tr v-for="(user, index) in users">
-                <td><a :href="'/exportPdf/' + user.id" target="_blank" class="badge bg-danger">Export
+                <td>
+                    <form :action="'/admin/reset_password/' + user.id" method="POST">
+                        @csrf
+                        <button type="submit" class="badge bg-warning b-0" onclick="return confirm('Are you sure?')">
+                            Reset Password
+                        </button>
+                    </form>
+                    <a :href="'/exportPdf/' + user.id" target="_blank" class="badge bg-danger">Export
                         PDF</a><br>
                     <a :href="'/mahasiswa/' + user.id" target="_blank" class="badge bg-primary">Detail</a>
                 </td>

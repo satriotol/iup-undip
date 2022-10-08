@@ -10,4 +10,9 @@ class Faculty extends Model
     use HasFactory;
 
     protected $fillable = ['name'];
+
+    public function majors()
+    {
+        return $this->hasMany(Major::class, 'faculty_id', 'id');
+    }
 }

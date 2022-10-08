@@ -2,6 +2,7 @@
 
 namespace App\Exports;
 
+use App\Models\Major;
 use App\Models\UserMahasiswa;
 use Illuminate\Contracts\View\View;
 use Maatwebsite\Excel\Concerns\FromView;
@@ -20,7 +21,9 @@ class MahasiswaExport implements FromView, ShouldAutoSize, WithDefaultStyles
             'alignment' => [
                 'horizontal' => Alignment::HORIZONTAL_CENTER,
                 'vertical' => Alignment::VERTICAL_CENTER
-            ]
+            ],
+            $defaultStyle->getBorders('thin'),
+
         ];
     }
     public function __construct(int $batch)
@@ -31,7 +34,8 @@ class MahasiswaExport implements FromView, ShouldAutoSize, WithDefaultStyles
     public function view(): View
     {
         return view('exports.mahasiswa', [
-            'userMahasiswas' => UserMahasiswa::where('batch_id', $this->batch)->get()
+            'userMahasiswas' => UserMahasiswa::where('batch_id', $this->batch)->get(),
+            'majors' => Major::all(),
         ]);
     }
 }

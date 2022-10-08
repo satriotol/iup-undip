@@ -1,4 +1,22 @@
 <table>
+    <thead>
+        <tr>
+            <th>Fakultas</th>
+            <th>Major</th>
+            <th>Jumlah</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            @foreach ($majors as $major)
+                <td>{{ $major->faculty->name }}</td>
+                <td>{{ $major->name }}</td>
+                <td>{{ $major->user_mahasiswas->count() }}</td>
+            @endforeach
+        </tr>
+    </tbody>
+</table>
+<table>
     <thead style="text-align: center">
         <tr>
             <th rowspan="3" style="vertical-align : middle;text-align:center;">Code</th>
