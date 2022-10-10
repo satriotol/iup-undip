@@ -32,6 +32,7 @@ class DashboardController extends Controller
         $users = User::has('user_mahasiswa')->whereHas('user_mahasiswa', function ($q) use ($request) {
             $q->where('batch_id', $request->batch);
         })->get();
+        activity()->log('Open Dashboard');
         $genders = User::GENDER;
         $batches = Batch::all();
         $majors = Major::all();
