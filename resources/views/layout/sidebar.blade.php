@@ -63,8 +63,8 @@
                                 class="side-menu__label">Semester</span><i class="angle fe fe-chevron-right"></i></a>
                         <ul class="slide-menu">
                             <li class="side-menu-label1"><a href="javascript:void(0)">Semester</a></li>
-                            <li><a href="{{ route('semester.index') }}"
-                                    class="slide-item {{ active_class(['semester.*']) }}">Master Data Semester</a></li>
+                            {{-- <li><a href="{{ route('semester.index') }}"
+                                    class="slide-item {{ active_class(['semester.*']) }}">Master Data Semester</a></li> --}}
                             <li><a href="{{ route('semesterStatus.index') }}"
                                     class="slide-item {{ active_class(['semesterStatus.*']) }}">Status Semester</a></li>
                         </ul>
