@@ -169,9 +169,6 @@ class MahasiswaController extends Controller
             $name = $file->getClientOriginalName();
             $file_name = date('mdYHis') . '-' . $name;
             $file = $file->storeAs('file', $file_name, 'public_uploads');
-            if ($mahasiswa->photo) {
-                $mahasiswa->deleteFile();
-            }
             $data['photo'] = $file;
         };
         $old_batch = $mahasiswa->user_mahasiswa->batch_id;
@@ -214,7 +211,6 @@ class MahasiswaController extends Controller
     public function destroy(User $mahasiswa)
     {
         $mahasiswa->delete();
-        $mahasiswa->user_mahasiswa()->delete();
         session()->flash('success');
         return back();
     }
