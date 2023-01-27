@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Spatie\Permission\Models\Role;
@@ -24,7 +25,7 @@ class AdminController extends Controller
     }
     public function index()
     {
-        $admins = User::whereDoesntHave('user_mahasiswa')->where('email', '!=', 'satriotol69@gmail.com')->get();
+        $admins = User::getUser(Auth::user());
         return view('pages.admin.index', compact('admins'));
     }
 
@@ -35,7 +36,7 @@ class AdminController extends Controller
      */
     public function create()
     {
-        $roles = Role::all();
+        $roles = User::getRoles(Auth::user());
         return view('pages.admin.create', compact('roles'));
     }
 
@@ -79,7 +80,7 @@ class AdminController extends Controller
      */
     public function edit(User $admin)
     {
-        $roles = Role::all();
+        $roles = User::getRoles(Auth::user());
         return view('pages.admin.create', compact('admin', 'roles'));
     }
 
