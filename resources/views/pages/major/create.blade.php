@@ -23,11 +23,8 @@
                             <select name="faculty_id" id="" class="form-control" required>
                                 <option value="">Pilih Fakultas</option>
                                 @foreach ($faculties as $faculty)
-                                    <option
-                                        @isset($major)
-                                        {{ $major->faculty_id === $faculty->id ? 'selected' : '' }}
-                                    @endisset
-                                        value="{{ $faculty->id }}">{{ $faculty->name }}</option>
+                                    <option @selected(isset($major) ? $major->faculty_id == $faculty->id : @old('faculty_id')) value="{{ $faculty->id }}">{{ $faculty->name }}
+                                    </option>
                                 @endforeach
                             </select>
                         </div>
