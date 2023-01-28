@@ -16,63 +16,22 @@ use App\Models\SemesterStatus;
 use App\Models\User;
 use App\Models\UserMahasiswa;
 use App\Notifications\MahasiswaRegisterNotification;
-use App\Notifications\SendPushNotification;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Notification;
-use Kutia\Larafirebase\Facades\Larafirebase;
 use Maatwebsite\Excel\Facades\Excel;
 use Spatie\Permission\Models\Role;
 
 class DashboardController extends Controller
 {
-    public function updateToken(Request $request)
-    {
-        try {
-            $request->user()->update(['fcm_token' => $request->token]);
-            return response()->json([
-                'success' => true
-            ]);
-        } catch (\Exception $e) {
-            report($e);
-            return response()->json([
-                'success' => false
-            ], 500);
-        }
-    }
-    public function notification(Request $request)
-    {
-        $request->validate([
-            'title' => 'required',
-            'message' => 'required'
-        ]);
-
-        try {
-            $fcmTokens = User::whereNotNull('fcm_token')->pluck('fcm_token')->toArray();
-
-            //Notification::send(null,new SendPushNotification($request->title,$request->message,$fcmTokens));
-
-            /* or */
-
-            //auth()->user()->notify(new SendPushNotification($title,$message,$fcmTokens));
-
-            /* or */
-
-            Larafirebase::withTitle($request->title)
-                ->withBody($request->message)
-                ->sendMessage($fcmTokens);
-
-            return redirect()->back()->with('success', 'Notification Sent Successfully!!');
-        } catch (\Exception $e) {
-            report($e);
-            return redirect()->back()->with('error', 'Something goes wrong while sending notification.');
-        }
-    }
     public function index(Request $request)
     {
+<<<<<<< HEAD
         Notification::send(null, new SendPushNotification('$title', '$message', 'cQ6rY016KhEpmXIG7clOp6:APA91bHPNkgRyQbMju09fnXKeULJR7zna0sIFm8l6o36Ly3v0OMs91Y3oiCrZC5gY-K4TfW-mTwSVsyMSlzb63j4UekaqPfWpRej8oNK4bWOMl_IeQeg0_Qbw7Ol8L2-RWl_QikIwDB4'));
+=======
+>>>>>>> parent of 371e498 (test)
         $semesterStatuses = SemesterStatus::all();
         $users = User::has('user_mahasiswa')->whereHas('user_mahasiswa', function ($q) use ($request) {
             $q->where('batch_id', $request->batch);
