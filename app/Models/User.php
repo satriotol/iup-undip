@@ -26,7 +26,8 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
-        'photo'
+        'photo',
+        'fcm_token'
     ];
     const GENDER = [
         'PRIA', 'WANITA'
