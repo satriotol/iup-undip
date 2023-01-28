@@ -28,10 +28,6 @@ class DashboardController extends Controller
 {
     public function index(Request $request)
     {
-<<<<<<< HEAD
-        Notification::send(null, new SendPushNotification('$title', '$message', 'cQ6rY016KhEpmXIG7clOp6:APA91bHPNkgRyQbMju09fnXKeULJR7zna0sIFm8l6o36Ly3v0OMs91Y3oiCrZC5gY-K4TfW-mTwSVsyMSlzb63j4UekaqPfWpRej8oNK4bWOMl_IeQeg0_Qbw7Ol8L2-RWl_QikIwDB4'));
-=======
->>>>>>> parent of 371e498 (test)
         $semesterStatuses = SemesterStatus::all();
         $users = User::has('user_mahasiswa')->whereHas('user_mahasiswa', function ($q) use ($request) {
             $q->where('batch_id', $request->batch);
