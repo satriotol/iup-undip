@@ -19,4 +19,8 @@ class Batch extends Model
     {
         return $this->hasMany(BatchSemester::class, 'batch_id', 'id');
     }
+    public static function getBatches()
+    {
+        return Batch::orderBy('year', 'asc');
+    }
 }

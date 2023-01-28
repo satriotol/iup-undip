@@ -15,8 +15,7 @@
     <title>Login</title>
 
     <!-- BOOTSTRAP CSS -->
-    <link id="style" href="{{ asset('assets/plugins/bootstrap/css/bootstrap.min.css') }}"
-        rel="stylesheet" />
+    <link id="style" href="{{ asset('assets/plugins/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet" />
 
     <!-- STYLE CSS -->
     <link href="{{ asset('assets/css/style.css') }}" rel="stylesheet" />
@@ -56,38 +55,45 @@
                             Login
                         </span>
                         @include('partials.errors')
-                        <div class="panel panel-primary">
-                            <div class="panel-body tabs-menu-body p-0 pt-5">
-                                <div class="tab-content">
-                                    <div class="tab-pane active" id="tab5">
-                                        <div class="wrap-input100 validate-input input-group"
-                                            data-bs-validate="Valid email is required: ex@abc.xyz">
-                                            <a href="javascript:void(0)" class="input-group-text bg-white text-muted">
-                                                <i class="zmdi zmdi-email text-muted" aria-hidden="true"></i>
-                                            </a>
-                                            <input class="input100 border-start-0 form-control ms-0" type="email"
-                                                v-model="form.email" name="email" required placeholder="Email">
-                                        </div>
-                                        <div class="wrap-input100 validate-input input-group" id="Password-toggle">
-                                            <a href="javascript:void(0)" class="input-group-text bg-white text-muted">
-                                                <i class="zmdi zmdi-eye text-muted" aria-hidden="true"></i>
-                                            </a>
-                                            <input class="input100 border-start-0 form-control ms-0" type="password"
-                                                v-model="form.password" name="password" required placeholder="Password">
-                                        </div>
-                                        <div class="container-login100-form-btn">
-                                            <button type="submit" class="login100-form-btn btn-primary"
-                                                @click="login">Masuk</button>
-                                        </div>
-                                        <div class="text-center pt-3">
-                                            <p class="text-dark mb-0">Tidak Punya Akun ?<a
-                                                    href="{{ route('register') }}" class="text-primary ms-1">Daftar</a>
-                                            </p>
+                        <form action="" @submit.prevent="login">
+                            <div class="panel panel-primary">
+                                <div class="panel-body tabs-menu-body p-0 pt-5">
+                                    <div class="tab-content">
+                                        <div class="tab-pane active" id="tab5">
+                                            <div class="wrap-input100 validate-input input-group"
+                                                data-bs-validate="Valid email is required: ex@abc.xyz">
+                                                <a href="javascript:void(0)"
+                                                    class="input-group-text bg-white text-muted">
+                                                    <i class="zmdi zmdi-email text-muted" aria-hidden="true"></i>
+                                                </a>
+                                                <input class="input100 border-start-0 form-control ms-0" type="email"
+                                                    v-model="form.email" name="email" required placeholder="Email">
+                                            </div>
+                                            <div class="wrap-input100 validate-input input-group" id="Password-toggle">
+                                                <a href="javascript:void(0)"
+                                                    class="input-group-text bg-white text-muted">
+                                                    <i class="zmdi zmdi-eye text-muted" aria-hidden="true"></i>
+                                                </a>
+                                                <input class="input100 border-start-0 form-control ms-0" type="password"
+                                                    v-model="form.password" name="password" required
+                                                    placeholder="Password">
+                                            </div>
+                                            <div class="container-login100-form-btn">
+                                                <button type="submit" class="login100-form-btn btn-primary"
+                                                    @click="login">Masuk</button>
+                                            </div>
+                                            <div class="text-center pt-3">
+                                                <p class="text-dark mb-0">Tidak Punya Akun ?<a
+                                                        href="{{ route('register') }}"
+                                                        class="text-primary ms-1">Daftar</a>
+                                                </p>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        </form>
+
                     </div>
                 </div>
                 <!-- CONTAINER CLOSED -->
@@ -135,8 +141,7 @@
                     },
                 }
             },
-            mounted() {
-            },
+            mounted() {},
             methods: {
                 login() {
                     Swal.fire({

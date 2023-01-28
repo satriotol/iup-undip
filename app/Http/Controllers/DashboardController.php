@@ -34,7 +34,7 @@ class DashboardController extends Controller
         })->get();
         activity()->log('Open Dashboard');
         $genders = User::GENDER;
-        $batches = Batch::all();
+        $batches = batch::getBatches()->get();
         $majors = Major::all();
         $countries = Country::all();
         $request->flash();

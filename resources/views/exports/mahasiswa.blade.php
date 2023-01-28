@@ -67,7 +67,7 @@
                 <td>{{ $userMahasiswa->major->name }}</td>
                 <td>{{ $userMahasiswa->batch->year }}</td>
                 <td>{{ $userMahasiswa->nim }}</td>
-                <td>{{ $userMahasiswa->user->name }}</td>
+                <td>{{ $userMahasiswa->user->name ?? '' }}</td>
                 @foreach ($userMahasiswa->batch_semester_user_mahasiswas as $batch_semester_user_mahasiswa)
                     <td style="background-color: {{ $batch_semester_user_mahasiswa->semester_status->color ?? '' }}">
                         {{ $batch_semester_user_mahasiswa->semester_status->name ?? '' }}

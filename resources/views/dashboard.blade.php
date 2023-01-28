@@ -4,7 +4,7 @@
         <h1 class="page-title">Dashboard</h1>
     </div>
     <div class="row">
-        @role('SUPERADMIN')
+        @hasanyrole('SUPERADMIN|ADMIN')
             <div class="col-xl-12" id="app">
                 <div class="card">
                     <div class="card-header">
