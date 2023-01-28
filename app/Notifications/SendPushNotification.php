@@ -34,7 +34,7 @@ class SendPushNotification extends Notification
      */
     public function via($notifiable)
     {
-        return ['firebase'];
+        return ['Firebase'];
     }
 
     public function toFirebase($notifiable)
