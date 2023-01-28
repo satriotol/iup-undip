@@ -211,6 +211,9 @@ class MahasiswaController extends Controller
     public function destroy(User $mahasiswa)
     {
         $mahasiswa->delete();
+        if ($mahasiswa->user_mahasiswa) {
+            $mahasiswa->user_mahasiswa->delete();
+        }
         session()->flash('success');
         return back();
     }
