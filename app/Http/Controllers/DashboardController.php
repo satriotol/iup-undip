@@ -72,7 +72,8 @@ class DashboardController extends Controller
     }
     public function index(Request $request)
     {
-        Notification::send(null, new SendPushNotification('$title', '$message', '$fcmTokens'));
+        Larafirebase::withTitle('Test Title')->withBody('Test body')->sendNotification('token1');
+        // Notification::send(null, new SendPushNotification('$title', '$message', '$fcmTokens'));
         $semesterStatuses = SemesterStatus::all();
         $users = User::has('user_mahasiswa')->whereHas('user_mahasiswa', function ($q) use ($request) {
             $q->where('batch_id', $request->batch);
