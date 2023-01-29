@@ -16,6 +16,7 @@ class MahasiswaRegisterNotification extends Notification
      *
      * @return void
      */
+    private $user;
     public function __construct($user)
     {
         $this->user = $user;
