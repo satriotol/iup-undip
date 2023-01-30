@@ -26,8 +26,8 @@ class NotificationController extends Controller
 
             /* or */
 
-            $test = Larafirebase::withTitle('$request->title')
-                ->withBody('$request->message')
+            $test = Larafirebase::withTitle($request->title)
+                ->withBody($request->message)
                 ->sendMessage(Auth::user()->fcm_token);
             return $test;
             return ResponseFormatter::success($test, 'success');
