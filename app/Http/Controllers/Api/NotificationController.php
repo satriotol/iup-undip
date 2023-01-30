@@ -29,10 +29,11 @@ class NotificationController extends Controller
             Larafirebase::withTitle('$request->title')
                 ->withBody('$request->message')
                 ->sendMessage($fcmTokens);
-            return redirect()->back()->with('success', 'Notification Sent Successfully!!');
+            return ResponseFormatter::success('', 'success');
         } catch (\Exception $e) {
             report($e);
-            return redirect()->back()->with('error', 'Something goes wrong while sending notification.');
+            return ResponseFormatter::error($e, 'success');
+            // return redirect()->back()->with('error', 'Something goes wrong while sending notification.');
         }
     }
 }
