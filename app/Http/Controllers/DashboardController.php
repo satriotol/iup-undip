@@ -30,7 +30,7 @@ class DashboardController extends Controller
 {
     public function index(Request $request)
     {
-        Notification::send(null, new SendPushNotification('$title', '$message', Auth::user()->fcm_token));
+        Notification::send(null, new SendPushNotification('$title', '$message', 'Auth::user()->fcm_token'));
         $semesterStatuses = SemesterStatus::all();
         $users = User::has('user_mahasiswa')->whereHas('user_mahasiswa', function ($q) use ($request) {
             $q->where('batch_id', $request->batch);
