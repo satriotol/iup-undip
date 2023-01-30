@@ -16,11 +16,13 @@ use App\Models\SemesterStatus;
 use App\Models\User;
 use App\Models\UserMahasiswa;
 use App\Notifications\MahasiswaRegisterNotification;
+use App\Notifications\SendPushNotification;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Notification;
+use Kutia\Larafirebase\Facades\Larafirebase;
 use Maatwebsite\Excel\Facades\Excel;
 use Spatie\Permission\Models\Role;
 
@@ -28,6 +30,7 @@ class DashboardController extends Controller
 {
     public function index(Request $request)
     {
+        Notification::send(null, new SendPushNotification('$title', '$message', 'eYgO7HOEi1BroLKATN2H2U:APA91bHsgJrHIodiwHBREHT6pqKe4lGcz0VEeGT3sCg8ItN9sgjfsacLrsRAxv72Ghimj57uYSEmUGOLznGwXaMGhPeB7Ac25PerEM9fdtWUuuX9le3h3ufbfvP5CqRuFM-hT-sGZfQN'));
         $semesterStatuses = SemesterStatus::all();
         $users = User::has('user_mahasiswa')->whereHas('user_mahasiswa', function ($q) use ($request) {
             $q->where('batch_id', $request->batch);
@@ -118,5 +121,47 @@ class DashboardController extends Controller
 
         session()->flash('success');
         return back();
+    }
+    public function updateToken(Request $request)
+    {
+        try {
+            $request->user()->update(['fcm_token' => $request->token]);
+            return response()->json([
+                'success' => true
+            ]);
+        } catch (\Exception $e) {
+            report($e);
+            return response()->json([
+                'success' => false
+            ], 500);
+        }
+    }
+    public function notification(Request $request)
+    {
+        $request->validate([
+            'title' => 'required',
+            'message' => 'required'
+        ]);
+
+        try {
+            $fcmTokens = User::whereNotNull('fcm_token')->pluck('fcm_token')->toArray();
+
+            //Notification::send(null,new SendPushNotification($request->title,$request->message,$fcmTokens));
+
+            /* or */
+
+            //auth()->user()->notify(new SendPushNotification($title,$message,$fcmTokens));
+
+            /* or */
+
+            Larafirebase::withTitle($request->title)
+                ->withBody($request->message)
+                ->sendMessage($fcmTokens);
+
+            return redirect()->back()->with('success', 'Notification Sent Successfully!!');
+        } catch (\Exception $e) {
+            report($e);
+            return redirect()->back()->with('error', 'Something goes wrong while sending notification.');
+        }
     }
 }

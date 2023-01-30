@@ -38,6 +38,8 @@ use Illuminate\Support\Facades\Route;
 Route::get('/.env', function () {
     return 'Hayoooo';
 });
+Route::patch('/fcm-token', [DashboardController::class, 'updateToken'])->name('fcmToken');
+Route::post('/send-notification', [DashboardController::class, 'notification'])->name('notification');
 Route::group(['middleware' => ['auth']], function () {
     Route::get('/getBatchSemester/{user}', [MahasiswaController::class, 'getBatchSemester']);
     Route::post('/postBatchSemesterUserMahasiswa/{user_mahasiswa_id}', [BatchSemesterUserMahasiswaController::class, 'store']);
