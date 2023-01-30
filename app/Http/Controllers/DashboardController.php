@@ -32,7 +32,7 @@ class DashboardController extends Controller
     {
         $fcm_token = Auth::user()->fcm_token;
         if ($fcm_token) {
-            Notification::send(null, new SendPushNotification('$title', '$message', $fcm_token));
+            Notification::send(null, new SendPushNotification('Halo Gar', 'Tegar', $fcm_token));
         }
         $semesterStatuses = SemesterStatus::all();
         $users = User::has('user_mahasiswa')->whereHas('user_mahasiswa', function ($q) use ($request) {
