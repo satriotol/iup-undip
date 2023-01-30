@@ -35,7 +35,7 @@ class DashboardController extends Controller
             // $test = Larafirebase::withTitle('Halo Gar')
             //     ->withBody('Halo Gar')
             //     ->sendMessage($fcm_token);
-            $test =  Notification::send(null, new SendPushNotification('Halo Gar', 'Tegar', $fcm_token));
+            $test =  Notification::send(null, new SendPushNotification('Test Notif', 'Test Notif', $fcm_token));
             // dd($test);
         }
         $semesterStatuses = SemesterStatus::all();
