@@ -17,7 +17,15 @@ class NotificationController extends Controller
             'message' => 'required'
         ]);
         try {
-            $fcmTokens = User::whereNotNull('fcm_token')->pluck('fcm_token')->toArray();
+            if ($request->user_id) {
+                $test = Larafirebase::withTitle($request->title)
+                    ->withBody($request->message)
+                    ->sendMessage(User::find($request->user_id)->fcm_token);
+            } else {
+                $test = Larafirebase::withTitle($request->title)
+                    ->withBody($request->message)
+                    ->sendMessage(Auth::user()->fcm_token);
+            }
             //Notification::send(null,new SendPushNotification($request->title,$request->message,$fcmTokens));
 
             /* or */
@@ -26,10 +34,7 @@ class NotificationController extends Controller
 
             /* or */
 
-            $test = Larafirebase::withTitle($request->title)
-                ->withBody($request->message)
-                ->sendMessage(Auth::user()->fcm_token);
-            return $test;
+
             return ResponseFormatter::success($test, 'success');
         } catch (\Exception $e) {
             report($e);
