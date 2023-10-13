@@ -79,8 +79,7 @@
                                                     placeholder="Password">
                                             </div>
                                             <div class="container-login100-form-btn">
-                                                <button type="submit" class="login100-form-btn btn-primary"
-                                                    @click="login">Masuk</button>
+                                                <button type="submit" class="login100-form-btn btn-primary">Masuk</button>
                                             </div>
                                             <div class="text-center pt-3">
                                                 <p class="text-dark mb-0">Tidak Punya Akun ?<a
